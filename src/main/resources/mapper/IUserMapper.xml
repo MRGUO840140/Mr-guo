@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.IUserMapper">
+    <!--用户注册数据-->
+    <insert id="Insert">
+        insert  into user(Uid,Uloginname,Upassword,Utelephone) values (uuid(),#{Uloginname},#{Upassword},#{Utelephone})
+    </insert>
+
+    <!--用户登录密码-->
+    <select id="Login" resultType="User">
+        select * from user where Uloginname=#{Uloginname} and Upassword=#{Upassword}
+    </select>
+
+    <!--手机号登录-->
+    <select id="LoginTel" resultType="User">
+        select * from user where Utelephone=#{Utelephone}
+    </select>
+
+    <!--根据用户id查找对应的用户-->
+    <select id="getUserById" resultType="User">
+        select * from user where Uid=#{Uid}
+    </select>
+
+    <!--校验用户名手机号是否存在-->
+    <select id="CheckUname" resultType="User">
+        select * from user where Uloginname=#{Uloginname}
+    </select>
+
+    <select id="CheckTel" resultType="User">
+        select * from user where Utelephone=#{Utelephone}
+    </select>
+
+    <!--用户中心更新用户信息-->
+    <!--注：密码，账户余额不能修改-->
+    <update id="UpdateUserInfo">
+        update user set Uloginname=#{Uloginname},Uname=#{Uname},Usex=#{Usex},Utelephone=#{Utelephone},Uidnumber=#{Uidnumber},Umail=#{Umail} where Uid=#{Uid}
+    </update>
+    <!--密码修改-->
+    <update id="UpdateUserpwd">
+        update user set Upassword=#{Upassword} where Uid=#{Uid}
+    </update>
+    <!--账户余额冲值-->
+    <update id="UpdateUserCount">
+        update user set Ucount=#{Ucount} where Uid=#{Uid}
+    </update>
+
+    <!--完善信息部分更新-->
+    <update id="InsertUserInfo">
+        update user set Uname=#{Uname},Utelephone=#{Utelephone},Uidnumber=#{Uidnumber} where Uid=#{Uid}
+    </update>
+
+    <!--查询用户的挂号单-->
+    <select id="getAllOrd" resultMap="getOrds">
+        select * from user u
+        join ordinglist o on u.Uid = o.Uid
+        where u.Uid=#{Uid}
+    </select>
+    <resultMap id="getOrds" type="com.example.healthcare.bean.User">
+        <id property="Uid" column="Uid"></id>
+        <result property="Uloginname" column="Uloginname"></result>
+        <result property="Uname" column="Uname"></result>
+        <result property="Usex" column="Usex"></result>
+        <result property="Utelephone" column="Utelephone"></result>
+        <result property="Uidnumber" column="Uidnumber"></result>
+        <result property="Umail" column="Umail"></result>
+        <result property="Ucount" column="Ucount"></result>
+        <collection property="list" ofType="com.example.healthcare.bean.Ordinglist">
+            <id property="OrdingId" column="OrdingId"></id>
+            <result property="Did" column="Did"></result>
+            <result property="PriceId" column="PriceId"></result>
+            <result property="TimeId" column="TimeId"></result>
+            <result property="isVisit" column="isVisit"></result>
+            <result property="diseaseInfo" column="diseaseInfo"></result>
+            <result property="isPay" column="isPay"></result>
+            <association property="doctor" javaType="com.example.healthcare.bean.Doctor">
+                <id property="Did" column="Did"></id>
+                <result column="DName" property="DName"></result>
+            </association>
+        </collection>
+    </resultMap>
+    <!--以上语句有问题无法查出相应的-->
+
+</mapper>

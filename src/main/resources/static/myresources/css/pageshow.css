@@ -1,0 +1,870 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul{
+    list-style: none;
+}
+body a{
+    text-decoration: none;
+}
+/*头部样式*/
+.top{
+    background-color: #F9F9F9;
+    border: 1px solid #EAEAEA;
+    margin-bottom:25px;
+
+}
+.top #middle{
+    height: 35px;
+    width: 1006px;
+   /* background-color:#488B93;*/
+    margin: 0 auto;
+}
+.top #middle ul{
+ /* border: blue 1px solid;*/
+    padding-top: 5px;
+    width: 730px;
+    display: block;
+    float: left;
+
+}
+.top #middle ul a{
+    font-size: small;
+    margin: 20px 0px;
+    padding: 0 20px;
+    border-left: 1px #EAEAEA solid;
+    text-align: center;
+    text-decoration: none;
+    color: #666666;
+}
+.top #middle ul a:hover{
+    color: #00C8AA ;
+}
+/*定部左侧部分*/
+
+.top #top_right{
+    float: right;
+    margin: 8px 0px;
+}
+.top #top_right p{
+    font-size: small;
+   text-align: center;
+}
+.top #top_right a{
+    color: #00C8AA;
+    font-size: small;
+  /* border: #488B93 1px solid;*/
+    text-decoration: none;
+}
+.top #top_right a:hover{
+    text-decoration: #00C8AA underline;
+}
+/*搜索框部分*/
+
+
+.search_order{
+    height: 105px;
+    width: 1006px;
+    margin: 0 auto;
+    border:1px #F3F3F3 solid;
+
+}
+.search_order{
+    background-image: url("../images/6.png");
+      background-repeat: no-repeat;
+}
+
+.search #search_one{
+    width: 778px;
+    height: 38px;
+   /* border: 1px black solid;*/
+    margin-left:207px;
+    margin-top: 17px;
+
+}
+.search #search_input{
+    width: 500px;
+    height: 34px;
+    float: left;
+    border:  #00C8AA 2px solid;
+
+}
+.search #search_button{
+    width: 120px;
+    height:34px;
+    border: none;
+    border:  #00C8AA 2px solid;
+    background:#00C8AA;
+    color: white;
+    font-size: 18px;
+}
+.search #search_button:hover{
+    background:#008874;
+}
+
+.search #search_one #ask_button{
+    display:inline-block;
+    width:116px;
+    height:34px;
+    line-height: 33px;
+    text-align: center;
+    font-size: 18px ;
+    color: white;
+    background:#FF881E ;
+    text-decoration: none;
+    margin-right: 25px;
+    float: right;
+}
+.search #search_one #ask_button:hover{
+    background:#E97434;
+}
+/*----------------------------------------------------*/
+/*搜索框下半部分*/
+#nav_quick{
+    width: 190px;
+    height: 42px;
+    background: #F3F3F3;
+   margin-top: 10px;
+    line-height: 42px;
+    font-size: 14px;
+    color: #333333;
+    float: left;
+
+}
+#nav_quick .i-icons{
+    width: 16px;
+    height: 12px;
+    background: url("../images/i-icons.png") no-repeat;
+    background-position: -11px 0;
+    float: left;
+    vertical-align: center;
+    margin: 15px 17px;
+    box-sizing: border-box;
+}
+/*帮您快速找医生*/
+/*----------------------------*/
+.nav_quick_lan{
+    width: 800px;
+    height: 42px;
+  /*  border: #00C8AA 1px solid;*/
+    float: left;
+    margin-top: 8px;
+    line-height: 42px;
+    position: relative;
+}
+.nav_quick_lan ul{
+    display: flex;
+}
+.nav_quick_lan li{
+    float: left;
+    list-style: none;
+    flex: 1;
+    padding-left: 31px;
+}
+.nav_quick_lan li:first-child{
+    color:#25B6A0;
+}
+.nav_quick_lan li:hover{
+    color: #25B6A0;
+}
+
+.nav_quick_lan li:hover .daohang{
+    display: block;
+}
+.nav_quick_lan .one{
+
+}
+.daohang{
+    background: white;
+    z-index: 2;
+    height: 40px;
+    width: 815px;
+
+    position: absolute;
+    top: 41px;
+    left: 0px;
+    display: none;
+}
+
+.daohang a{
+    color: black;
+    margin-right: 30px;
+    font-size: 15px;
+}
+.daohang a:hover{
+    color: #25B6A0;
+    text-decoration: none;
+}
+.daohang i{
+    color: red;
+}
+
+.nav_quick_lan .two{
+    width: 11px;
+    height: 6px;
+    background-image: url("../images/i-icons.png");
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 7px;
+}
+
+/*身体部分*/
+.body{
+    /*线条颜色*/
+    border-top: 1px #E2E2E2 solid;
+}
+.body_left{
+    width: 1006px;
+    height: 340px;
+  /*  background: #00C8AA;*/
+    margin: 0 auto;
+  /*  clear: both;*/
+
+}
+#body_left_one{
+    width: 190px;
+    height: 100%;
+    background: #F8F8F8;
+    float: left;
+}
+
+/*表格搜索部分*/
+#body_left_one li{
+    list-style: none;
+    height: 36px;
+    box-sizing: border-box;
+     padding-top: 7px;
+    color: #666666;
+
+
+
+}
+#body_left_one li:hover {
+    background: #EAEAEA;
+    border-left: 2px solid #00C8AA;
+    overflow: visible;
+}
+#body_left_one li:hover .nk_one{
+    display: block;
+}
+/*表格图标部分*/
+.sear{
+    width: 20px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("../images/i-icons.png");
+    background-repeat: no-repeat;
+    margin-left: 15px;
+    margin-right: 10px;
+    position: relative;
+}
+.nk {
+    background-position: 0 -12px;
+   /* clear: both;*/
+}
+
+/*隐藏界面*/
+.nk_one {
+    height: 340px;
+    width: 440px;
+    position: absolute;
+    margin-left: 190px;
+    margin-top: -32px;
+    background: white;
+    z-index: 2;
+   display: none;
+    box-shadow:0 2px 5px -1px #666666;//阴影
+}
+
+.nk_one li{
+ float: left;
+}
+
+.youwenbida{
+    width: 405px;
+    height: 85px;
+    margin: 20px;
+}
+
+.youwenbida a{
+    display: inline-block;
+    font-size: small;
+    margin-left: 5px;
+    margin-top: 8px;
+    color: #666666;
+}
+.youwenbida a:hover{
+    color:#00C8AA ;
+}
+.youwenbida p{
+    color: black;
+}
+
+ .dainhua{
+    border-top: #4cae4c 1px dashed;
+}
+.ke_position {
+    position: absolute;
+    top: 201px;
+ }
+
+/*----------------------*/
+.content{
+    display: none;
+    border: 1px rebeccapurple solid;
+}
+/*内科内容*/
+.content p{
+    margin:15px 20px ;
+}
+.content ul{
+    float: left;
+    list-style: none;
+    border: 1px #666666 dashed;
+}
+.content li{
+    float: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    color: #666666;
+    font-size: 12px;
+}
+
+#body_left_one .jiantou{
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    background-image: url("../images/i-icons.png");
+    background-position: -38px 0px;
+    /*float: right;*/
+    margin-top: 10px;
+}
+.jk_one{
+    margin-left: 85px;
+}
+.jk_two{
+    margin-left: 71px;
+}
+.jk_three{
+    margin-left: 45px;
+}
+.jk_four{
+    margin-left: 55px;
+}
+/*小图标位置*/
+.wk{
+    background-position: -20px -12px;
+
+}
+.fck{
+    background-position: -40px -12px;
+}
+.pfk{
+    background-position: -60px -12px;
+}
+.xbk{
+    background-position:-80px -12px;
+}
+.ek{
+    background-position: 0 -30px;
+}
+.wgk{
+    background-position: -20px -30px;
+}
+.jsxlk{
+    background-position: -40px -30px;
+}
+.qtk{
+    background-position: -60px -30px;
+}
+/*以上为图标部分*/
+/*------------------------------*/
+/*中间图片*/
+.body_center{
+    width: 530px;
+    height: 330px;
+    background: #DFDFE0;
+    float: left;
+    margin: 10px 15px;
+    position: relative;
+}
+
+
+/*body右半部分*/
+.body_right{
+    width: 250px;
+    height: 330px;
+    margin :10px 0px;
+   /* background: #E97434;*/
+    float: right;
+    border: 1px #E2E2E2 solid;
+}
+/*设置极速问诊图片*/
+#body_right_up{
+    height: 175px;
+    width: 100%;
+    /*border: blue 1px solid;*/
+}
+#body_right_up a{
+    text-decoration: none;
+}
+#body_right_up #up_img{
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    background: url("../images/i-links.png") no-repeat;
+   /* border: blue 1px solid;*/
+    margin-top: 40px;
+    margin-left: 105px;
+}
+#body_right_up p{
+    text-decoration: none;
+    color: #666666;
+    text-align: center;
+    margin-top: 18px;
+}
+#body_right_up p:hover{
+    color:  #25B6A0;
+}
+/*极速问诊的上半部分*/
+/*预约挂号的下班部分*/
+#body_right_down{
+    display: inline-block;
+    width: 100%;
+    height: 200px;
+    /*border: 1px #25B6A0 solid;*/
+}
+#body_right_down #down_img{
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    background: url("../images/i-links.png") no-repeat;
+    background-position: -46px 0px;
+    margin-top: 40px;
+    margin-left: 105px;
+}
+#body_right_down p{
+    text-decoration: none;
+    color: #666666;
+    text-align: center;
+    margin-top: 18px;
+}
+#body_right_down p:hover{
+    color:  #25B6A0;
+}
+
+/*问医生找专家模块*/
+#clearfix{
+    /*总框架*/
+    width: 1006px;
+    height: 363px;
+   /* border: #333333 1px solid;*/
+    margin: 0 auto;
+}
+/*标题内容开始*/
+#clearfix #title{
+    /*标题高度*/
+    height: 52px;
+    width: 734px;
+    float: left;
+}
+#clearfix #title a{
+    text-decoration: none;
+    line-height: 52px;
+
+}
+
+#clearfix #title a:first-child{
+    font-size: 18px;
+    color: #333333;
+    float: left;
+}
+#clearfix #title a:last-child{
+    font-size: 14px;
+    color:#999999 ;
+    float: right;
+}
+#clearfix #title a:hover{
+    color:#00C8AA;/*点击样式*/
+}
+/*标题设计结束*/
+/*医生入口模块开始*/
+#entry{
+    width: 260px;
+    height: 350px;
+    border: #E2E2E2 1px solid;
+    float: right;
+    background: url("../images/i-entra-bg1.png") no-repeat;
+}
+.entry_one{
+    width: 258px;
+    height: 76px;
+   /* border: 1px saddlebrown solid;*/
+    line-height: 76px;
+}
+.entry_one p{
+    font-size: 22px;
+    color: #00C8AA;
+    text-align: center;
+
+}
+/*头部结束*/
+/*列表开始*/
+.entry_two{
+    width: 258px;
+    height: 270px;
+   /* border: 1px red solid;*/
+    background: url("../images/i-entra-bg2.png") no-repeat;
+}
+.entry_two ul{
+    list-style: none;
+}
+.entry_two i{
+    width: 24px;
+    height: 24px;
+    border: 1px #00C8AA solid;
+    border-radius: 50%;
+    display: block;
+    float: left;
+    margin-left: 10px;
+    background-image: url("../images/i-icons.png");
+   /* background-size:120%;*/
+}
+.entry_two li{
+    display: inline-block;
+    float: left;
+    width: 129px;
+    height: 34px;
+    margin-top: 25px;
+}
+.entry_two a{
+    text-decoration: none;
+}
+.entry_two a:hover{
+    color:#00C8AA ;
+}
+.entry_two #l{
+    background-position:2px -46px ;
+}
+.entry_two #b{
+    background-position:-17px -48px ;
+}
+.entry_two #c{
+    background-position:-37px -47px ;
+}
+.entry_two #d{
+    background-position: -58px -48px;
+}
+.entry_two #e{
+    background-position: -78px -46px;
+}
+.entry_two #f{
+    background-position: 3px -68px;
+}
+.entry_two #g{
+    background-position: -17px -68px;
+}
+.entry_two #h{
+    background-position: -39px -68px;
+}
+/*列表结束*/
+/*医生入口模块结束*/
+/*问医生模块开始*/
+.part{
+    width:243px;
+    height: 120px;
+    border: 1px #E2E2E2 solid;
+    float: left;
+}
+/*总控制开始*/
+.t{
+    display: inline-block;
+    margin-left: 75px;
+}
+.ti{
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    background-image: url("../images/i-icons.png");
+    background-position: -44px 0;
+}
+.list{
+    width: 242px;
+    height: 75px;
+   /* border: #333333 1px solid;*/
+}
+.list_one{
+    list-style: none;
+    margin-left: 12px;
+    margin-top: 10px;
+}
+.list_one i{
+    list-style: none;
+    width: 63px;
+    height: 24px;
+
+    float: left;
+
+}
+.list_one a{
+    text-decoration: none;
+    float: left;
+    width: 63px;
+    height: 24px;
+    font-size: 12px;
+    color:#999999 ;
+    border: 1px #999999 solid;
+    text-align: center;
+    line-height: 24px;
+    margin: 2px 5px;
+}
+.lo a{
+    text-decoration: none;
+    width: 90px;
+    height: 24px; font-size: 12px;
+    color:#999999 ;
+    border: 1px #999999 solid;
+    text-align: center;
+    line-height: 24px;
+    margin: 2px 5px;
+
+}
+/*总控制结束*/
+/*问医生模块结束*/
+/*找专家标题开始*/
+#clearfix #title_one{
+    /*标题高度*/
+    height: 52px;
+    width: 734px;
+    margin-top: 6px;
+    float: left;
+}
+#clearfix #title_one a{
+    text-decoration: none;
+    line-height: 52px;
+}
+
+#clearfix #title_one a:first-child{
+    font-size: 18px;
+    color: #333333;
+    float: left;
+}
+#clearfix #title_one a:last-child{
+    font-size: 14px;
+    color:#999999 ;
+    float: right;
+}
+#clearfix #title_one span{
+    font-size: 14px;
+    color:#999999 ;
+    line-height: 52px;
+    margin-left: 10px;
+}
+#clearfix #title_one a:hover{
+    color:#00C8AA;/*点击样式*/
+}
+/*找专家标题结束*/
+#clearfix p:hover{
+    color:#00C8AA;
+}
+.list a:hover{
+    color:#00C8AA;
+}
+
+/*查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   开始*/
+#chajibing{
+    margin: 20px auto;
+    width: 1006px;
+    height: 528px;
+   /* border:#999999 1px solid;*/
+
+}
+#chajibing_left{
+    display:inline-block;
+}
+#chajibing_tupian{
+    margin-top: 20px;
+    width:729px ;
+    height: 90px;
+   /* border: #E97434 1px solid;*/
+    background-image: url("../images/changtu.jpg");
+    background-position: center;
+}
+#chajibing_head{
+    border: white 1px solid;
+    width: 729px;
+    height: 60px;
+}
+#chajibing_head a{
+    color: black;
+}
+#chajibing_head span{
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    margin-top: 22px;
+}
+#chajibing_head ul{
+    margin-top: 28px;
+    margin-left: 100px;
+    position: relative;
+}
+#chajibing_head li{
+    float: left;
+    margin-right: 30px;
+   /* position: relative;*/
+}
+
+/*---------头部完成-------------*/
+.cha{
+    position: absolute;
+    top: 40px;
+    left: -101px;
+    width:729px;
+    height: 280px;
+    border: #E2E2E2 1px solid;
+
+}
+.cha_left{
+    display: inline-block;
+    margin: 30px 10px 30px 22px;
+    width: 86px;
+    height: 196px;
+   /* border: black 1px solid;*/
+}
+.cha_left p{
+    font-size: 15px;
+    margin-top: 10px;
+    display: inline-block;
+    width: 65px;
+    float: left;
+    margin-bottom: 21px;
+}
+.cha_right{
+    float: right;
+    margin-top: 30px;
+    width: 606px;
+    height: 196px;
+    /*display: none;*/
+   /* border: black 1px solid;*/
+}
+.hidden{
+    display: none;
+}
+.show{
+
+    display: block;
+}
+
+/*#chajibing_head li:hover .cha_right{
+    display: block;
+}*/
+
+.cha_right a{
+    text-decoration: none;
+    text-align: center;
+    line-height: 34px;
+    float: left;
+    height: 34px;
+    width: 100px;
+    border: #999999 1px solid;
+    padding: 0px 10px;
+    margin-right: 20px;
+    margin-bottom:20px;
+    color: #999999;
+    /*display: none;*/         /*此部分用js写*/
+}
+
+/*改*/
+.cha_right_one:hover{
+    background:  #A2ECC5;
+    color: white;
+    font-weight: bold;
+}
+.cha_right_two:hover{
+    background: #4FDEC9;
+    color: white;
+    font-weight: bold;
+}
+.cha_right_three:hover{
+   background: #F2A83F;
+    color: white;
+    font-weight: bold;
+}
+.cha_right_four:hover{
+    background: #FF7640;
+    color: white;
+    font-weight: bold;
+}
+/*改*/
+
+/*------------------*/
+#chajibing_right{
+    float: right;
+    width: 258px;
+    height: 100%;
+   /* border: black 1px solid;*/
+}
+#chajibing_right_head{
+    width: 100%;
+    height: 10%;
+  /*  border: #4cae4c 1px solid;*/
+}
+#chajibing_right_head p{
+    font-size:18px;
+    text-align: center;
+    margin: 22px 10px;
+    float: left;
+}
+#chajibing_right_head a{
+    text-decoration: none;
+    margin: 25px;
+    float: right;
+    color: #999999;
+}
+
+#chajibing_right_foot{
+    width: 100%;
+    height: 90%;
+   /* border:  1px black solid;*/
+}
+
+/*查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   结束*/
+
+/*尾部编写开始*/
+#footer{
+    width: 100%;
+    height: 175px;
+    background: #F9F9F9;
+}
+#footer_one{
+    margin: 0 auto;
+    width: 1006px;
+    height: 100%;
+    border:  #F9F9F9 1px solid;
+}
+#footer_one ul{
+    margin-top: 30px;
+    margin-left: 260px;
+}
+#footer_one a:last-child{
+    border-right: none;
+}
+#footer_one a{
+    text-decoration: none;
+    border-right:1px solid #999999 ;
+    padding-right: 10px;
+    margin-left: 10px;
+    color: #666666;
+}
+#footer_one a:hover{
+    color:#00C8AA ;
+}
+#footer_one p{
+    text-align: center;
+    color: #999999;
+}
+/*尾部编写结束*/
+

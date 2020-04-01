@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>快速找医生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../jquery/jquery.sPage.css">
+    <!-- Bootstrap -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../jquery/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <title>挂号</title>
+    <link rel="stylesheet" href="../css/registration.css">
+    <link rel="stylesheet" href="../css/fenye.css">
+    <link rel="stylesheet" href="../css/foot.css">
+</head>
+<body>
+<div th:replace="commons/bar.html::topbar"></div>
+
+<div id="middle_center">
+    <div id="middle_top">
+      <!--  <a href="pageshow.html">首页</a>>
+        <span>预约挂号</span>-->
+    </div>
+    <div id="filter_top">
+        <span>找到[[${session.pageHelper.totalPages}]]位医生</span>
+    </div>
+    <div id="middle_nav">
+        <div id="nav_left">
+            <span>医生职称</span>
+        </div>
+        <div id="nav_right">
+            <ul>
+                <li><a th:href="@{/doctor/findDoctors?(subjectId=${session.subjectId})}">所有医生</a></li>
+                <li><a th:href="@{/doctor/findDoctors?TitleId=4&(subjectId=${session.subjectId})}">主任医师</a></li>
+                <li><a th:href="@{/doctor/findDoctors?TitleId=3&(subjectId=${session.subjectId})}">副主任医师</a></li>
+                <li><a th:href="@{/doctor/findDoctors?TitleId=2&(subjectId=${session.subjectId})}">主治医师</a></li>
+                <li><a th:href="@{/doctor/findDoctors?TitleId=1&(subjectId=${session.subjectId})}">医师</a></li>
+            </ul>
+        </div>
+    </div>
+    <span class="clear"></span>
+    <div id="middle_thin">
+        <span class="span_div">查看最新号源状态</span>
+        <div id="thin_right">
+            <span id="tx"><i id="color_purple"></i>特需门诊</span>
+            <span id="zj"><i id="color_blue"></i>专家门诊</span>
+            <span id="pt"><i id="color_green"></i>普通门诊</span>
+            <span id="bk"><i id="color_grey"></i>不可约</span>
+        </div>
+    </div>
+    <span class="clear"></span>
+    <div id="middle_bar">
+        <p id="bar_style">搜索列表的号源更新有延迟，请点击医生姓名到医生主页关注号源实时动态!</p>
+    </div>
+    <div style="height: 510px">
+        <div class="middle_main" th:each="doctor:${session.pageHelper.listItems}">
+            <div class="main_left1">
+                <img th:src="${doctor.Dphoto}" width="100px" height="80px">
+                <dl>
+                    <dt><a href="#" th:text="${doctor.DName}"></a>&nbsp;&nbsp;[[${doctor.title.Title}]]</dt>
+                    <dd th:text="${doctor.subject.subject}"></dd>
+                </dl>
+                <span class="clear"></span>
+            </div>
+            <div class="main_left2">
+                <p>擅长：[[${doctor.Profile}]]</p>
+            </div>
+            <div class="main_left3">
+                <div class="letf3_top">
+                    <p>评分：[[${doctor.Dgrade}]]</p>
+                </div>
+                <div class="letf3_bottom">
+                    <p style="text-align: center; line-height: 74px; color: #669933">预约量：[[${doctor.Dseeing}]]</p>
+                </div>
+            </div>
+            <div class="main_left4">
+                <a class="left4_a1" href="yuyueguahao.html" th:href="@{/user/chat}">聊天</a>
+                <a class="left4_a2" href="tuwenzixun.html" th:href="@{/doctor/tuwen(Did=${doctor.Did})}">图文咨询</a>
+            </div>
+            <span class="clear"></span>
+        </div>
+    </div>
+</div>
+<div align="center" style="margin-top: 20px">
+    <div id="pNum" class="num"></div>
+    <div id="myPage" class="demo"></div>
+</div>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="../jquery/jquery.sPage.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    $(function(){
+        // 示例1
+        $("#myPage").sPage({
+            page:[[${session.pageHelper.currentPage}]],//当前页码，必填
+            total:[[${session.pageHelper.totalPages}]],//数据总条数，必填
+            pageSize:[[${session.pageHelper.pageSize}]],//每页显示多少条数据，默认10条
+            showTotal:true,//是否显示总条数，默认关闭：false
+            totalTxt:"共{total}条",//数据总条数文字描述，{total}为占位符，默认"共{total}条"
+            noData: false,//没有数据时是否显示分页，默认false不显示，true显示第一页
+            showSkip:true,//是否显示跳页，默认关闭：false
+            showPN:true,//是否显示上下翻页，默认开启：true
+            prevPage:"上一页",//上翻页文字描述，默认“上一页”
+            nextPage:"下一页",//下翻页文字描述，默认“下一页”
+            backFun:function(page) {
+                //点击分页按钮回调函数，返回当前页码
+                /*$("#pNum").text(page);*/
+                var sb=[[${session.subjectId}]];
+                if (sb==null) {
+                    location.href = "/doctor/findDoctors?pn=" + page + "&HospitalId=" + [[${session.HospitalId}]];
+                } else{
+                    location.href = "/doctor/findDoctors?pn=" + page + "&subjectId=" + [[${session.subjectId}]];
+                }
+            }
+        });
+    });
+</script>
+<div style="margin-top: 20px" th:replace="commons/bar.html::footer"></div>
+</body>
+</html>

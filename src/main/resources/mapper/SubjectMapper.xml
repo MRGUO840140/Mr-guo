@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.SubjectMapper">
+        <select id="getSub" resultType="com.example.healthcare.bean.Subject">
+            select * from subject where SubjectId=#{SubjectId}
+        </select>
+    <!--根据科目名称查出其下的疾病信息-->
+    <select id="getDiseases" resultMap="getDiseases">
+       select s.SubjectId,Subject,d.Article,d.diseaseName,diseaseId
+        from subject s
+        join disease d on s.SubjectId = d.SubjectId
+        where s.Subject=#{Subject}
+    </select>
+    <resultMap id="getDiseases" type="com.example.healthcare.bean.Subject">
+        <id column="SubjectId" property="SubjectId"></id>
+        <result column="Subject" property="Subject"></result>
+        <collection property="diseases" ofType="com.example.healthcare.bean.Disease">
+            <id column="diseaseId" property="diseaseId"></id>
+            <result column="diseaseName" property="diseaseName"></result>
+            <result column="Article" property="Article"></result>
+        </collection>
+    </resultMap>
+
+
+    <!---->
+    <select id="getInfo" resultType="com.example.healthcare.bean.Subject">
+        select * from subject where Subject=#{Subject}
+    </select>
+
+</mapper>

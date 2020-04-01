@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.OrdinglistMapper">
+
+    <!--预约成功生成订单-->
+    <insert id="AddOrding">
+        insert into ordinglist(Uid, Did, PriceId, TimeId, isVisit, diseaseInfo)
+        values (#{Uid},#{Did},#{PriceId},#{TimeId},#{isVisit},#{diseaseInfo})
+    </insert>
+
+    <!--取消预约-->
+    <delete id="DelOrding">
+        delete from ordinglist where OrdingId=#{OrdingId}
+    </delete>
+
+    <!--根据用户的id得到用户所有的挂号单-->
+    <select id="getOrds" resultMap="getOrdlist">
+        select OrdingId,d.DName,u.Uname,ordinglist.isPay,t.TimeId,t.Data,t.MorAfter,price
+        from ordinglist
+        join user u on ordinglist.Uid = u.Uid
+        join doctor d on ordinglist.Did = d.Did
+        join time t on ordinglist.TimeId=t.TimeId
+        join title v on d.TitleId = v.DTid
+        join price on ordinglist.PriceId=price.PriceId
+        where u.Uid=#{Uid};
+    </select>
+
+    <select id="getOrdsByPage" resultMap="getOrdlist">
+        select OrdingId,d.DName,u.Uname,ordinglist.isPay,t.TimeId,t.Data,t.MorAfter,price
+        from ordinglist
+        join user u on ordinglist.Uid = u.Uid
+        join doctor d on ordinglist.Did = d.Did
+        join time t on ordinglist.TimeId=t.TimeId
+        join title v on d.TitleId = v.DTid
+        join price on ordinglist.PriceId=price.PriceId
+        where ordinglist.Uid=#{Uid}
+        ORDER BY OrdingId
+        limit #{pn},#{pageSize}
+    </select>
+
+    <select id="getTotalOrds" resultType="int">
+        select count(1) from ordinglist where Uid=#{Uid};
+    </select>
+    <resultMap id="getOrdlist" type="com.example.healthcare.bean.Ordinglist">
+        <id property="OrdingId" column="OrdingId"></id>
+        <result property="isPay" column="isPay"></result>
+        <association property="doctor" javaType="com.example.healthcare.bean.Doctor">
+            <result property="DName" column="DName"></result>
+        </association>
+        <association property="user" column="com.example.healthcare.bean.User">
+            <result property="Uname" column="Uname"></result>
+        </association>
+        <association property="time" javaType="com.example.healthcare.bean.Time">
+            <id property="TimeId" column="TimeId"></id>
+            <result property="Data" column="Data"></result>
+            <result property="MorAfter" column="MorAfter"></result>
+        </association>
+        <association property="price" javaType="com.example.healthcare.bean.Price">
+            <result property="price" column="price"></result>
+        </association>
+    </resultMap>
+
+    <!--根据订单的id拿到订单的对象-->
+    <select id="getOrding" resultMap="getOrdlist">
+        select OrdingId,d.DName,u.Uname,ordinglist.isPay,t.TimeId,t.Data,t.MorAfter,price
+        from ordinglist
+        join user u on ordinglist.Uid = u.Uid
+        join doctor d on ordinglist.Did = d.Did
+        join time t on ordinglist.TimeId=t.TimeId
+        join title v on d.TitleId = v.DTid
+        join price on ordinglist.PriceId=price.PriceId
+        where OrdingId=#{OrdingId}
+    </select>
+
+    <update id="updateIspay">
+        update ordinglist set isPay=1 WHERE OrdingId=#{OrdingId}
+    </update>
+
+
+    <!--查询未支付的订单-->
+    <select id="getUnPayOrd" resultMap="getOrdlist">
+        select OrdingId,d.DName,u.Uname,ordinglist.isPay,t.TimeId,t.Data,t.MorAfter,price
+        from ordinglist
+        join user u on ordinglist.Uid = u.Uid
+        join doctor d on ordinglist.Did = d.Did
+        join time t on ordinglist.TimeId=t.TimeId
+        join title v on d.TitleId = v.DTid
+        join price on ordinglist.PriceId=price.PriceId
+        where isPay=0
+    </select>
+</mapper>

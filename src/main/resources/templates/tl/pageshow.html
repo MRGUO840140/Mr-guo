@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>HealthCare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css"></link>
+    <!-- Bootstrap -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../jquery/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/pageshow.css"></link>
+</head>
+<body>
+<!--顶部栏框-->
+    <div class="top">
+    <!--中部-->
+    <div id="middle">
+        <ul>
+            <a href="#">医美</a>
+            <a href="#">医平台</a>
+            <a href="#">云健康</a>
+            <a href="#">健康教育</a>
+            <a href="#">闻康公益</a>
+            <a href="#">药品网</a>
+            <a href="#">下载App</a>
+            <a href="#">微信公众号</a>
+        </ul>
+        <!--顶部右侧-->
+        <div id="top_right">
+            <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+            <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+        </div>
+    </div>
+
+</div>
+<!--搜索框部分-->
+<div class="search_order ">
+        <div class="search" style="background: none;border: none">
+            <div id="search_one">
+                <form action="#" >
+                    <input type="text" placeholder="可搜索医院、医生、病症、问答、药品" id="search_input"><input type="submit" value="搜&nbsp;索" id="search_button">
+                    <a href="#" id="ask_button">快速提问</a>
+                </form>
+            </div>
+        </div>
+    <!--搜索框下半部分-->
+    <div class="search_down">
+        <div id="nav_quick">
+            <!--图标-->
+            <div class="i-icons"></div>
+            <span>帮您快速找医生</span>
+        </div>
+        <!--选择首页栏框-->
+        <div class="nav_quick_lan">
+            <ul>
+                <li class="one">首页</li>
+                <li class="one">疾病自查<i class="two"></i>
+                <div class="daohang">
+                    <a href="">按科室自查</a>
+                    <a href="">按部位自查</a>
+                    <a href="">按字母自查</a>
+                </div>
+                </li>
+                <li class="one">在线医疗<i class="two"></i>
+                    <div class="daohang">
+                        <a href="consultation.html">快速问诊(<i>限免</i>)</a>
+                        <a href="">有问必答</a>
+                        <a href="">电话医生</a>
+                        <a th:href="@{/user/Ording}">预约挂号</a>
+                        <a href="">报告解读</a>
+                    </div>
+                </li>
+                <li class="one">找专家<i class="two"></i>
+                    <div class="daohang">
+                        <a href="">按疾病找</a>
+                        <a href="">按医院找</a>
+                        <a href="">按科室找</a>
+                    </div>
+                </li>
+                <li class="one">找药品<i class="two"></i>
+                    <div class="daohang">
+                        <a href="">中西药品</a>
+                        <a href="">男科健康</a>
+                        <a href="">妇科呵护</a>
+                        <a href="">儿童用药</a>
+                        <a href="">风湿骨痛</a>
+                        <a href="">养生保健</a>
+                        <a href="">更多药品</a>
+                    </div>
+                </li>
+                <li class="one">健康咨讯<i class="two"></i>
+                    <div class="daohang">
+                        <a href="">健康经验</a>
+                        <a href="">母婴健康</a>
+                        <a href="">食疗养生</a>
+                    </div>
+                </li>
+                <li class="one">健康百科<i class="two"></i>
+                    <div class="daohang">
+                        <a href="">疾病百科</a>
+                        <a href="">症状百科</a>
+                        <a href="">整形项目</a>
+                        <a href="">中医百科</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div></div>
+    </div>
+</div>
+<!--上半部分-->
+
+<div class="body">
+    <!--左半部分-->
+    <div class="body_left">
+
+        <div id="body_left_one">
+            <ul>
+                <li><i class="sear nk"></i>内科<i class="jiantou jk_one"></i>
+                    <div class="nk_one">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul id="neike">
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">内分泌</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">神经内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">呼吸内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">消化内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">肾内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">风湿免疫</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">心血管内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">肿瘤科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">血液内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">其他</a>
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">普通内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">心血管科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">神经内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">消化内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">内分泌科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">免疫科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">呼吸内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">肾病内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">血液科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">变态反应科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">老年病科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=1'}">胃肠病科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li><i class="sear wk"></i>外科<i class="jiantou jk_one"></i>
+                    <div class="nk_one ke_position">
+                        <!--内科中的内容-->
+                        <div class="youwenbida ">
+                        <p>有问必答</p>
+                        <ul >
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">骨科</a>&nbsp;&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">结石科</a>&nbsp;&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">乳腺外科</a> &nbsp;&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">神经外科</a>&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">心胸外科</a>&nbsp;&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">器官移植</a>&nbsp;&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">泌尿外科</a> |
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">男科</a>&nbsp;|
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">心血管外科</a> |
+                        <a th:href="@{'doctor/findDoctors?subjectId=2'}">其他 </a>&nbsp;&nbsp;
+                        </ul>
+                        </div>
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">神经外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">功能神经外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">心血管外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">胸外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">整形科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">乳腺外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">泌尿外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">肝胆外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">肛肠科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">血管外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">普外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=2'}">综合外科</a>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear fck"></i>妇产科<i class="jiantou jk_two"></i>
+                    <div class="nk_one ke_position">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">生殖孕育</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇科综合</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">产科综合</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">产后妇科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">其他</a>
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">产科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇科内分泌</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">产前检查科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇产科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">遗传咨询科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=3'}">计划生育科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear pfk"></i>皮肤科<i class="jiantou jk_two"></i>
+                    <div class="nk_one ke_position">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">斑秃</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">生发</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">皮肤过敏</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">腋臭</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">白癜风</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">灰指甲</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">疤痕</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">带状疱疹</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">痔疮</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">湿疹</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">牛皮藓</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">皮肤综合</a>
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=4'}">皮肤科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear xbk"></i>性病科<i class="jiantou jk_two"></i>
+                    <div class="nk_one ke_position">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">淋病</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">尖锐湿疣</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">艾滋病</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">梅毒</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">生殖器疱疹</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">性病综合</a>
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=5'}">性病科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div></li>
+                <li><i class="sear ek"></i>儿科<i class="jiantou jk_one"></i>
+                    <div class="nk_one ke_position">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿眼科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿综合</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">新生儿科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿消化科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿心内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿呼吸内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿皮肤科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿神经内科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿心外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">儿科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿免疫科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿耳鼻喉</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿骨科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear wgk"></i>五官科<i class="jiantou jk_two"></i>
+                    <div class="nk_one ke_position">
+                        <div class="youwenbida">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">耳鼻喉科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">眼科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">口腔科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">五官科综合</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                        <!--内科中的内容-->
+
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">耳鼻喉科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">头颈外科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=7'}">眼科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear jsxlk "></i>精神心理科<i class="jiantou jk_three"></i>
+                    <div class="nk_one ke_position">
+                        <!--内科中的内容-->
+                        <div class="youwenbida ">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">失眠抑郁</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">精神分裂症</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">心里障碍</a> &nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">妄想症</a>&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">精神科综合</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">心里咨询</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">强迫症</a> |
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">网络成瘾</a>&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">社交恐慌</a> |
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">性心理障碍</a> |
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">心理科其他 </a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">精神科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">药物依赖科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">心里咨询科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">双相障碍科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=8'}">司法鉴定科</a>&nbsp;&nbsp;
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><i class="sear qtk "></i>其他&nbsp科室<i class="jiantou jk_four"></i>
+                    <div class="nk_one ke_position">
+                        <!--内科中的内容-->
+                        <div class="youwenbida ">
+                            <p>有问必答</p>
+                            <ul >
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">更年期综合症</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">饮食营养</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">眩晕科</a> &nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">不良嗜好</a>&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">职业病</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">两性健康</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">体检</a>
+                            </ul>
+                        </div>
+
+                        <div class="youwenbida dianhua">
+                            <ul>
+                                <p>电话医生</p>
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">营养科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">检验科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">碎石中心</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">血透中心</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">急诊科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">男科</a>&nbsp;&nbsp;|
+                                <a th:href="@{'doctor/findDoctors?subjectId=9'}">其他科室</a>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <!--js内容！！！！！！！！！！！！！！！！！！！！！-->
+
+
+
+            <div class="content">外科内容</div>
+            <div class="content">妇产科内容</div>
+            <div class="content">皮肤科内容</div>
+            <div class="content">性病科内容</div>
+            <div class="content">儿科内容</div>
+            <div class="content">五官科内容</div>
+            <div class="content">精神心理科内容</div>
+            <div class="content">其他科内容</div>
+
+
+
+        <!--js内容！！！！！！！！！！！！！！！！！111-->
+        <!--中间部分-->
+        <div class="body_center" >
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="../images/img1.jpg" alt="...">
+                    </div>
+                    <div class="item">
+                        <img src="../images/img2.jpg" alt="...">
+                    </div>
+                    <div class="item">
+                        <img src="../images/img3.jpg" alt="...">
+                    </div>
+                    <div class="item">
+                        <img src="../images/img4.jpg" alt="...">
+                    </div>
+                </div>
+                <!-- Controls -->
+               <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>-->
+            </div>
+        </div>
+
+        <!--右半部分-->
+        <div class="body_right">
+            <!--上半部分-->
+            <a href="consultation.html"  id="body_right_up" th:href="@{/user/jisu}">
+                <i id="up_img"></i>
+                <p>极速问诊</p>
+            </a>
+            <!--下半部分-->
+            <a th:href="@{/user/Ording}" id="body_right_down">
+                <i id="down_img"></i>
+                <p>预约挂号</p>
+            </a>
+        </div>
+
+    </div>
+</div>
+<!--问医生找专家模块-->
+<div id="clearfix">
+    <!--问医生标题1-->
+    <div id="title">
+        <a href="chat1.html" th:href="@{/user/chat1}">问医生</a>
+        <a href="#">更多></a>
+    </div>
+    <!--标题边的板块医生入口-->
+    <div id="entry">
+        <!--图标部分-->
+        <div class="entry_one">
+            <p>医生入口</p>
+        </div>
+        <!--列表部分-->
+        <div class="entry_two">
+            <ul>
+                <li><i id="l"></i><a href="">医生登录</a></li>
+                <li><i id="b"></i><a href="">招聘中心</a></li>
+                <li><i id="c"></i><a href="">医学咨讯</a></li>
+                <li><i id="d"></i><a href="">原创热点</a></li>
+                <li><i id="e"></i><a href="">知识手册</a></li>
+                <li><i id="f"></i><a href="">专家访谈</a></li>
+                <li><i id="g"></i><a href="">医生的一天</a></li>
+                <li><i id="h"></i><a href="">交流分享</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!--第一部分内容-->
+    <div class="part">
+        <p class="t">有问必答</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one">
+                <li><a th:href="@{'doctor/findDoctors?subjectId=1'}">痛风</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=2'}">甲沟炎</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=4'}">痔疮</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=1'}">冠心病</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=4'}">热烧伤</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=4'}">带状疱疹</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <p class="t">预约挂号</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one">
+                <li><a href="Ording.html">刘如恩</a></li>
+                <li><a href="Ording.html">韩岩</a></li>
+                <li><a href="Ording.html">刘仲奇</a></li>
+                <li><a href="Ording.html">何建桂</a></li>
+                <li><a href="Ording.html">侯敏</a></li>
+                <li><a href="Ording.html">杨传瑞</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <p class="t">电话医生</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one">
+                <li><a href="#">杨铁生</a></li>
+                <li><a href="#">罗德华</a></li>
+                <li><a href="#">赵予颖</a></li>
+                <li><a href="#">王强</a></li>
+                <li><a href="#">谢洋春</a></li>
+                <li><a href="#">冯利</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--第一部分结束-->
+    <!--找专家标题2-->
+    <div id="title_one">
+        <a href="#">找专家</a><span>挂号·图文咨询</span>
+        <a href="#">更多></a>
+    </div>
+    <!--找专家标题结束-->
+    <!--第二部分开始-->
+    <div class="part">
+        <p class="t">按疾病找</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one">
+                <li><a th:href="@{'doctor/findDoctors?subjectId=3'}">月经不调</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=2'}">腰椎病</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=4'}">雀斑</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=1'}">肾阳虚衰</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=3'}">不孕不育</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=3'}">子宫疾病</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <p class="t">按科室找</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one">
+                <li><a th:href="@{'doctor/findDoctors?subjectId=1'}">内分泌科</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=2'}">神经外科</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=3'}">妇产科</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=1'}">消化科</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=2'}">腰椎病</a></li>
+                <li><a th:href="@{'doctor/findDoctors?subjectId=9'}">男科</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <p class="t">按医院找</p>
+        <i class="ti"></i>
+        <div class="list">
+            <ul class="list_one lo">
+                <li><a th:href="@{'doctor/findDoctors?HospitalId=1'}">江苏盛泽医院</a></li>
+                <li><a th:href="@{'doctor/findDoctors?HospitalId=3'}">江苏市人医</a></li>
+                <li><a th:href="@{'doctor/findDoctors?HospitalId=4'}">苏州市广济医院</a></li>
+                <li><a th:href="@{'doctor/findDoctors?HospitalId=5'}">苏州市立医院</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--第二部分结束-->
+</div>
+
+
+<!--查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   开始-->
+<div id="chajibing">
+    <div id="chajibing_left">
+        <div id="chajibing_tupian">
+            <!--放背景图片-->
+        </div>
+
+        <div id="chajibing_head">
+            <span> <a href="" >查疾病</a></span>
+            <ul>
+                <li id="one"><a >高发病</a>
+                    <div class="cha  cha_first">
+                    <div class="cha_left">
+                     <p style="color:#A2ECC5 ">轻度</p>
+                     <p style="color: #4FDEC9">中度</p>
+                     <p style="color: #F2A83F">严重</p>
+                     <p style="color: #FF7640">高危</p>
+                        <img src="../images/9.png" alt="">
+                    </div>
+                    <div class="cha_right cha_first_one " id="one_one">
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_one" >宫颈糜烂</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_one">早泄</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_one">甲沟炎</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_one">纳氏囊肿</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">口腔溃疡</a>
+
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_two">月经不调</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">牙周炎</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">牙结石</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">鼻炎</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_two">阴道炎</a>
+
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_three">股骨头坏死</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">癫痫</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">痛风</a>
+                        <a  style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">脑梗死</a>
+                        <a  style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">心脏瓣膜病</a>
+
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">肝癌</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_four">乳腺癌</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">胃癌</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">肺癌</a>
+                        <a style="color:#999999"   th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">尿毒症</a>
+                    </div>
+                </div>
+                </li>
+
+                <li id="two"><a >职业病</a>
+                    <div class="cha cha_one ">
+                        <div class="cha_left">
+                            <p style="color:#A2ECC5 ">轻度</p>
+                            <p style="color: #4FDEC9">中度</p>
+                            <p style="color: #F2A83F">严重</p>
+                            <p style="color: #FF7640">高危</p>
+                            <img src="../images/9.png" alt="">
+                        </div>
+                        <div class="cha_right" id="two_two">
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_one">中暑</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">冻伤</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_one">滑囊炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">接触性皮炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">职业黑变病</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_two">高原病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">哮喘</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">过敏性肺炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">森林脑炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">减压病</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">铝尘肺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">滑石粉尘肺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">煤炭工尘肺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">锡尘肺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">棉尘肺</a>
+
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">职业性皮肤</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">炭疽</a>
+                            <a style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">光气中毒</a>
+                            <a style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">苯中毒</a>
+                            <a style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">莱姆病</a>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li id="three"><a >季节流行病</a>
+                    <div class="cha  cha_two">
+                        <div class="cha_left">
+                            <p style="color:#A2ECC5 ">轻度</p>
+                            <p style="color: #4FDEC9">中度</p>
+                            <p style="color: #F2A83F">严重</p>
+                            <p style="color: #FF7640">高危</p>
+                            <img src="../images/9.png" alt="">
+                        </div>
+                        <div class="cha_right" id="three_three">
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_one">高血压</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_one">高血脂</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">慢性鼻咽炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_one">营养性贫血</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">慢性中耳炎</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">慢性咳嗽</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">糖尿病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">冠心病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">阻塞性肺气</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">慢性肝炎</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">心肌梗死</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">慢性肾炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">慢性酒中毒</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">慢性心功能</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">出血性脑卒</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">癌症</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">慢性结肠炎</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_four">慢性骨髓炎</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">肺心病</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">肿瘤</a>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li id="four"><a >慢性病</a>
+                    <div class="cha  cha_three">
+                        <div class="cha_left">
+                            <p style="color:#A2ECC5 ">轻度</p>
+                            <p style="color: #4FDEC9">中度</p>
+                            <p style="color: #F2A83F">严重</p>
+                            <p style="color: #FF7640">高危</p>
+                            <img src="../images/9.png" alt="">
+                        </div>
+                        <div class="cha_right" id="four_four">
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_one">流行性感冒</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=6'}" class="cha_right_one">手足口病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">病毒性咽炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_one">流行性腮腺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">疱疹性咽峡</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">红眼病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=6'}" class="cha_right_two">小儿肺炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">咽炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">病毒性脑膜</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_two">病毒性肠炎</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">病毒性肝炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">腺病毒性肺</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">副伤寒</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">病毒性心肌</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">淋巴结核</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">禽流感</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">甲型H1N1</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">麻疹</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">水痘</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">口蹄病</a>
+                        </div>
+                    </div>
+                </li>
+                <li id="five"><a >皮肤与性病</a>
+                    <div class="cha cha_four">
+                        <div class="cha_left">
+                            <p style="color:#A2ECC5 ">轻度</p>
+                            <p style="color: #4FDEC9">中度</p>
+                            <p style="color: #F2A83F">严重</p>
+                            <p style="color: #FF7640">高危</p>
+                            <img src="../images/9.png" alt="">
+                        </div>
+                        <div class="cha_right" id="five_five">
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">过敏性皮炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">疤痕</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">足癣</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">血管痣</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">胎记</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_two">烫伤</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_two">冻疮</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_two">白化病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_two">螨皮炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_two">头虱</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_three">剥脱性皮炎</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_three">红皮病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_three">脓疱病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_three">职业性皮肤</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_three">恙螨皮炎</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=5'}" class="cha_right_four">艾滋病</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=5'}" class="cha_right_four">梅毒</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">尖锐湿疣</a>
+                            <a  style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">白癜风</a>
+                            <a style="color:#999999"  th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_four">牛皮癣</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li id="six"><a >疾病专题</a>
+                    <div class="cha cha_five">
+                        <div class="cha_left">
+                            <p style="color:#A2ECC5 ">轻度</p>
+                            <p style="color: #4FDEC9">中度</p>
+                            <p style="color: #F2A83F">严重</p>
+                            <p style="color: #FF7640">高危</p>
+                            <img src="../images/9.png" alt="">
+                        </div>
+                        <div class="cha_right" id="six_six">
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">口腔黏膜</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">牙科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_one">口腔科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_one">拇外翻</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=4'}" class="cha_right_one">植发</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_two">乳腺科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_two">五官科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_two">妇产科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_two">外科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_two">外阴白斑</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=7'}" class="cha_right_three">眼科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_three">结石</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">血液科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_three">脑瘫</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=2'}" class="cha_right_three">血管外科</a>
+
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">血管瘤</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=8'}" class="cha_right_four">精神心理科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=3'}" class="cha_right_four">妇科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=1'}" class="cha_right_four">内科</a>
+                            <a style="color:#999999" th:href="@{'doctor/findDoctors?subjectId=9'}" class="cha_right_four">男科</a>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <script>
+            $(".cha_right").attr("style","color:#999999;");
+
+            /*tab选项卡开始*/
+            $(".cha_one").addClass("hidden");
+            $(".cha_two").addClass("hidden");
+            $(".cha_three").addClass("hidden");
+            $(".cha_four").addClass("hidden");
+            $(".cha_five").addClass("hidden");
+
+           $("#one").click(function () {
+               $(".cha_one").addClass("hidden");
+               $(".cha_two").addClass("hidden");
+               $(".cha_three").addClass("hidden");
+               $(".cha_four").addClass("hidden");
+               $(".cha_five").addClass("hidden");
+              $(".cha_first").removeClass("hidden");
+           });
+
+           $("#two").click(function () {
+               $(".cha_first").addClass("hidden");
+               $(".cha_one").addClass("hidden");
+               $(".cha_two").addClass("hidden");
+               $(".cha_three").addClass("hidden");
+               $(".cha_four").addClass("hidden");
+               $(".cha_five").addClass("hidden");
+               $(".cha_one").removeClass("hidden");
+           })
+
+            $("#three").click(function () {
+                $(".cha_first").addClass("hidden");
+                $(".cha_one").addClass("hidden");
+                $(".cha_two").addClass("hidden");
+                $(".cha_three").addClass("hidden");
+                $(".cha_four").addClass("hidden");
+                $(".cha_five").addClass("hidden");
+                $(".cha_two").removeClass("hidden");
+            })
+
+            $("#four").click(function () {
+                $(".cha_first").addClass("hidden");
+                $(".cha_one").addClass("hidden");
+                $(".cha_two").addClass("hidden");
+                $(".cha_three").addClass("hidden");
+                $(".cha_four").addClass("hidden");
+                $(".cha_five").addClass("hidden");
+                $(".cha_three").removeClass("hidden");
+            })
+
+            $("#five").click(function () {
+                $(".cha_first").addClass("hidden");
+                $(".cha_one").addClass("hidden");
+                $(".cha_two").addClass("hidden");
+                $(".cha_three").addClass("hidden");
+                $(".cha_four").addClass("hidden");
+                $(".cha_five").addClass("hidden");
+                $(".cha_four").removeClass("hidden");
+            })
+
+            $("#six").click(function () {
+                $(".cha_first").addClass("hidden");
+                $(".cha_one").addClass("hidden");
+                $(".cha_two").addClass("hidden");
+                $(".cha_three").addClass("hidden");
+                $(".cha_four").addClass("hidden");
+                $(".cha_five").addClass("hidden");
+                $(".cha_five").removeClass("hidden");
+            })
+            /*tab选项卡结束*/
+        </script>
+
+
+
+
+
+        <div id="chajibing_foot">
+
+            <img src="../images/guanggao.png" alt="" width="729px" height="80px"  style="position: relative;top: 295px">
+        </div>
+    </div>
+
+
+    <div id="chajibing_right">
+        <div id="chajibing_right_head">
+            <p>疾病自诊</p>
+            <a href="">更多</a>
+        </div>
+
+        <div id="chajibing_right_foot">
+            <!--<div id="sex">
+                <a id="man">男</a>
+                <a id="woman">女</a>
+            </div>
+            <div class="rentitu">
+                <img src="../images/sicks-m.png" alt="">-->
+            </div>
+        <script>
+            $("#chajibing_right_foot").load("rentitu.html");
+        </script>
+           <!-- <a href="" class="chajibing_left tubiao">左</a>
+            <a href="" class="chajibing_right tubiao">右</a>-->
+        </div>
+    </div>
+
+</div>
+<!--查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   结束-->
+<!--尾部开始-->
+<div id="footer">
+        <div id="footer_one">
+            <ul>
+                <a href="">关于我们</a>
+                <a href="">网站地图</a>
+                <a href="">服务声明</a>
+                <a href="">招聘信息</a>
+                <a href="">意见反馈</a>
+                <a href="">联系我们</a>
+            </ul>
+            <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
+            <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
+            <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
+        </div>
+</div>
+<!--尾部结束-->
+</body>
+</html>

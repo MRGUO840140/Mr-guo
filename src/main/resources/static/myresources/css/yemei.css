@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+ul{
+    list-style: none;
+}
+.top{
+    background-color: #F9F9F9;
+    border: 1px solid #EAEAEA;
+    margin-bottom:25px;
+
+}
+.top #middle{
+     height: 35px;
+     width: 1000px;
+     /* background-color:#488B93;*/
+     margin: 0 auto;
+ }
+.top #middle ul{
+    /* border: blue 1px solid;*/
+    padding-top: 5px;
+    width: 730px;
+    display: block;
+    float: left;
+
+}
+.top #middle ul a{
+    font-size: small;
+    margin: 20px 0;
+    padding: 0 20px;
+    border-left: 1px #EAEAEA solid;
+    text-align: center;
+    text-decoration: none;
+    color: #666666;
+}
+.top #middle ul a:hover{
+    color: #00C8AA ;
+}
+/*定部左侧部分*/
+
+.top #top_right{
+    float: right;
+    margin: 8px 0px;
+}
+.top #top_right p{
+    font-size: small;
+    text-align: center;
+}
+.top #top_right a{
+    color: #00C8AA;
+    font-size: small;
+    /* border: #488B93 1px solid;*/
+    text-decoration: none;
+}
+.top #top_right a:hover{
+    text-decoration: #00C8AA underline;
+}

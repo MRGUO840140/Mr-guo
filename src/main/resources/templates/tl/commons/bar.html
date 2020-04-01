@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="topbar">
+    <!--顶部栏框-->
+    <div class="top">
+        <!--中部-->
+        <div id="middle">
+            <ul>
+                <a href="#">医美</a>
+                <a href="#">医平台</a>
+                <a href="#">云健康</a>
+                <a href="#">健康教育</a>
+                <a href="#">闻康公益</a>
+                <a href="#">药品网</a>
+                <a href="#">下载App</a>
+                <a href="#">微信公众号</a>
+            </ul>
+            <!--顶部右侧-->
+            <div id="top_right">
+                <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+                <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+            </div>
+        </div>
+        <img style="margin-left: 280px" src="../images/6.png"/>
+        <div id="daohang">
+            <div id="daohang_center">
+                <ul>
+                    <a href="/index" th:href="@{/main}">首页</a>
+                    <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}">预约挂号</a>
+                    <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}">图文咨询</a>
+                    <a href="#">电话医生</a>
+                    <a href="../templates/tl/yuyueguahao.html">专家频道</a>
+                    <a href="#">原创热点</a>
+                </ul>
+                <form action="" method="get">
+                    <input type="text" placeholder="疾病、专家、医院、科室">
+                    <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="fenye">
+    <div class="fen">
+        <div id="fenye">
+            <ul class="pagination  pager" >
+                <li ><a href="#">First</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li id="fenye_two"><a href="#">2</a></li>  <!--disabled禁用  active为选中状态-->
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">Last</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="footer">
+    <div id="footer">
+        <div id="footer_one">
+            <ul>
+                <a href="">关于我们</a>
+                <a href="">网站地图</a>
+                <a href="">服务声明</a>
+                <a href="">招聘信息</a>
+                <a href="">意见反馈</a>
+                <a href="">联系我们</a>
+            </ul>
+            <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
+            <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
+            <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

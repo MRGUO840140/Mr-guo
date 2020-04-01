@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <!-- Bootstrap -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+    <title>快速问诊</title>
+    <link rel="stylesheet" th:href="@{/css/consultation.css}">
+    <link rel="stylesheet" th:href="@{/css/foot.css}">
+    <link rel="stylesheet" th:href="@{/css/yemei.css}">
+    <link rel="stylesheet" th:href="@{/css/daohangtiao.css}">
+
+    <script type="text/javascript" th:src="@{/jquery/consultation.js}"></script>
+</head>
+
+<body>
+<div th:replace="commons/bar.html::topbar"></div>
+<!--<div id="yemei"></div>
+    <img style="margin-left: 280px" th:src="@{images/6.png}"/>
+   <div id="daohangtiao"></div>
+   <script>
+       $("#daohangtiao").load("daohangtiao.html");
+       $("#yemei").load("yemei.html");
+   </script>-->
+    <div id="whole">
+        <form method="post" id="commit">
+            <!-- 第一步 -->
+            <div id="first_step">
+                <div class="step_title">
+                    <h3>第一步：问题描述</h3>
+                </div>
+                <!-- 疾病名称 -->
+                <div id="titlediv">
+                    <p>咨询标题<span>(必填)</span></p>
+                    <input id="Title" name="Title" type="text" placeholder="一句话描述您要提问的问题，便于医生快速关注您的提问。（5-25字）" maxlength="25" />
+                </div>
+                <!-- 疾病介绍  -->
+                <div id="produce">
+                    <p>疾病介绍<span>(必填)</span></p>
+                    <textarea name="Memo" autocomplete="off"  id="Memo" cols="10"
+                        placeholder="请详细描述患者的主要症状、发病时间、治疗经过、病情变化、想要得到怎样的帮助（10-500个字）"></textarea>
+                    <div id="count_tip"></div><!--js计数 onkeyup="javascript:getLength()"-->
+                </div>
+                <div id="ep">
+                    <p id="sl">示例：</p>
+                    <p>咨询标题：胸痛、胸闷、伴大汗怎么回事？</p>
+                    <p>症状描述：10小时前突然出现胸痛、胸闷、伴大汗、疼痛向左肩背部放射。</p>
+                    <p>治疗经过：含服硝酸甘油后症状持续不缓解</p>
+                    <p>检查情况：心率104次/分，心尖部可闻及舒张期奔马律，心电图v1~4导联可见病理性Q波，T波双向。</p>
+                </div>
+                <!-- 上传图片 -->
+                <div id="addphoto">
+                    <div id="upload_head">
+                        <input name="Picture" type="file" accept="image/*" id="Picture" onchange="changepic(this)" />
+                    </div>
+                    <div id="addphoto_words">
+                        <h3>添加图片<span>(可选填)</span></h3>
+                        <p>可添加患处、病历、检查单，3张图，请保证图片清晰</p>
+                    </div>
+                </div>
+            </div>
+            <div id="twice_step">
+                <div class="step_title">
+                    <h3>第二步：完善信息</h3>
+                </div>
+                <div id="pInfo">
+                    <!-- 病人性别 -->
+                    <div id="sex">
+                        <label>性　别：</label>
+                        <input class="radiobtn" type="radio" name="sex" value="false" />男
+                        <input class="radiobtn" type="radio" name="sex" value="true" />女
+                    </div>
+                    <!-- 病人年龄 -->
+                    <div id="Info_age">
+                        <label>年　龄：</label>
+                        <input type="text" name="age" id="age" placeholder="如：28，不足一周，请选择月或天再填写" />
+                        <select name="agesel" id="agesel">
+                            <option value="day">天</option>
+                            <option value="month">月</option>
+                            <option value="year">岁</option>
+                        </select>
+                        <span>用于医生全面排查病因</span>
+                    </div>
+                    <!-- 病人手机号 -->
+                    <label>手机号：</label>
+                    <input type="tel" name="telephone" id="telephone" placeholder="请填写接收短信的手机号" />
+                    <span>用于回复后短信通知您</span>
+<!--                    &lt;!&ndash; 图形验证码 &ndash;&gt;-->
+<!--                    <div id="checkcode">-->
+<!--                        <label>图形码：</label>-->
+<!--                        <input type="text" name="checkcode" placeholder="请输入图形码" />-->
+<!--                        <i></i>-->
+<!--                        <a href="#" onclick="change">换一个</a>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; 手机验证码 &ndash;&gt;-->
+<!--                    <div id="phone_check">-->
+<!--                        <label>验证码：</label>-->
+<!--                        <input type="text" name="phone_check" placeholder="请输入手机收到的短信验证码" />-->
+<!--                        <input type="button" onclick="sendphonecheckcode" value="获取手机验证码" id="phonebtn" />-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <!-- 第三步 选择医生 -->
+            <div id="third_step">
+                <div class="step_title">
+                    <h3>第三步：选择医生</h3>
+                </div>
+                <!-- 推荐指定专家 -->
+                <div id="chooseDoctor">
+                    <p>指定专家</p>
+                    <p id="changedoctor">换一换<i></i></p>
+                </div>
+                <!-- 医生列表及医生信息 -->
+                <div id="DoctorList">
+                    <ul>
+                    </ul>
+                </div>
+                <div id="tips">
+                    提交问题后，请30分钟内完成支付，未支付将自动失效。
+                </div>
+                <div id="read">
+                    <input type="checkbox" name="agree" />
+                    <a href="#">我已阅读并同意《免责声明》</a>
+                </div>
+                <div id="button">
+                    <input type="button" id="confirm" value="提交"/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+        <div id="footer_one">
+            <ul>
+                <a href="">关于我们</a>
+                <a href="">网站地图</a>
+                <a href="">服务声明</a>
+                <a href="">招聘信息</a>
+                <a href="">意见反馈</a>
+                <a href="">联系我们</a>
+            </ul>
+            <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
+            <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
+            <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
+        </div>
+    </div>
+</body>
+<script>
+    var sessionDoctor=JSON.parse(sessionStorage.getItem("doctors"));
+    var sessionUser=JSON.parse(sessionStorage.getItem("user"));
+    var sessionCommit=JSON.parse(sessionStorage.getItem("commit"));
+    // $("#Title").val(sessionCommit.Title);
+    // $("#Memo").val(sessionCommit.Memo);
+    // $("#sex").val(sessionCommit.sex);
+    // $("#age").val(sessionCommit.age);
+    // $("#telephone").val(sessionCommit.telephone);
+    // $("#Picture").val(sessionCommit.Picture);
+</script>
+<script>
+    var upload_head = document.querySelector('#upload_head');
+    var Picture= document.getElementById('Picture');
+    var i = 0;
+    function changepic(obj) {
+        //首先插入一个图片标签，src属性为空，宽高设置为100px，暂时设为不可见
+        upload_head.innerHTML += "<img src=\"\" id=\"show" + i + "\" width=\"65\" height=\"65\" style=\"opacity: 0;\">";
+        //调用getObjectURL函数，返回上传的图片的地址
+        var newsrc = getObjectURL(obj.files[0]);
+        document.getElementById('show' + i).src = newsrc;//将图片的路径设置为返回上传的图片的地址
+        document.getElementById("show" + i).style.opacity = 1;//将图片设置为可见
+        document.getElementById("show" + i).style.float = "left";
+        i++;
+    }
+    function getObjectURL(imgfile) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(imgfile);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(imgfile);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(imgfile);
+        }
+        return url;
+    }
+    $(function () {
+        $.ajax({
+            url: "/user/doctors",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            success: function (map) {
+                sessionStorage.setItem("doctors", JSON.stringify(map.doctors));
+                var per = JSON.parse(sessionStorage.getItem("doctors"));
+                console.log(per);
+                if (map.msg == "failed") {
+                    alert("获取数据失败");
+                } else {
+                    // alert(map.heads.length);
+                    for (var i = 0; i < 4; i++) {
+                        temp = "<li>\n" +
+                            "                            <div id="+'doctor'+i+">\n" +
+                            "                                <div class=\"doctorphoto\">\n" +
+                            "                                    <p>"+(map.doctors)[i].dname+"<span>"+(map.doctors)[i].title.title+"</span></p>\n" +
+                            "                                    <p>"+(map.doctors)[i].hospital.hospitalName+"</p>\n" +
+                            "                                </div>\n" +
+                            "                                <div class=\"doctor_bottom\">\n" +
+                            "                                    <div class=\"price\">\n" +
+                            "                                        ￥<span>"+10+"</span>\n" +
+                            "                                    </div>\n" +
+                            "                                    <input id='doctorId' name='doctor' value="+''+(map.doctors)[i].did+" type='radio' style='width: 20px;height: 20px;float: right;margin:7px 10px 0px 0px ;'>\n" +
+                            "                                </div>\n" +
+                            "                            </div>\n" +
+                            "                        </li>";
+                        $("#DoctorList>ul").append(temp);
+                    }
+                }
+            }
+        });
+            var subBtn = document.getElementById("confirm");
+            subBtn.onclick = function () {
+                var commitUid = JSON.parse(sessionStorage.getItem("uid"));
+                var commitDoctorId = $("input[name='doctor']:checked").val();
+                var commitTitle = $("#Title").val();
+                var commitMemo = $("#Memo").val();
+                // var commitPicture = $("#Picture").val();
+                var commitSex = $("input[name='sex']:checked").val();
+                var commitAge = $("#age").val();
+                var commitTelephone = $("#telephone").val();
+                var commit = {};
+                commit.uid = commitUid;
+                commit.doctorId = commitDoctorId;
+                commit.title = commitTitle;
+                commit.memo = commitMemo;
+                // commit.Picture = commitPicture;
+                commit.sex = commitSex;
+                commit.age = commitAge;
+                commit.telephone = commitTelephone;
+                console.log(JSON.stringify(commit));
+                sessionStorage.setItem("commit", JSON.stringify(commit));
+                $.ajax({
+                    data: JSON.stringify(commit),
+                    url: 'addCommit',
+                    method: "POST",
+                    async: false,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function () {
+                            alert("添加成功");
+                    }
+                })
+                location.href="/user/center";
+            }
+    })
+</script>
+<script>
+    var ran=Math.floor(Math.random()*9);
+
+</script>
+</html>

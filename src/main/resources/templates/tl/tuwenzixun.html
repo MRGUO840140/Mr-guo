@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>图文问诊</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!-- Bootstrap -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../jquery/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../css/tuwenzixun.css">
+    <link rel="stylesheet" href="../css/foot.css">
+    <link rel="stylesheet" href="../css/yemei.css">
+    <link rel="stylesheet" href="../css/daohangtiao.css">
+    <link rel="stylesheet" type="text/css" href="../jquery/jquery.sPage.css">
+</head>
+<body>
+<div th:replace="commons/bar.html::topbar"></div>
+<!--页眉部分-->
+<div id="head">
+    <div class="head_center">
+        <img src="../images/6.png" alt="">
+        <p>付费咨询</p>
+        <img src="../images/pay_head.gif" alt="">
+    </div>
+</div>
+<!--头部结束-->
+<!--医生信息开始-->
+<div class="doctorinfo">
+    <div class="doc_body">
+        <div class="doc_img">
+            <img src="../images/shupei.jpg" th:src="${session.Doctor.Dphoto}" alt="" height="101px" width="101px" >
+        </div>
+        <div class="doc_info">
+            <i></i>
+            <span>您正在咨询：&nbsp</span><span th:text="${session.Doctor.DName}">&nbsp王书培&nbsp</span> <span class="doc_job" th:text="${session.Doctor.title.Title}">医师</span><br><br>
+            <span style="font-size: 15px;color: #00C8AA">[[${session.Doctor.hospital.HospitalName}]]-[[${session.Doctor.subject.subject}]]</span><br><br>
+            <span style="font-size: 12px">擅长：</span><span style="font-size: 12px;color: #999999" th:text="${session.Doctor.Profile}">小儿发热，咳嗽，营养发育，腹泻，厌食，呕吐，皮疹，过敏，营养...</span>
+            <p>咨询价格：<span style="font-weight: bold" th:text="${session.priceByTuwen.price}">￥15</span>元</p>
+        </div>
+    </div>
+</div>
+<!--医生信息结束-->
+<!--病人信息表开始-->
+<form th:action="@{/user/addCommit2}">
+    <div class="patient_info">
+        <p class="patient_info_title">
+            <span class="xing">*</span><span>疾病标题</span> <b>(必填)</b><br>
+            <input type="text" placeholder="一句话描述您要咨询的问题(5-25个字)" id="title" name="title"> <span class="shili">示例：头闷胀痛，流脓鼻涕怎么回事？</span>
+        </p>
+
+        <p class="patient_info_title">
+            <span class="xing">*</span><span>疾病介绍</span> <b>(必填)</b><br>
+            <textarea type="" placeholder="主要症状、想得到怎样的帮助(字数不少于25个字)" id="content" style="font-size: 20px" name="content"></textarea>
+                <span class="shili shili_one">示例：</span><br><br>
+            <span class="zhengzhuang" style="font-size: 12px"><b style="font-weight: bold">症状描述：</b> 头闷胀痛、鼻塞伴有流脓鼻涕两年左右，近日嗅觉减退，且脓鼻涕会倒流至喉咙，导致喉咙有异物感。且伴有头昏、易倦、失眠、记忆力减退等症状。<br>
+            <b style="font-weight: bold">治疗经过：</b> 一周之前在社区医院打点滴阿奇霉素症状无缓解 <br>
+            <b style="font-weight: bold">检查情况：</b> 2015年10月1日，鼻内窥镜检查示：双侧鼻腔见大量脓性分泌物流至鼻咽部，双侧鼻腔粘膜水肿；鼻窦CT示: 可见鼻窦内液平面或软组织密度影。</span>
+        </p><br>
+
+        <div class="shoujihaoma">
+            <p class="patient_info_title">
+                <span class="xing">*</span><span>手机号码</span> <b>(必填)</b><br>
+                <input type="text" placeholder="请输入手机号码" class="mobel_phone" id="phone" name="phone"> <span class="shili"></span><br><!--js内容-->
+              <!--  <input type="text" placeholder=""请输入图片验证码 id="tupianyanzhengma"><i></i><br>-->
+                <input type="text" class="yanzhengma" placeholder="请输入验证码" id="dongtaiyanzheng" name="dongtai" ><button class="huoquyanzhengma" id="dongtai">获取验证码</button>
+            </p><br>
+        </div>
+
+
+    <div class="upload">
+        <p class="patient_info_title">
+        <span class="xing">*</span><span>上传图片</span> <b>(选填)</b><br>
+        <div id="upload_head">
+            <input type="file" accept="image/*" id="imgfile" onchange="changepic(this)"/>
+        </div>
+        <div class="tishi">
+            <span >1.可上传患处、病历、检查单等图片(皮肤和整形问题请务必上传患处)；</span><br>
+            <span >2.您上传的图片仅您和医生登录后可见；</span><br>
+            <span >3.最多上传3张，单张照片小于2M。</span>
+        </div>
+        </p>
+    </div>
+
+            <!-- 上传图片 start-->
+
+           <!-- <div class="ask_step_ImgBox">
+                <h3 class="ask_step_th"><span class="cff">*</span>上传图片<b>（选填）</b></h3>
+                <div class="ask_step_Img clearfix">
+                    <div class="f12 pr fl">
+                        <input type="hidden" value="" id="imgPath" name="upimgpath" autocomplete="off">
+                        <div class="clearfix">
+                            <div class="ImgBox fl clearfix none"></div>
+                            <div class="fl AskAdd_Dv pr">
+                                <iframe width="60" height="60" frameborder="0" style="left:0;top:0;z-index:5" class="db pa" src="http://api.imgupload.xywy.com/upload_newask.html?new=0.609281889465277" name="upload" allowtransparency="true" scrolling="no" id="upifram">
+                                </iframe>
+                                <div class="AskAdd_btn2 fl"><span></span></div>
+                                <span class="up-state-span ml10 fl"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+       <!-- <input type="file" id="getFile" style="display:none;">
+        <div class="fileStyle glyphicon glyphicon-plus" id="tarBtn" ></div>
+        <script>
+            $('#tarBtn').on('click',function(){
+                $('#getFile').click();
+            });
+        </script>-->
+            <div class="mianze">
+                <input type="checkbox" checked="checked"><a href="">我已阅读并同意《有问必答付费咨询免责声明》</a>
+            </div>
+
+        <p class="zhushi"><img src="../images/ask.png" alt=""><span>您的问题会在24小时内得到答复</span></p>
+
+        <p id="submit"><input type="submit" value="提交订单" ></p><!--这边的a标签写后台删除-->
+    </div>
+</form>
+<!--病人信息表结束-->
+<div th:replace="commons/bar.html::footer"></div>
+<script >
+    var upload_head= document.querySelector('#upload_head');
+    var imgfile = document.getElementById('imgfile');
+    var i=0;
+    function changepic(obj) {
+        //首先插入一个图片标签，src属性为空，宽高设置为100px，暂时设为不可见
+        upload_head.innerHTML+="<img src=\"\" id=\"show"+i+"\" width=\"65\" height=\"65\" style=\"opacity: 0;\">";
+        //调用getObjectURL函数，返回上传的图片的地址
+        var newsrc=getObjectURL(obj.files[0]);
+        document.getElementById('show'+i).src=newsrc;//将图片的路径设置为返回上传的图片的地址
+        document.getElementById("show"+i).style.opacity=1;//将图片设置为可见
+        document.getElementById("show"+i).style.float="left";
+        i++;
+    }
+    function getObjectURL(imgfile) {
+        var url = null ;
+        if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(imgfile) ;
+        } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(imgfile) ;
+        } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(imgfile) ;
+        }
+        return url ;
+    }
+
+   /*文件上传*/
+    $/*('input[class=projectfile]').each(function() {
+        var imageurl = $(this).attr("value");
+
+        if (imageurl) {
+            var op = $.extend({
+                initialPreview : [ // 预览图片的设置
+                    "<img src='" + imageurl + "' class='file-preview-image'>", ]
+            }, projectfileoptions);
+            $(this).fileinput(op);
+        } else {
+            $(this).fileinput(projectfileoptions);
+        }
+    });*/
+   /*文件上传*/
+    $(function () {
+
+        $("#phone").blur(function () {
+            if($("#phone").val()==""){
+                alert("请输入手机号码");
+            }
+        });
+        $("#dongtaiyanzheng").blur(function () {
+            if($("#dongtaiyanzheng").val()==""){
+                alert("请输入动态验证码");
+            }
+        })
+        /*不为空校验结束*/
+
+        /*向后台发送手机号码以此获得手机验证码发送*/
+
+        $("#dongtai").click(function () {
+            var phone=$("#phone").val();
+            $.getJSON("/user/mobilephone","phone="+phone,function (data) {
+                alert(data);
+            })
+        })
+
+        /*$("#dongtaiyanzheng").blur(function () {
+            var yan=$("#dongtaiyanzheng").val();
+            $.getJSON("/user/yanzheng","yan="+yan,function (data) {
+                alert(data);
+            })
+        })*/
+        /*记时按钮点击启动*/
+        // 获取验证码倒计时
+        var countdown = 60;
+        $('#dongtai').on('click',function(){
+            var value=$("#phone").val()
+            var obj = $("#dongtai");
+            if(value!=""){
+                var reg = /^1[34578]\d{9}$/;
+                if (!reg.test(value)){
+                    alert("请输入正确的手机号！");
+                    $("#phone").val("");
+                    return false;
+                }else {
+                    settime(obj);
+                    return true;
+                }
+
+            }else{
+                alert("请输入手机号！");
+                return false;
+            }
+        })
+        function settime(obj) { //发送验证码倒计时
+            if (countdown == 0) {
+                obj.attr('disabled', false);
+                obj.html("获取验证码");
+                countdown = 60;
+                return;
+            } else {
+                obj.attr('disabled', true);
+                obj.html("已发送(" + countdown + ")");
+                countdown--;
+            }
+            setTimeout(function () {
+                    settime(obj)
+                }
+                , 1000)
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>预约挂号</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}">
+    <!-- Bootstrap -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../bootstrap/js/bootstrap.js" th:src="@{/bootstrap/js/bootstrap.js}"></script>
+   <link rel="stylesheet" th:href="@{/css/yuyueguahao.css}">
+</head>
+<body>
+<!--顶部栏框-->
+<div class="top">
+    <!--中部-->
+    <div id="middle">
+        <ul>
+            <a href="#">医美</a>
+            <a href="#">医平台</a>
+            <a href="#">云健康</a>
+            <a href="#">健康教育</a>
+            <a href="#">闻康公益</a>
+            <a href="#">药品网</a>
+            <a href="#">下载App</a>
+            <a href="#">微信公众号</a>
+        </ul>
+        <!--顶部右侧-->
+        <div id="top_right">
+            <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+            <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+        </div>
+    </div>
+
+</div>
+<!--页眉部分结束-->
+<!--服务部分开始-->
+<div id="fuwu">
+    <img src="../images/6.png" th:src="@{/images/6.png}" alt="" id="healthcare">
+    <p id="zhuanjia">专家频道</p>
+    <!--组件开始-->
+    <div class="btn-group zujian">
+        <button type="button" class="btn btn-default">医生服务</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only"></span>
+        </button>
+        <ul class="dropdown-menu " id="zujian_four">
+            <li><a href="#">医平台首页</a></li>
+            <li><a href="#">医学资讯</a></li>
+            <li><a href="#">原创热点</a></li>
+            <li ><a href="">交流分享</a></li>
+            <li><a href="#">招聘中心</a></li>
+            <li><a href="#">知识手册</a></li>
+            <li><a href="#">中国医生</a></li>
+            <li><a href="#">服务介绍</a></li>
+        </ul>
+    </div>
+    <div class="btn-group zujian">
+        <button type="button" class="btn btn-default">药品网</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu " id="zujian_three">
+            <li><a href="#">药品网</a></li>
+
+        </ul>
+    </div>
+    <div class="btn-group zujian">
+        <button type="button" class="btn btn-default">用户服务</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu " id="zujian_two">
+            <li><a href="#">有问必答</a></li>
+            <li><a href="yuyueguahao.html">预约挂号</a></li>
+            <li><a href="#">电话咨询</a></li>
+            <li><a href="#">健康经验</a></li>
+            <li><a href="#">专家访谈</a></li>
+            <li><a href="#">线下活动</a></li>
+
+        </ul>
+    </div>
+
+    <div class="btn-group zujian">
+        <button type="button" class="btn btn-default">健康百科</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu " id="zujian_one" style="color:#666666">
+            <li><a href="#">疾病百科</a></li>
+            <li><a href="#">症状百科</a></li>
+            <li><a href="#">检查项目</a></li>
+            <li ><a href="">整形项目</a></li>
+            <li><a href="#">食疗养生</a></li>
+            <li><a href="#">健康资讯</a></li>
+            <!--第一个-->
+        </ul>
+    </div>
+</div>
+<!--服务部分结束-->
+<!--导航栏部分开始-->
+<div id="daohang">
+    <div id="daohang_center">
+        <ul>
+            <a href="pageshow.html" th:href="@{/main}">首页</a>
+            <a href="yuyueguahao.html" th:href="@{/user/Ording}">预约挂号</a>
+            <a href="tuwenzixun.html" th:href="@{/user/jisu}">图文咨询</a>
+            <a href="#">电话医生</a>
+            <a href="yuyueguahao.html">专家频道</a>
+            <a href="#">原创热点</a>
+        </ul>
+        <form action="" method="get">
+            <input type="text" placeholder="疾病、专家、医院、科室">
+            <input type="submit" value="搜&nbsp;&nbsp;索">
+        </form>
+    </div>
+</div>
+<!--导航栏部分结束aa-->
+
+<!--医生个人信息表开始-->
+    <div id="doctor_info">
+            <!--左侧头像信息-->
+            <div id="doctor_info_left">
+                <img src="../images/mandoctor.png" th:src="@{ ${docInfo.dphoto} }" alt="" height="140px" width="140px">
+                <!--收藏关注信息-->
+               <!-- <p id="shoucang"><a href="" ><i id="aixin" ></i><span id="guanzhu">关注</span></a><span id="shuliang">3</span></p>-->
+            </div>
+            <!--左侧头像信息-->
+            <!--中间医生信息-->
+            <div id="doctor_info_center">
+                <p>
+                    <strong th:text="${docInfo.DName}" style="font-weight: normal">易桂林</strong>
+                    <span th:text="${docInfo.getTitle().title}">主任医师</span>
+                </p>
+                <p id="doctor_info_center_yiyuan"><a href="" th:text="${docInfo.getHospital().hospitalName}" >武汉市职业病防治院 &nbsp </a>- <a href="" th:text="${disease.diseaseName}">医疗科</a></p>
+
+                <div class="info">
+                    <b>擅长：</b>
+                    <span th:text="${docInfo.profile}"> 职业病预防与治疗（职业中毒）</span>
+                </div>
+                <div class="info">
+                    <b>简介：</b>
+                    <span th:text="${docInfo.dintroduc}"> 从事职业病临床治疗近二十年。</span>
+                </div>
+            </div>
+            <!--中间医生信息-->
+        <!--右侧星级部分-->
+
+        <div id="doctor_info_right">
+
+            <div id="doctor_info_right_head">
+                <span>星级</span>
+            </div>
+
+            <div id="doctor_info_right_foot">
+                <p>预约量</p> <span th:text="${docInfo.dseeing}">16</span>
+                <p>医生评分</p> <span th:text="${docInfo.dgrade}" style="margin-left: 110px">暂无</span>
+            </div>
+
+        </div>
+        <!--右侧预约挂号部分-->
+    </div>
+<!--医生个人信息表结束-->
+
+    <!--预约挂号部分开始-->
+    <div class="yuyue">
+            <div class="yuyue_title">
+                <h2>预约挂号</h2>
+                <span>费用由医院自行设定，平台不收取任何额外费用</span>
+            </div>
+        <div class="yuyue_title yuyue_title_right">
+            <h2>同科室医生</h2>
+            <span><a href="" id="more">更多</a></span>
+        </div>
+            <div id="yuyue_left">
+               <p><span>医院：</span> <a href="" style="text-decoration: none" th:text="${docInfo.getHospital().hospitalName}">武汉市职业病防治院</a></p>
+                <p> <span>科室：</span> <a href="" style="text-decoration: none" th:text="${disease.diseaseName}">医疗科</a></p>
+                <p>价格：<span style="color: #F0931A" th:text="${priceByGuhao.price}">15</span>元</p>
+                <p><span>排班：</span>
+                <span id="noLogin_show" th:if="${session.user==null}" >
+                    <!--需要处理的界面-->
+                <a href="login.html" style="color:#00C8AA "  th:href="@{/}">登录</a><span style="color: red">即可查看实时号源状态</span>
+                    <ul style="list-style: none;float: left;margin-left: 5px;" th:each="tim: ${time}" th:if="${session.user!=null and tim.account>0}" > <!--session.user!=null and-->
+<!--                        这边参数待定-->
+                        <a th:href="@{/user/Info(Did=${docInfo.did},PriceId=${priceByGuhao.DTid},timeId=${tim.timeId})} " style="display: inline-block;" class="guahao">
+                             <li style="display: inline-block"><p class="data" th:text="${tim.data}">09/20</p>
+                                 <p class="week" th:text="${tim.day}">周五</p>
+                                    <p class="ap" th:text="${tim.MorAfter}">上</p>
+                            </li>
+                            <div class="hid" style="font-size:12px;color: #666666;display: none">
+                                剩余人数：<span style="color: #F0931A" th:text="${tim.account}">3</span>人
+                            </div>
+                        </a>
+                    </ul>
+
+                </span>
+
+                <script>
+                    $(function () {
+                      /*  $(".guahao").mouseover(function () {
+                            $(".hid").hide(500,function () {
+                                $(".hid").attr("style","display:none");
+                            });
+                        })*/
+
+                        $(".guahao").hover(function () {
+                            $(".hid").show(500,function () {
+                                $(".hid").attr("style","display:block");
+                            });
+                        })
+
+                    })
+
+
+                </script>
+                <!--需要处理的界面-->
+
+                <div id="login_show"></div>
+                </p>
+
+            </div>
+        <div class="yuyue__center_right" style="overflow: scroll">
+            <p>平台预约规则</p>
+            <p>
+                医院规则：
+                可预约班次更新时间：每日8：00开始预约，可预约5天号源，不含当天。号源有限，约满为止！取消时限：提前一个工作日15:00前。<br>
+                1、预约实行实名制预约，预约时必须提供患者本人真实姓名及有效证件号<br>
+                2、患者凭预约时预留的有效证件及就诊卡到预约取号处取号约<br>
+                3、超过取号时间，视为患者爽约，爽约三次将进入黑名单。以及未带证件强行取号者，两个月内禁止该患者继续预约。<br>
+                4、如遇专家班次停诊会以短信通知，请保持手机畅通。</p>
+        </div>
+        <!--推荐医生-->
+            <div id="yuyue_right">
+                <ul th:each="sam : ${sameDoc}">
+                    <li>
+                        <img src="../images/mandoctor.png" th:src="@{/images/mandoctor.png}" alt="" height="60px" width="60px">
+                        <span>
+                            <a  th:text="${sam.DName}" th:href="@{/user/Guahao}+ ${sam.did}">王书培</a>
+                            <span th:text="${sam.title.title}">主任医师</span>
+                            <p class="hospital"><span th:text="${sam.hospital.hospitalName}">武汉市神经病防治院</span><p/>
+                            <p class="total">累计预约“<strong th:text="${sam.dseeing }">24</strong>”人次</p>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    <!--预约挂号部分结束-->
+<!--页脚-->
+<div id="footer">
+    <div id="footer_one">
+        <ul>
+            <a href="">关于我们</a>
+            <a href="">网站地图</a>
+            <a href="">服务声明</a>
+            <a href="">招聘信息</a>
+            <a href="">意见反馈</a>
+            <a href="">联系我们</a>
+        </ul>
+        <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
+        <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
+        <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
+    </div>
+</div>
+</body>
+</html>

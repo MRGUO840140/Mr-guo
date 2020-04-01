@@ -1,0 +1,440 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.top{
+    background-color: #F9F9F9;
+    border: 1px solid #EAEAEA;
+    margin-bottom:25px;
+
+}
+.top #middle{
+    height: 35px;
+    width: 1000px;
+    /* background-color:#488B93;*/
+    margin: 0 auto;
+}
+.top #middle ul{
+    /* border: blue 1px solid;*/
+    padding-top: 5px;
+    width: 730px;
+    display: block;
+    float: left;
+
+}
+.top #middle ul a{
+    font-size: small;
+    margin: 20px 0;
+    padding: 0 20px;
+    border-left: 1px #EAEAEA solid;
+    text-align: center;
+    text-decoration: none;
+    color: #666666;
+}
+.top #middle ul a:hover{
+    color: #00C8AA ;
+}
+/*定部左侧部分*/
+
+.top #top_right{
+    float: right;
+    margin: 8px 0px;
+}
+.top #top_right p{
+    font-size: small;
+    text-align: center;
+}
+.top #top_right a{
+    color: #00C8AA;
+    font-size: small;
+    /* border: #488B93 1px solid;*/
+    text-decoration: none;
+}
+.top #top_right a:hover{
+    text-decoration: #00C8AA underline;
+}
+#fuwu{
+    height: 65px;
+    width: 1000px;
+    margin: 0 auto;
+
+}
+/*组件部分开始*/
+#healthcare{
+    float: left;
+    border-right: 1px #D6D6D6 solid;
+    padding-right: 10px ;
+}
+#zhuanjia{
+    float: left;
+    font-size: 23px;
+    margin-top: 10px;
+}
+.zujian{
+    float: right;
+    margin:15px 20px;
+}
+#zujian_four a{
+    color:#666666;
+}
+#zujian_three a{
+    color:#666666;
+}
+#zujian_two a{
+    color:#666666;
+}
+#zujian_one a{
+    color:#666666;
+}
+#fuwutubiao{
+    height: 32px;
+    width: 32px;
+}
+/*组件部分结束*/
+
+/*导航栏部分开始*/
+#daohang{
+    width: 100%;
+    height: 38px;
+    margin-top: 10px;
+    background: #28B4C3;
+    margin-bottom: 50px;
+}
+#daohang_center{
+    height: 100%;
+    width: 1000px;
+    margin: 0 auto;
+}
+#daohang_center ul{
+    float: left;
+}
+#daohang_center a{
+    display: inline-block;
+    line-height: 38px;
+    text-align: center;
+    width: 92px;
+    height:100%;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+#daohang_center a:hover{
+    background:#1BA0AF ;
+}
+#daohang_center form{
+    float: right;
+    /* position: relative;*/
+}
+#daohang_center input:first-child{
+    margin-top: 5px;
+    height: 30px;
+    width: 250px;
+}
+#daohang_center input:last-child{
+    width: 60px;
+    height: 30px;
+    background: #F0931A;
+    position:relative;
+    right: 5px;
+    top: 1px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+/*导航栏部分结束*/
+#header_logo{
+    display: inline-block;
+    background-image: url("../images/logo.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 100px;
+    float: left;
+    margin-top: 10px;
+}
+#header_position{
+    width: 1100px;
+    margin:0px auto;
+}
+#header_position>h3{
+    float: left;
+    font-size: 30px;
+    padding-left: 40px;
+    margin-top: 15px; 
+    border-left: 1px #eee solid;
+    font-weight:normal;
+}
+#header_right{
+    float: right;
+    margin-right: 40px;
+}
+#header_right>i{
+    display: inline-block;
+    background-image: url("../images/order.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 50px;
+    background-size: 40px 55px;
+    margin-top: 0px;
+    margin-left: 30px;
+}
+#header_position>div>p{
+    color:#1BA0AF ;
+}
+#whole{
+    border-bottom: 1px solid #eee;
+}
+#Ording{
+    margin: 30px 270px;
+}
+#Ording>p{
+    margin: 10px 0 12px;
+}
+#Ording>table>colgroup>col{
+    display: table-column;
+}
+#Ording>table>thead>tr>th>p{
+    border-bottom: 3px solid rgba(55,193,208,0.9);
+    font-weight: 400;
+    padding: 3px;
+    text-align: center;
+    line-height: 20px;
+    color: #bcbcbc;
+}
+tbody>tr>td{
+    line-height: 1.7;
+    font-size: 14px;
+    color:#888;
+    padding: 15px 2px 5px;
+    vertical-align: baseline;
+    text-align: center;
+    width: 160px;
+    height: 110px;
+}
+#gh{
+    color: orange;
+}
+#doctorInfo{
+    background-image: url(../images/male.png);
+    background-position: 0px 2px;
+    background-size: 60px 60px;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    padding: 0px 80px;
+    text-align: left;
+    margin-right: 50px;
+    height: 80px;
+    width: 340px;
+}
+#doctorInfo>a{
+    text-decoration: none;
+    color: #888;
+}
+#doctorName{
+    color: #1BA0AF;
+}
+#tips{
+    margin: 20px 0px;
+    background: url(../images/tips.png) 20px center no-repeat#D8F2F5;
+    line-height: 20px;
+    margin-left: 160px;
+    padding: 5px 10px 5px 40px;
+    color: #888;
+    font-size: 14px;
+    width: 480px;
+    border: 1px solid #D8F2F5;
+}
+#choosePeople{
+    width: 230px;
+    margin: 7px 18px 3px 0;
+    max-height: 216px;
+    overflow: auto;
+    border: 4px solid #1BA0AF;
+    color: #333;
+    height: 115px;
+}
+
+#choosePeople>dl>dt{
+    padding: 6px 10px;
+    font-size: 16px;
+    border-bottom: 1px dashed #e2e2e2;
+}
+#choosePeople>dl>dt>span{
+    color: #BCBCBC;
+    font-size: 14px;
+}
+#choosePeople>dl>dd{
+    padding: 6px 0px 6px 10px;
+    font-size: 14px;
+    background-color: #FFFDF4;
+}
+#choosePeople>dl>dd>i{
+    display: inline-block;
+    float: right;
+    background-image: url("../images/reservation.png");
+    background-position: 0px -170px;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+#addUser{
+    padding: 8px 0px 0px;
+}
+#addUser>a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #377bee;
+}
+#addUser>a:hover{
+    text-decoration: underline;
+}
+#chooseType{
+    font-size: 14px;
+    margin: 10px 0px 30px;
+    color: #888;
+}
+#chooseType>p{
+    color: #333;
+    margin: 20px 0px 12px;
+    font-size: 16px;
+}
+#chooseType>input{
+    padding: 5px 10px 2px 0px;
+}
+#first{
+    margin: 3px 3px 3px 0px;
+}
+#notfirst{
+    margin: 3px 3px 3px 30px;
+}
+#diseaseInfo>p{
+    color: #333;
+    font-size: 16px;
+    margin: 10px 0px 12px;
+}
+#diseaseInfo{
+    color: #888;
+    font-size: 14px;
+    margin: 3px 0px 30px;
+    padding: 5px 10px 2px 0px;
+}
+#text{
+    padding: 5px;
+
+}
+#button{
+    font-size: 12px;
+    padding: 0px 12px;
+    cursor: pointer;
+}
+#knowit{
+    color: #333;
+    font-size: 12px;
+    margin: 3px 0px 3px 3px;
+    padding: 5px 10px 10px 0px ;
+}
+#action>input{
+        background: #1BA0AF ;
+        color: #fff;
+        border-style: none;
+        border-radius: 3px;
+        width: 180px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+}
+#action>span{
+    color: #1BA0AF;
+    padding: 0px 0px 0px 20px;
+    font-size: 14px;
+}
+#action>span>em{
+    font-size: 16px;
+    font-style:normal;
+}
+#popLayer{
+    display: none;
+    background-color: rgba(46, 46, 46, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width:100%;
+    height: 1100px;
+}
+#popBox{
+    display: none;
+    background-color: #fff;
+    z-index: 11;
+    width: 650px;
+    height: 590px;
+    position:fixed;
+    margin:auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.close{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: rgb(247, 246, 246);
+    height: 25px;
+}
+.close>a{
+    display: inline-block;
+    float: right;
+    text-decoration: none;
+    color: #BCBCBC;
+    font-size: 20px;
+}
+#addUser_form{
+    margin: 30px 100px;
+    height: 60px;
+    line-height: 60px;
+}
+#form_content>span{
+    color: red;
+}
+.text{
+    width: 280px;
+    height: 27px;
+}
+.twotext{
+    height: 23px;
+    width: 140px;
+}
+#form_content>select{
+    width: 140px;
+    height: 27px;
+}
+#form_content>p{
+    padding-left:100px; 
+}
+#button>button{
+    width: 150px;
+    height: 40px;
+    margin: 28px;
+    cursor: pointer;
+}
+#close{
+    background: #eee;
+    color: #1BA0AF;
+    border-style: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#confirm{
+    background: #1BA0AF ;
+    color: #fff;
+    border-style: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button{
+    cursor: pointer;
+}

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.DoctorMapper">
+
+
+    <!--查出医生的所有的资料-->
+    <select id="getDoc" resultMap="getDoc">
+       select *
+    from doctor
+    left join time t on doctor.Did = t.Did
+    left join title v on doctor.TitleId = v.DTid
+    left join subject s on doctor.SubjectId = s.SubjectId
+    left join hospital h on doctor.HospitalId = h.HospitalId
+    where doctor.Did=#{Did}
+    </select>
+    <resultMap id="getDoc" type="com.example.healthcare.bean.Doctor">
+        <id property="Did" column="Did"></id>
+        <result property="DName" column="DName"></result>
+        <result property="Dtelephone" column="Dtelephone"></result>
+        <result property="Profile" column="Profile"></result>
+        <result property="SubjectId" column="SubjectId"></result>
+        <result property="Dphoto" column="Dphoto"></result>
+        <result property="Dseeing" column="Dseeing"></result>
+        <result property="Dgrade" column="Dgrade"></result>
+        <result property="diseaseId" column="diseaseId"></result>
+        <result property="Dintroduc" column="Dintroduc"></result>
+       <association property="hospital"  javaType="com.example.healthcare.bean.Hospital">
+           <id property="HospitalId" column="HospitalId"></id>
+           <result property="HospitalName" column="HospitalName"></result>
+       </association>
+        <association property="title" javaType="com.example.healthcare.bean.Title">
+            <id property="DTid" column="DTid"></id>
+            <result property="Title" column="Title"></result>
+        </association>
+        <association property="subject" javaType="com.example.healthcare.bean.Subject">
+            <result property="Subject" column="Subject"></result>
+        </association>
+        <association property="disease" javaType="com.example.healthcare.bean.Disease">
+            <result property="diseaseName" column="diseaseName"></result>
+            <result property="Article" column="Article"></result>
+        </association>
+        <collection property="time" ofType="com.example.healthcare.bean.Time">
+            <id property="TimeId" column="TimeId"></id>
+            <result property="Data" column="Data"></result>
+            <result property="Day" column="Day"></result>
+            <result property="MorAfter" column="MorAfter"></result>
+            <result property="Account" column="Account"></result>
+        </collection>
+    </resultMap>
+
+    <!--查当地医生-->
+    <select id="getDocsByHos" resultMap="getDocs">
+       SELECT *
+        FROM doctor
+        JOIN subject s on doctor.SubjectId = s.SubjectId
+        join title t on doctor.TitleId = t.DTid
+        WHERE HospitalId=#{HospitalId} AND s.SubjectId=#{SubjectId}
+    </select>
+    <resultMap id="getDocs" type="com.example.healthcare.bean.Doctor">
+        <id property="Did" column="Did"></id>
+        <result property="DName" column="DName"></result>
+        <result property="Dtelephone" column="Dtelephone"></result>
+        <result property="Profile" column="Profile"></result>
+        <result property="TitleId" column="TitleId"></result>
+        <result property="Dseeing" column="Dseeing"></result>
+        <result property="Dgrade" column="Dgrade"></result>
+        <result property="Dphoto" column="Dphoto"></result>
+        <result property="diseaseId" column="diseaseId"></result>
+        <result property="Dintroduc" column="Dintroduc"></result>
+        <association property="subject" javaType="com.example.healthcare.bean.Subject">
+            <result property="Subject" column="Subject"></result>
+        </association>
+        <association property="title" javaType="com.example.healthcare.bean.Title">
+            <result property="DTid" column="DTid"></result>
+            <result property="Title" column="Title"></result>
+        </association>
+        <association property="hospital" javaType="com.example.healthcare.bean.Hospital">
+            <result property="HospitalName" column="HospitalName"></result>
+        </association>
+    </resultMap>
+
+    <!--找到同科室的医生-->
+    <select id="getSameDoc" resultMap="getSame">
+        select Did,DName,Dphoto,Dseeing,HospitalName,Title
+        from doctor
+        join hospital h on doctor.HospitalId = h.HospitalId
+        join title t on doctor.TitleId = t.DTid
+        where diseaseId=#{diseaseId}
+        order by Dseeing desc
+        limit 1,2;
+    </select>
+    <resultMap id="getSame" type="com.example.healthcare.bean.Doctor">
+        <id property="Did" column="Did"></id>
+        <result property="DName" column="DName"></result>
+        <result property="Dphoto" column="Dphoto"></result>
+        <result property="Dseeing" column="Dseeing"></result>
+        <association property="hospital" javaType="com.example.healthcare.bean.Hospital">
+            <result property="HospitalName" column="HospitalName"></result>
+        </association>
+        <association property="title" javaType="com.example.healthcare.bean.Title">
+            <result property="Title" column="Title"></result>
+        </association>
+    </resultMap>
+
+    <select id="findDoctorById" resultMap="getDocs">
+        select Did,DName,Dtelephone,`Profile`,Title,`Subject`,HospitalName,Dseeing,Dgrade,Dphoto,diseaseName
+        from doctor,title,subject,hospital,disease
+        where doctor.SubjectId=#{SubjectId} and doctor.TitleId=title.DTid and doctor.SubjectId=subject.SubjectId and doctor.HospitalId=hospital.HospitalId
+        and doctor.diseaseId=disease.diseaseId
+        ORDER BY Dseeing desc
+    </select>
+
+    <select id="selectByPages" resultMap="getDocs">
+        select Did,DName,Dtelephone,`Profile`,Title,`Subject`,HospitalName,Dseeing,Dgrade,Dphoto,diseaseName
+        from doctor,title,subject,hospital,disease
+        where doctor.TitleId=title.DTid and doctor.SubjectId=subject.SubjectId and doctor.HospitalId=hospital.HospitalId
+        and doctor.diseaseId=disease.diseaseId
+        <if test="SubjectId!=null">
+            and doctor.SubjectId=#{SubjectId}
+        </if>
+        <if test="TitleId!=null">
+            and TitleId=#{TitleId}
+        </if>
+        <if test="HospitalId!=null">
+            and doctor.HospitalId=#{HospitalId}
+        </if>
+        ORDER BY Dseeing desc
+        limit #{pn},#{pageSize}
+    </select>
+
+    <select id="selectTotalPages" resultType="int">
+        select count(1) from Doctor where 1=1
+            <if test="SubjectId!=null">
+            and doctor.SubjectId=#{SubjectId}
+            </if>
+            <if test="TitleId!=null">
+                and TitleId=#{TitleId}
+            </if>
+            <if test="HospitalId!=null">
+                and doctor.HospitalId=#{HospitalId}
+            </if>
+    </select>
+
+
+    <!--李思玉-->
+    <select id="findDoctorByMaleDisease" resultType="Doctor">
+      SELECT * from doctor dt,subjectid s,title t
+      where dt.SubjectId=(
+      SELECT SubjectId FROM subjectid s
+      WHERE s.SubjectId=(SELECT d.SubjectId from maledisease m , disease d
+      where m.diseaseId=d.diseaseId and m.malediseaseId=#{malediseaseId}))
+      AND s.SubjectId=dt.SubjectId
+      AND t.DTid=dt.TitleId
+    </select>
+    <select id="findAllDoctor" resultMap="getDoc">
+            select *
+            from doctor
+            join title v on doctor.TitleId = v.DTid
+            join subject s on doctor.SubjectId = s.SubjectId
+            join hospital h on doctor.HospitalId = h.HospitalId
+            join price on v.DTid=price.DTid
+            where TreatmentId=2
+    </select>
+    <resultMap id="lisi" type="Doctor">
+        <id property="Did" column="Did"></id>
+        <result property="DName" column="DName"></result>
+        <result property="Dtelephone" column="Dtelephone"></result>
+        <result property="Profile" column="Profile"></result>
+        <result property="TitleId" column="TitleId"></result>
+        <result property="Dseeing" column="Dseeing"></result>
+        <result property="Dgrade" column="Dgrade"></result>
+        <result property="Dphoto" column="Dphoto"></result>
+        <result property="diseaseId" column="diseaseId"></result>
+        <result property="Dintroduc" column="Dintroduc"></result>
+        <association property="subject" javaType="com.example.healthcare.bean.Subject">
+            <result property="Subject" column="Subject"></result>
+        </association>
+        <association property="title" javaType="com.example.healthcare.bean.Title">
+            <result property="DTid" column="DTid"></result>
+            <result property="Title" column="Title"></result>
+        </association>
+        <association property="hospital" javaType="com.example.healthcare.bean.Hospital">
+            <result property="HospitalName" column="HospitalName"></result>
+        </association>
+        <association property="prices" javaType="com.example.healthcare.bean.Price">
+            <id property="PriceId" column="PriceId"></id>
+            <result property="price" column="price"></result>
+        </association>
+
+    </resultMap>
+
+
+    <select id="findDoctorByLevel" resultType="Doctor">
+        select * from doctor d where d.HospitalId =(SELECT h.HospitalId from hospital h where `level`=#{level})
+    </select>
+
+</mapper>

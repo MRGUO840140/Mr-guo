@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script th:src="@{/webjars/sockjs-client/1.0.2/sockjs.min.js}"></script>
+        <script th:src="@{/webjars/stomp-websocket/2.3.3/stomp.min.js}"></script>
+        <script src="../jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
+        <script th:src="@{/jquery/app.js}"></script>
+        <style type="text/css">
+            .talk_con{
+                width:600px;
+                height:500px;
+                border:1px solid #666;
+                margin:50px auto 0;
+                background:#f9f9f9;
+            }
+            .talk_show{
+                width:580px;
+                height:420px;
+                border:1px solid #666;
+                background:#fff;
+                margin:10px auto 0;
+                overflow:auto;
+            }
+            .talk_input{
+                width:580px;
+                margin:10px auto 0;
+            }
+            .talk_word{
+                width:420px;
+                height:26px;
+                padding:0px;
+                float:left;
+                margin-left:10px;
+                outline:none;
+                text-indent:10px;
+            }
+            .talk_sub{
+                width:56px;
+                height:30px;
+                float:left;
+                margin-left:10px;
+            }
+            .atalk{
+                margin:10px;
+            }
+            .atalk span{
+                display:inline-block;
+                background:#0181cc;
+                border-radius:10px;
+                color:#fff;
+                padding:5px 10px;
+            }
+            .btalk{
+                margin:10px;
+                text-align:right;
+            }
+            .btalk span{
+                display:inline-block;
+                background:#ef8201;
+                border-radius:10px;
+                color:#fff;
+                padding:5px 10px;
+            }
+        </style>
+        <script>
+        </script>
+        <script type="text/javascript">
+            //
+            window.onload = function(){
+                var Words = document.getElementById("words");
+                var TalkWords = document.getElementById("talkwords");
+                var TalkSub = document.getElementById("talksub");
+                TalkSub.onclick = function(){
+                    //定义空字符串
+                    var str = "";
+                    if(TalkWords.value == ""){
+                        // 消息为空时弹窗
+                        alert("消息不能为空");
+                        return;
+                    }
+                        str = '<div class="btalk"><span>' + TalkWords.value +'</span></div>' ;
+                        Words.innerHTML = Words.innerHTML + str;
+                    $("#talkwords").val("");
+                }
+
+            }
+
+        </script>
+
+    </head>
+<body>
+<div class="talk_con">
+    <div class="talk_show" id="words">
+    </div>
+    <div class="talk_input">
+        <input type="hidden"  id="uid"  th:value="${session.user.getUid()}">
+        <input type="text" class="talk_word" id="talkwords">
+        <input type="button" value="发送" class="talk_sub" id="talksub">
+    </div>
+</div>
+</body>
+</html>

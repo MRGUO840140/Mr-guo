@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/yemei.css">
+</head>
+<body>
+<div class="top">
+    <!--中部-->
+    <div id="middle">
+        <ul>
+            <a href="#">医美</a>
+            <a href="#">医平台</a>
+            <a href="#">云健康</a>
+            <a href="#">健康教育</a>
+            <a href="#">闻康公益</a>
+            <a href="#">药品网</a>
+            <a href="#">下载App</a>
+            <a href="#">微信公众号</a>
+        </ul>
+        <!--顶部右侧-->
+        <div id="top_right">
+            <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+            <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

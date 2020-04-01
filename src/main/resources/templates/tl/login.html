@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>登录界面</title>
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/login.css}"></link>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"></link>
+</head>
+<body>
+<div id="header">
+    <!--头部-->
+    <div class="h_center">
+        <img src="../images/6.png" alt="" style="opacity:0.8">
+        <h1 style="margin-top: 10px;margin-left: 10px">会员登录</h1>
+       <!-- <img src="../images/" alt="" width="600px" height="300px">-->
+    </div>
+
+
+    <div id="login_body"><!--左半部分-->
+
+        <div class="image"><!--图片-->
+        </div>
+        <p id="test" th:text="${success}" style="color: #33A89E"></p>
+        <script>
+            $(function () {
+                $(this).mousedown(function () {
+                    $("#test").hide(1000);
+                })
+            })
+        </script>
+        <!--用户名登录-->
+        <div id="login_border"><!--登录框-->
+            <!--表单部分-->
+            <div id="form">
+                <form action="#" th:action="@{/user/login}" id="form1" method="post">
+                    <div id="headimg">
+                    </div>
+                    <div class="qiehuan">
+                        <!--用户名-->
+                        <p style="font-size: 12px;color: red;text-align: center" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                        <div class="shuru">
+                            <img src="../images/3.jpg" alt=""><input id="denglu" type="text" placeholder="用户名" name="Uloginname">
+                        </div>
+
+                        <!--密码-->
+                        <div class="shuru">
+                            <img src="../images/timg%20(1).jpg" alt=""><input type="password" placeholder="请输入密码" id="password" name="Upassword">
+                        </div>
+
+
+                        <!--checkboxa-->
+
+                        <div id="checkbox">
+                            <input type="checkbox" name="十天内自动登录" checked="checked"><p style="margin: 5px 0 0 10px">十天内自动登录</p>
+                            <a href="#">?忘记密码</a>
+                        </div>
+                        <br>
+                        <!--登录-->
+                        <div id="login_button">
+                            <input type="submit" value="登  录">
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+            <!--用户登录结束-->
+            <div id="mobellogin">
+                <img src="../images/s-user-tel.gif" alt=""><a  id="shouji">手机动态码登录</a>
+                <a href="Register.html">免费注册</a>
+            </div>
+            <dl class="s-01dl-dsfdl">
+                <dd>可以使用以下方式登录</dd>
+                <dt class="clearfix">
+                    <a class="fl mr10" data='pvSinaLogin' href="//passport.xywy.com/oauthlogin/sina/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" clicken="userloginpage_weibo" onmousedown="clicktest(this);__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_weibo')" clicktype="loginandregist"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/s-01dl-dsfdl.jpg" alt=""/></a>
+                    <a class="fl mr10" data='pvAliPayLogin' style="margin-left:4px;" href="//passport.xywy.com/oauthlogin/alipay/alipay_login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_alipay')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/my_plipay.png" alt=""/></a>
+                    <a class="fl mr10" href="//passport.xywy.com/oauthlogin/weixin/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank"onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_wechat')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-wx.png" alt=""/></a>
+                    <a class="fl mr10" href="//passport.xywy.com/oauthlogin/qq/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_qq')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-qq.png" alt=""/></a>
+                </dt>
+            </dl>
+        </div>
+
+
+
+        <div id="login_mob">
+            <form th:action="@{/user/LoginTel}" method="post">
+                <div id="headimgone">
+                </div>
+                <p style="color:red;text-align: center;font-size: 12px" th:text="${error}"></p>
+                <div class="shuru">
+                    <img src="../images/3.jpg" alt=""><input  type="text" placeholder="请输入手机号码" id="phone" name="Utelephone">
+                </div>
+                <div class="shuru" style="border: white 0px solid">
+                    <img src="../images/yanzhengma.jpg" alt="" style="border-left: #DFDFE0 1px solid;border-top:#DFDFE0 1px solid;border-bottom: #DFDFE0 1px solid"><input type="text" placeholder="请输入验证码" style="width: 100px;float: left;border-top: #DFDFE0 1px solid;border-bottom: #DFDFE0 1px solid;" class="yanzhengma" id="tupianyanheng" name="validateCode">
+                    <img src="" alt="" style="border: 1px #666666 solid;float:left;width: 90px;height: 32px" th:src="@{/loginValidateCode}" onclick="uploadLoginValidateCode();" id="loginValidateCode">
+                    <div style="display: inline-block;float: right;width: 57px;height: 40px;border: 1px white solid;position: relative;bottom: 3px;background: white;color: red" id="yanzheng">
+                    </div>
+                </div>
+
+
+                <div class="shuru" >
+                    <img src="../images/timg%20(1).jpg" alt=""><input type="text" placeholder="请输入动态码" style="width: 150px;float: left" class="yanzhengma" id="dongtaiyanzheng" name="dongtai">
+                    <button type="button" style="border: 0; text-align: center;line-height: 36px;background: #33A89E;display: inline-block;width: 95px;height: 100%;float: right;color: white" id="dongtai">获取动态码</button>
+                </div>
+
+                <script>
+                    $(function () {
+
+                        $("#phone").blur(function () {
+                            if($("#phone").val()==""){
+                                alert("请输入手机号码");
+                            }
+                        });
+
+                        $("#tupianyanheng").blur(function () {
+                            if ($("#tupianyanheng").val()==""){
+                                alert("请输入图片验证码");
+                            }
+                        });
+
+                        $("#dongtaiyanzheng").blur(function () {
+                            if($("#dongtaiyanzheng").val()==""){
+                                alert("请输入动态验证码");
+                            }
+                        })
+                        /*不为空校验结束*/
+
+                        /*向后台发送手机号码以此获得手机验证码发送*/
+
+                        $("#dongtai").click(function () {
+                            var phone=$("#phone").val();
+                            $.getJSON("/user/mobilephone","phone="+phone,function (data) {
+                                alert(data);
+                            })
+                        })
+
+                        /*$("#dongtaiyanzheng").blur(function () {
+                            var yan=$("#dongtaiyanzheng").val();
+                            $.getJSON("/user/yanzheng","yan="+yan,function (data) {
+                                alert(data);
+                            })
+                        })*/
+                        /*记时按钮点击启动*/
+                        // 获取验证码倒计时
+                                var countdown = 60;
+                                $('#dongtai').on('click',function(){
+                                    var value=$("#phone").val()
+                                    var obj = $("#dongtai");
+                                    if(value!=""){
+                                            var reg = /^1[34578]\d{9}$/;
+                                            if (!reg.test(value)){
+                                                alert("请输入正确的手机号！");
+                                                $("#phone").val("");
+                                                return false;
+                                            }else {
+                                                settime(obj);
+                                                return true;
+                                            }
+                                    }else{
+                                        alert("请输入手机号！");
+                                        return false;
+                                    }
+                                })
+                        function settime(obj) { //发送验证码倒计时
+                            if (countdown == 0) {
+                                    obj.attr('disabled', false);
+                                    obj.html("获取验证码");
+                                    countdown = 60;
+                                    return;
+                                } else {
+                                    obj.attr('disabled', true);
+                                    obj.html("已发送(" + countdown + ")");
+                                    countdown--;
+                                }
+                                setTimeout(function () {
+                                        settime(obj)
+                                }
+                                , 1000)
+                        }
+                    })
+                </script>
+                <!--此处为不为空校验-->
+
+                <div id="checkboxone" style="width: 280px;height: 12px;margin: 20px 0 10px 22px;line-height: 12px;">
+                    <input type="checkbox" name="十天内自动登录" checked="checked"><p style="margin: 5px 0 0 10px">十天内自动登录</p>
+                </div>
+
+                <div id="login_button_one">
+                    <input type="submit" value="登  录" id="tijiao">
+                </div>
+            </form>
+            <div id="mobelloginone">
+                <img src="../images/s-user-us.gif" alt=""><a  id="yonghuming">普通方式登录</a>
+                <a href="Register.html" th:href="@{/user/register}">免费注册</a>
+            </div>
+            <dl class="s-01dl-dsfdl">
+                <dd>可以使用以下方式登录</dd>
+                <dt class="clearfix">
+                    <a class="fl mr10" data='pvSinaLogin' href="//passport.xywy.com/oauthlogin/sina/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" clicken="userloginpage_weibo" onmousedown="clicktest(this);__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_weibo')" clicktype="loginandregist"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/s-01dl-dsfdl.jpg" alt=""/></a>
+                    <a class="fl mr10" data='pvAliPayLogin' style="margin-left:4px;" href="//passport.xywy.com/oauthlogin/alipay/alipay_login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_alipay')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/my_plipay.png" alt=""/></a>
+                    <a class="fl mr10" href="//passport.xywy.com/oauthlogin/weixin/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank"onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_wechat')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-wx.png" alt=""/></a>
+                    <a class="fl mr10" href="//passport.xywy.com/oauthlogin/qq/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_qq')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-qq.png" alt=""/></a>
+                </dt>
+            </dl>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer_one">
+            <ul>
+                <a href="">关于我们</a>
+                <a href="">网站地图</a>
+                <a href="">服务声明</a>
+                <a href="">招聘信息</a>
+                <a href="">意见反馈</a>
+                <a href="">联系我们</a>
+            </ul>
+            <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
+            <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
+            <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script>
+    $(function () {
+
+        /*判断用户名或者密码不能为空开始*/
+        $("#denglu").blur(function () {
+            if($("#denglu").val()==""){
+                alert("用户名不能为空");
+                $("#denglu").val();
+            }
+        });
+        $("#password").blur(function () {
+            if($("#password").val()==""){
+                alert("请输入密码");
+            }
+        });
+        /*判断用户名或者密码不能为空结束*/
+        /*-----------------------------------*/
+        /*手机号码规则校验*/
+       /* $("#phone").blur(function () {
+            var reg = /^1[34578]\d{9}$/;
+            if (!reg.test($("#phone").val())){
+                alert("请输入正确的手机号！");
+                $("#phone").val("");
+            }
+        })*/
+        /*用户名密码后台请求校验*/
+        /*-----------------------------------*/
+        /*手机号验证码后台请求校验*/
+
+        /*手机号验证码后台请求校验*/
+        /*-----------------------------------*/
+        /*切换模式*/
+        $("#shouji").click(function () {
+            /* $("#login_border").css("display","none");*/
+            $("#login_border").attr("style","display:none;");
+            $("#login_mob").attr("style","display:block;");
+        });
+        $("#yonghuming").click(function () {
+            $("#login_border").attr("style","display:block;");
+            $("#login_mob").attr("style","display:none;");
+        });
+        /*切换模式*/
+        /*-----------------------------------*/
+    })
+    /*图形验证码*/
+    $(function () {
+        $("#tupianyanheng").keyup(function(){
+            checkLoginValidateCode($(this).val());
+        });
+
+    });
+
+    function uploadLoginValidateCode() {
+        $("#loginValidateCode").attr("src","/loginValidateCode?random="+new Date().getMilliseconds());
+    }
+
+    function checkLoginValidateCode(validateCode) {
+        var error = $("#tupianyanheng").parent().next();
+        if(validateCode != null && validateCode != ""){
+            $.ajax({
+                type: "POST",
+                async:false,
+                url: "/checkLoginValidateCode?validateCode="+validateCode,
+                success : function(json) {
+                    if(json != null && json.code == 200 && json.status != null) {
+                        if (json.status == true) {
+                            $("#yanzheng").text("正确！").attr("style","color:green");
+
+                        } else if(json.status == false){
+                         $("#yanzheng").text("错误！").attr("style","color:red");
+
+
+                        }else{
+
+                          $("#yanzheng").text("验证码过期")
+                            uploadLoginValidateCode();
+                        }
+                    }
+                    return false;
+                },
+                error:function(XMLHttpRequest,textStatus,errorThrown){
+                    alert("服务器错误！状态码："+XMLHttpRequest.status);
+                    // 状态
+                    console.log(XMLHttpRequest.readyState);
+                    // 错误信息
+                    console.log(textStatus);
+                    return false;
+                }
+            });
+        }else{
+            $("#yanzheng").text("请重新输入").attr("style","color:red");
+        }
+    }
+
+</script>
+</body>
+</html>

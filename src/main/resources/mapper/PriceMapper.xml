@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.PriceMapper">
+    <!--根据拿到的医生的职称获取对应的价格-->
+
+    <!--挂号部分-->
+    <select id="getPriceByGuhao" resultMap="getPrice">
+        select *
+        from price
+        join title t on price.DTid = t.DTid
+        join treatment v on price.TreatmentId = v.TreatmentId
+        where t.DTid=#{DTid} and v.TreatmentId=4
+    </select>
+    <resultMap id="getPrice" type="com.example.healthcare.bean.Price">
+        <id property="PriceId" column="PriceId"></id>
+        <result property="DTid" column="DTid"></result>
+        <result property="price" column="price"></result>
+        <result property="TreatmentId" column="TreatmentId"></result>
+        <association property="title" javaType="com.example.healthcare.bean.Title">
+            <result property="Title" column="Title"></result>
+        </association>
+        <association property="treatment" javaType="com.example.healthcare.bean.Treatment">
+            <result property="Treatment" column="Treatment"></result>
+        </association>
+    </resultMap>
+
+    <!--图文问诊部分-->
+    <select id="getPriceByTuwen" resultMap="getPrice">
+         select *
+        from price
+        join title t on price.DTid = t.DTid
+        join treatment v on price.TreatmentId = v.TreatmentId
+        where t.DTid=#{DTid} and v.TreatmentId=1
+    </select>
+
+    <!--在线聊天价格-->
+    <select id="getPriceByChat" resultMap="getPrice">
+           select *
+        from price
+        join title t on price.DTid = t.DTid
+        join treatment v on price.TreatmentId = v.TreatmentId
+        where t.DTid=#{DTid} and v.TreatmentId=3
+    </select>
+
+    <!--快速问诊的价格-->
+    <select id="getPriceByFast" resultMap="getPrice">
+             select *
+        from price
+        join title t on price.DTid = t.DTid
+        join treatment v on price.TreatmentId = v.TreatmentId
+        where t.DTid=#{DTid} and v.TreatmentId=2
+    </select>
+</mapper>

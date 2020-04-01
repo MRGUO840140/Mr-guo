@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#footer_one{
+    margin: 0 auto;
+    width: 1006px;
+    height: 100%;
+    border:  #F9F9F9 1px solid;
+}
+#footer_one ul{
+    margin-top: 30px;
+    margin-left: 260px;
+}
+#footer_one a:last-child{
+    border-right: none;
+}
+#footer_one a{
+    text-decoration: none;
+    border-right:1px solid #999999 ;
+    padding-right: 10px;
+    margin-left: 10px;
+    color: #666666;
+}
+#footer_one a:hover{
+    color:#00C8AA ;
+}
+#footer_one p{
+    text-align: center;
+    color: #999999;
+}
