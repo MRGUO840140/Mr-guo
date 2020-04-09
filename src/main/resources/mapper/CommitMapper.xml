@@ -12,12 +12,14 @@
        values(#{Uid},#{DoctorId},#{Title},#{Memo},#{sex},#{age},#{telephone},1)
     </insert>
     <select id="selectTuwen" resultMap="getCommit">
-        select Commit.CommitId,Doctor.DName,Commit.Title,Commit.Memo,Commit.telephone from Doctor,Commit
-        where Commit.DoctorId=Doctor.Did and Commit.TreatmentId=1 and Commit.Uid=#{Uid}
+        select commit.CommitId,doctor.DName,commit.Title,commit.Memo,commit.telephone from commit
+        join  doctor on doctor.Did = commit.DoctorId
+        where commit.DoctorId=doctor.Did and commit.TreatmentId=1 and commit.Uid=#{Uid}
     </select>
     <select id="selectJisu" resultMap="getCommit">
-        select Commit.CommitId,Doctor.DName,Commit.Title,Commit.Memo,Commit.telephone from Doctor,Commit
-        where Commit.DoctorId=Doctor.Did and Commit.TreatmentId=2 and Commit.Uid=#{Uid}
+        select commit.CommitId,doctor.DName,commit.Title,commit.Memo,commit.telephone from commit
+        join  doctor on doctor.Did = commit.DoctorId
+        where commit.DoctorId=doctor.Did and commit.TreatmentId=2 and commit.Uid=#{Uid}
     </select>
     <resultMap id="getCommit" type="Commit">
         <id property="CommitId" column="CommitId"></id>
@@ -29,6 +31,6 @@
         </association>
     </resultMap>
     <delete id="deleteCommit">
-        delete from Commit where CommitId=#{CommitId}
+        delete from commit where CommitId=#{CommitId}
     </delete>
 </mapper>

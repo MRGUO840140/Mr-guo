@@ -61,7 +61,8 @@
         from hospital
         join doctor d on hospital.HospitalId = d.HospitalId
         join subject s on d.SubjectId = s.SubjectId
-        where HospitalName=#{HospitalName} group by s.Subject
+        where HospitalName=#{HospitalName}
+        group by s.Subject
     </select>
     <resultMap id="hossub" type="com.example.healthcare.bean.Hospital">
         <result property="HospitalName" column="HospitalName"></result>

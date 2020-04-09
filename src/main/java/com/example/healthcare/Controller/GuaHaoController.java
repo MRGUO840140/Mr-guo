@@ -3,6 +3,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.healthcare.Service.*;
 import com.example.healthcare.bean.*;
+import com.example.healthcare.config.OSSClientUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,7 +102,7 @@ public class GuaHaoController {
      */
     @GetMapping("/user/Diabetes")
     public String Diabetes(Model model, HttpServletRequest request, @RequestParam(value = "pn",defaultValue = "1") Integer pn){
-
+        OSSClientUtil ossClientUtil = new OSSClientUtil();
          Integer hospitalid= Integer.parseInt(request.getParameter("hospital"));
          Integer subjectid=Integer.parseInt(request.getParameter("object"));
          Integer diseaseid=Integer.parseInt(request.getParameter("disease"));
@@ -118,7 +119,7 @@ public class GuaHaoController {
         PageInfo<Hospital> page=new PageInfo<>(hospitals,4); //1为连续显示的页数
         List<Hospital> list = page.getList();
         for (Hospital h:list){
-            System.out.println("医院的名称为："+h.getHospitalName());
+          h.setHospitalPhoto(ossClientUtil.getImgUrl(h.getHospitalPhoto()));
         }
         model.addAttribute("pageInfo",page); //存储分页的详细信息
         model.addAttribute("hospital",hospital);
@@ -136,12 +137,13 @@ public class GuaHaoController {
     @GetMapping("/user/PageHelper")
     @ResponseBody
     public Object getPageInfo(Model model,String positionCity,@RequestParam(value = "pn",defaultValue = "1") Integer pn){
+        OSSClientUtil ossClientUtil = new OSSClientUtil();
         PageHelper.startPage(pn,4);
         List<Hospital> hospitals = hospitalService.getHospital(positionCity);
         PageInfo<Hospital> page=new PageInfo<>(hospitals,4); //1为连续显示的页数
         List<Hospital> list = page.getList();
          for (Hospital hos:list){
-            System.out.println("医院的名称为："+hos.getHospitalName());
+             hos.setHospitalPhoto(ossClientUtil.getImgUrl(hos.getHospitalPhoto()));
         }
         model.addAttribute("hospitals",hospitals);
          model.addAttribute("page",page);

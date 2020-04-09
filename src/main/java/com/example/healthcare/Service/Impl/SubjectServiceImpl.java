@@ -14,19 +14,19 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectMapper subjectMapper;
 
     @Override
-    @Cacheable(cacheNames = "dis")
+    //@Cacheable(cacheNames = "dis")
     public Subject getDiseases(String Subject) {
         return subjectMapper.getDiseases(Subject);
     }
 
     @Override
-    @Cacheable(cacheNames = "dis")
+    //@Cacheable(cacheNames = "dis")
     public Subject getSub(Integer SubjectId) {
         return subjectMapper.getSub(SubjectId);
     }
 
     @Override
-    @Cacheable(cacheNames = "dis")
+    //@Cacheable(cacheNames = "dis")
     public Subject getInfo(String SubjctName) {
         return subjectMapper.getInfo(SubjctName);
     }

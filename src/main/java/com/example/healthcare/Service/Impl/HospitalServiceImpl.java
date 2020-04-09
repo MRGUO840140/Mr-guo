@@ -32,7 +32,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    @Cacheable(cacheNames = "hos")
+    //@Cacheable(cacheNames = "hos")
     public List<Hospital> getHospitalSub(String HospitalName) {
         return hospitalMapper.getHospitalSub(HospitalName);
     }
