@@ -32,7 +32,7 @@ public interface DoctorMapper {
 
     public List<Doctor> findDoctorById(Integer subjectId);
 
-    public List<Doctor> selectByPages(Integer SubjectId,Integer TitleId,Integer HospitalId,Integer pn,Integer pageSize);
+    public List<Doctor> selectByPages(Integer SubjectId,Integer TitleId,Integer HospitalId,String SubjectName,Integer pn,Integer pageSize);
 
     public Integer selectTotalPages(Integer SubjectId,Integer TitleId,Integer HospitalId);
 

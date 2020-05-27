@@ -23,7 +23,46 @@
 </head>
 
 <body>
-<div th:replace="commons/bar.html::topbar"></div>
+<div class="top">
+    <!--中部-->
+    <div id="middle">
+        <!-- <ul>
+             <a href="#">医美</a>
+             <a href="#">医平台</a>
+             <a href="#">云健康</a>
+             <a href="#">健康教育</a>
+             <a href="#">闻康公益</a>
+             <a href="#">药品网</a>
+             <a href="#">下载App</a>
+             <a href="#">微信公众号</a>
+         </ul>-->
+        <!--顶部右侧-->
+        <div id="top_right">
+            <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+            <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+        </div>
+    </div>
+
+</div>
+
+<img style="margin-left: 450px" src="../images/6.png" th:src="@{/images/20.jpg}" width="500px" height="100px" />
+<div id="daohang" style="margin-left: 450px">
+    <div id="daohang_center">
+        <ul>
+            <a href="../templates/tl/pageshow.html" th:href="@{/main}" style="width: 200px">首页</a>
+            <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 220px">预约挂号</a>
+            <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 220px">快速咨询</a>
+            <a href="#" th:href="@{/Discuss/getAll}" style="width: 200px">文章精选</a>
+            <!--  <a href="#">电话医生</a>
+              <a href="../templates/tl/yuyueguahao.html">专家频道</a>
+              <a href="#">原创热点</a>-->
+        </ul>
+        <!--  <form action="" method="get">
+              <input type="text" placeholder="疾病、专家、医院、科室">
+              <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
+          </form>-->
+    </div>
+</div>
 <!--<div id="yemei"></div>
     <img style="margin-left: 280px" th:src="@{images/6.png}"/>
    <div id="daohangtiao"></div>
@@ -34,7 +73,7 @@
     <div id="whole">
         <form method="post" id="commit">
             <!-- 第一步 -->
-            <div id="first_step">
+            <div id="first_step" style="height: 820px">
                 <div class="step_title">
                     <h3>第一步：问题描述</h3>
                 </div>
@@ -59,16 +98,16 @@
                 </div>
                 <!-- 上传图片 -->
                 <div id="addphoto">
-                    <div id="upload_head">
+                   <!-- <div id="upload_head">
                         <input name="Picture" type="file" accept="image/*" id="Picture" onchange="changepic(this)" />
-                    </div>
-                    <div id="addphoto_words">
+                    </div>-->
+                   <!-- <div id="addphoto_words">
                         <h3>添加图片<span>(可选填)</span></h3>
-                        <p>可添加患处、病历、检查单，3张图，请保证图片清晰</p>
-                    </div>
+                        <p>可添加患处或病历或检查单，1张图，请保证图片清晰</p>
+                    </div>-->
                 </div>
             </div>
-            <div id="twice_step">
+            <div id="twice_step" style="height: 330px">
                 <div class="step_title">
                     <h3>第二步：完善信息</h3>
                 </div>
@@ -82,17 +121,17 @@
                     <!-- 病人年龄 -->
                     <div id="Info_age">
                         <label>年　龄：</label>
-                        <input type="text" name="age" id="age" placeholder="如：28，不足一周，请选择月或天再填写" />
+                        <input type="text" name="age" id="age" placeholder="填写年龄" />
                         <select name="agesel" id="agesel">
-                            <option value="day">天</option>
-                            <option value="month">月</option>
+                            <!--<option value="day">天</option>
+                            <option value="month">月</option>-->
                             <option value="year">岁</option>
                         </select>
                         <span>用于医生全面排查病因</span>
                     </div>
                     <!-- 病人手机号 -->
                     <label>手机号：</label>
-                    <input type="tel" name="telephone" id="telephone" placeholder="请填写接收短信的手机号" />
+                    <input type="tel" name="telephone" id="telephone" placeholder="请填写手机号" />
                     <span>用于回复后短信通知您</span>
 <!--                    &lt;!&ndash; 图形验证码 &ndash;&gt;-->
 <!--                    <div id="checkcode">-->
@@ -110,14 +149,14 @@
                 </div>
             </div>
             <!-- 第三步 选择医生 -->
-            <div id="third_step">
+            <div id="third_step" style="height: 550px">
                 <div class="step_title">
                     <h3>第三步：选择医生</h3>
                 </div>
                 <!-- 推荐指定专家 -->
                 <div id="chooseDoctor">
                     <p>指定专家</p>
-                    <p id="changedoctor">换一换<i></i></p>
+                  <!--  <p id="changedoctor">换一换<i></i></p>-->
                 </div>
                 <!-- 医生列表及医生信息 -->
                 <div id="DoctorList">
@@ -125,10 +164,10 @@
                     </ul>
                 </div>
                 <div id="tips">
-                    提交问题后，请30分钟内完成支付，未支付将自动失效。
+                   免费咨询。
                 </div>
                 <div id="read">
-                    <input type="checkbox" name="agree" />
+                    <input type="checkbox" name="agree" checked />
                     <a href="#">我已阅读并同意《免责声明》</a>
                 </div>
                 <div id="button">
@@ -138,7 +177,7 @@
         </form>
     </div>
     <div id="footer">
-        <div id="footer_one">
+       <!-- <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
                 <a href="">网站地图</a>
@@ -150,7 +189,7 @@
             <p>违法和不良信息举报电话：4008591200举报邮箱：840140851@qq.com</p>
             <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
-        </div>
+        </div>-->
     </div>
 </body>
 <script>
@@ -212,7 +251,7 @@
                             "                                </div>\n" +
                             "                                <div class=\"doctor_bottom\">\n" +
                             "                                    <div class=\"price\">\n" +
-                            "                                        ￥<span>"+10+"</span>\n" +
+                            "                                        ￥<span>"+0+"</span>\n" +
                             "                                    </div>\n" +
                             "                                    <input id='doctorId' name='doctor' value="+''+(map.doctors)[i].did+" type='radio' style='width: 20px;height: 20px;float: right;margin:7px 10px 0px 0px ;'>\n" +
                             "                                </div>\n" +
@@ -229,7 +268,7 @@
                 var commitDoctorId = $("input[name='doctor']:checked").val();
                 var commitTitle = $("#Title").val();
                 var commitMemo = $("#Memo").val();
-                // var commitPicture = $("#Picture").val();
+                var commitPicture = $("#Picture").val();
                 var commitSex = $("input[name='sex']:checked").val();
                 var commitAge = $("#age").val();
                 var commitTelephone = $("#telephone").val();
@@ -238,7 +277,7 @@
                 commit.doctorId = commitDoctorId;
                 commit.title = commitTitle;
                 commit.memo = commitMemo;
-                // commit.Picture = commitPicture;
+                commit.Picture = commitPicture;
                 commit.sex = commitSex;
                 commit.age = commitAge;
                 commit.telephone = commitTelephone;

@@ -23,7 +23,7 @@
 <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+     <!--   <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -32,7 +32,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
@@ -43,11 +43,12 @@
 </div>
 <!--页眉部分结束-->
 <!--服务部分开始-->
-<div id="fuwu">
-    <img src="../images/6.png" th:src="@{/images/6.png}" alt="" id="healthcare">
+<div id="fuwu" style="margin-left: 270px">
+    <img src="../images/6.png" th:src="@{/images/20.jpg}" alt="" id="healthcare" width="500px" height="70px" />
     <p id="zhuanjia">专家频道</p>
     <!--组件开始-->
-    <div class="btn-group zujian">
+    <div style="width: 200px "></div>
+  <!--  <div class="btn-group zujian">
         <button type="button" class="btn btn-default">医生服务</button>
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="caret"></span>
@@ -105,26 +106,27 @@
             <li ><a href="">整形项目</a></li>
             <li><a href="#">食疗养生</a></li>
             <li><a href="#">健康资讯</a></li>
-            <!--第一个-->
+            &lt;!&ndash;第一个&ndash;&gt;
         </ul>
-    </div>
+    </div>-->
 </div>
 <!--服务部分结束-->
 <!--导航栏部分开始-->
 <div id="daohang">
     <div id="daohang_center">
         <ul>
-            <a href="pageshow.html" th:href="@{/main}">首页</a>
-            <a href="yuyueguahao.html" th:href="@{/user/Ording}">预约挂号</a>
-            <a href="tuwenzixun.html" th:href="@{/user/jisu}">图文咨询</a>
-            <a href="#">电话医生</a>
+            <a href="../templates/tl/pageshow.html" th:href="@{/main}" style="width: 200px">首页</a>
+            <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 220px">预约挂号</a>
+            <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 220px">快速咨询</a>
+            <a href="#"th:href="@{/Discuss/getAll}" style="width: 200px">文章精选</a>
+           <!-- <a href="#">电话医生</a>
             <a href="yuyueguahao.html">专家频道</a>
-            <a href="#">原创热点</a>
+            <a href="#">原创热点</a>-->
         </ul>
-        <form action="" method="get">
+      <!--  <form action="" method="get">
             <input type="text" placeholder="疾病、专家、医院、科室">
             <input type="submit" value="搜&nbsp;&nbsp;索">
-        </form>
+        </form>-->
     </div>
 </div>
 
@@ -250,14 +252,14 @@
                 <div id="diseaseInfo">
                     <p>填写疾病信息</p>
                     <input type="text" name="disease" id="text" />
-                    <input type="button" value="尚未确诊" id="jibing" style="height: 34px;">
+                  <!--  <input type="button" value="尚未确诊" id="jibing" style="height: 34px;">-->
                 </div>
                 <div id="knowit">
-                    <input type="checkbox" />我已了解并同意以下规则<br />
+                    <input type="checkbox" checked />我已了解并同意以下规则<br />
                 </div>
                 <div id="action">
                     <input type="submit"  value="确认预约">
-                    <span>预约成功的短信将发送到手机：
+                    <span>预约成功的信息将发送到邮箱：
                         <!-- 预约用户的手机号码 --><em th:text="${#strings.substring(userInfo.utelephone,0,3)+'****'+#strings.substring(userInfo.utelephone,7,11)}">142****4155</em>,请注意查收！</span>
                 </div>
 
@@ -265,7 +267,7 @@
         </div>
     </div>
     <div id="footer">
-        <div id="footer_one">
+      <!--  <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
                 <a href="">网站地图</a>
@@ -278,7 +280,7 @@
             <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
-        </div>
+        </div>-->
     </div>
 </body>
 

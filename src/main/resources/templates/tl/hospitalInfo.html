@@ -19,7 +19,7 @@
 <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+       <!-- <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -28,7 +28,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
@@ -37,93 +37,34 @@
     </div>
 
 </div>
-<div id="fuwu">
-    <img src="../images/6.png"  id="healthcare">
+<!--<div id="fuwu">
+    <img src="../images/6.png"  id="healthcare" th:src="@{/images/20.jpg}" width="500px" height="100px"/>
     <p id="zhuanjia">专家频道</p>
-    <!--组件开始-->
-    <div class="btn-group zujian">
-        <button type="button" class="btn btn-default">医生服务</button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only"></span>
-        </button>
-        <ul class="dropdown-menu " id="zujian_four">
-            <li><a href="#">医平台首页</a></li>
-            <li><a href="#">医学资讯</a></li>
-            <li><a href="#">原创热点</a></li>
-            <li ><a href="">交流分享</a></li>
-            <li><a href="#">招聘中心</a></li>
-            <li><a href="#">知识手册</a></li>
-            <li><a href="#">中国医生</a></li>
-            <li><a href="#">服务介绍</a></li>
-        </ul>
-    </div>
-    <div class="btn-group zujian">
-        <button type="button" class="btn btn-default">药品网</button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu " id="zujian_three">
-            <li><a href="#">药品网</a></li>
+    &lt;!&ndash;组件开始&ndash;&gt;
 
-        </ul>
-    </div>
-    <div class="btn-group zujian">
-        <button type="button" class="btn btn-default">用户服务</button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu " id="zujian_two">
-            <li><a href="#">有问必答</a></li>
-            <li><a href="yuyueguahao.html">预约挂号</a></li>
-            <li><a href="#">电话咨询</a></li>
-            <li><a href="#">健康经验</a></li>
-            <li><a href="#">专家访谈</a></li>
-            <li><a href="#">线下活动</a></li>
+</div>-->
+<img style="margin-left: 540px" src="../images/6.png" th:src="@{/images/20.jpg}" width="500px" height="100px" />
 
-        </ul>
-    </div>
-
-    <div class="btn-group zujian">
-        <button type="button" class="btn btn-default">健康百科</button>
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu " id="zujian_one" style="color:#666666">
-            <li><a href="#">疾病百科</a></li>
-            <li><a href="#">症状百科</a></li>
-            <li><a href="#">检查项目</a></li>
-            <li ><a href="">整形项目</a></li>
-            <li><a href="#">食疗养生</a></li>
-            <li><a href="#">健康资讯</a></li>
-            <!--第一个-->
-        </ul>
-    </div>
-</div>
-
-<div id="daohang">
+<div id="daohang" style="margin-left: 550px">
     <div id="daohang_center">
         <ul>
-            <a href="../templates/tl/pageshow.html" th:href="@{/main}">首页</a>
-            <a href="../templates/tl/Ording.html">预约挂号</a>
-            <a href="../templates/tl/tuwenzixun.html">图文咨询</a>
-            <a href="#">电话医生</a>
-            <a href="../templates/tl/yuyueguahao.html">专家频道</a>
-            <a href="#">原创热点</a>
+            <a href="../templates/tl/pageshow.html" th:href="@{/main}" style="width: 200px">首页</a>
+            <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 220px">预约挂号</a>
+            <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 220px">快速咨询</a>
+            <a href="#" th:href="@{/Discuss/getAll}" style="width: 200px">文章精选</a>
+            <!--  <a href="#">电话医生</a>
+              <a href="../templates/tl/yuyueguahao.html">专家频道</a>
+              <a href="#">原创热点</a>-->
         </ul>
-        <form action="" method="get">
-            <input type="text" placeholder="疾病、专家、医院、科室">
-            <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
-        </form>
+        <!--  <form action="" method="get">
+              <input type="text" placeholder="疾病、专家、医院、科室">
+              <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
+          </form>-->
     </div>
 </div>
-
 <div id="hos_Info">
-    <div id="center_left">
-        <img src="../images/hospital.jpg" alt="" th:src="@{ ${hospital.hospitalPhoto} }">
+    <div id="center_left" >
+        <img src="../images/hospital.jpg" alt="" th:src="@{ ${hospital.hospitalPhoto} }" style="height:150px ; width: 200px">
     </div>
 
     <div id="center_center">
@@ -312,7 +253,7 @@
 </script>
 
 <div id="footer">
-    <div id="footer_one">
+   <!-- <div id="footer_one">
         <ul>
             <a href="">关于我们</a>
             <a href="">网站地图</a>
@@ -325,7 +266,7 @@
         <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
         <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
-    </div>
+    </div>-->
 </div>
 
 </body>

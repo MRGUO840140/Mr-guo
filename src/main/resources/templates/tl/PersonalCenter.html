@@ -13,19 +13,38 @@
     <script src="../jquery/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="../bootstrap/js/bootstrap.js"></script>
+
+
     <title>个人中心</title>
     <link rel="stylesheet" href="../css/yemei.css">
     <link rel="stylesheet" href="../css/PersonalCenter.css">
     <link rel="stylesheet" href="../css/foot.css">
     <script src="../jquery/PersonalCenter.js"></script>
     <link rel="stylesheet" type="text/css" href="../jquery/jquery.sPage.css">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" th:src="@{/lib/html5shiv.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/respond.min.js}"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" th:href="@{h-ui/css/H-ui.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{h-ui.admin/css/H-ui.admin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{h-ui.admin/skin/default/skin.css}" id="skin" />
+    <link rel="stylesheet" type="text/css" th:href="@{h-ui.admin/css/style.css}" />
+    <!--[if IE 6]-->
+    <script type="text/javascript" th:src="@{lib/DD_belatedPNG_0.0.8a-min.js}"  th:inline="none"></script>
+<script>DD_belatedPNG.fix('*');</script>
+
+
+
+
 </head>
 
 <body>
 <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+    <!--    <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -34,7 +53,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p>欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
@@ -50,14 +69,16 @@
     </script>-->
     <!-- 搜索框 -->
     <header>
-        <div id="header_position">
-            <div id="header_logo"></div>
-            <div id="header_right">
+        <div id="header_position" style="margin-left: 350px">
+            <div id="header_logo">
+                <img th:src="@{/images/20.jpg}" width="399px" height="79px" >
+            </div>
+           <!-- <div id="header_right">
                 <form action="" method="get">
                     <input type="text" placeholder="疾病、专家、医院、科室">
                     <input type="submit" value="搜&nbsp;&nbsp;索">
                 </form>
-            </div>
+            </div>-->
         </div>
     </header>
     <!-- 导航条 -->
@@ -66,10 +87,11 @@
             <ul>
                 <div id="firstpage"><a href="#" th:href="@{/main}">首页</a></div>
                 <div><a href="#" th:href="@{/user/Ording}">预约挂号</a></div>
-                <div><a href="#" th:href="@{/user/jisu}">图文咨询</a></div>
-                <div><a href="#">电话医生</a></div>
+                <div><a href="#" th:href="@{/user/jisu}">快速咨询</a></div>
+                <a href="#"th:href="@{/Discuss/getAll}">文章精选</a>
+              <!--  <div><a href="#">电话医生</a></div>
                 <div><a href="#">专家访谈</a></div>
-                <div><a href="#">原创热点</a></div>
+                <div><a href="#">原创热点</a></div>-->
             </ul>
         </div>
     </div>
@@ -88,7 +110,7 @@
                 <div id="main_left">
                     <div id="left_head">
                         <div id="headphoto">
-                            <img id="userphoto">
+                            <img id="userphoto" th:src="${session.user.getUphoto()}">
                             <div id="userName">
                                 <span th:text="${session.user.getUname()}">name</span>
                                 <span th:text="${session.user.getUsex()}">-sex</span>
@@ -112,7 +134,7 @@
                                     <a id="QuestionList" onclick="showQuestionList()">我的问诊单</a>
                                 </li>
                             </ul>
-                            <ul>
+                          <!--  <ul>
                                 <li class="nav_head">
                                     健康档案
                                     <i id="healthFile"></i>
@@ -121,7 +143,7 @@
                                     <i></i>
                                     <a id="Care" onclick="showCare()">我的关注</a>
                                 </li>
-                            </ul>
+                            </ul>-->
                             <ul>
                                 <li class="nav_head">
                                     钱包福利
@@ -151,15 +173,15 @@
                     <div id="orderdiv">
                         <div class="right_head">
                             <h3>我的预约单</h3>
-                            <span>下载微医App和问诊医生视频通话！</span>
+                            <!--<span>下载微医App和问诊医生视频通话！</span>-->
                         </div>
                         <ul>
                             <li>
                                 <a href="#" class="current">预约单</a>
                             </li>
                         </ul>
-                        <form id="orderFilter" action="">
-                            <div>
+                      <!--  <form id="orderFilter" action="">
+                           &lt;!&ndash; <div>
                                 <label>按状态筛选：</label>
                                 <select name="oderState">
                                     <option value="0">全部</option>
@@ -167,7 +189,7 @@
                                     <option value="3">待确认</option>
                                     <option value="1">待支付</option>
                                 </select>
-                            </div>
+                            </div>&ndash;&gt;
                             <div>
                                 <label>就诊时间：</label>
                                 <select name="oderTime">
@@ -176,7 +198,7 @@
                                 </select>
                             </div>
                             <input type="submit" name="sure">
-                        </form>
+                        </form>-->
                         <div>
                             <table class="data-title">
                                 <thead>
@@ -283,11 +305,11 @@
                     <div id="questiondiv">
                         <div class="right_head">
                             <h3>我的问诊单</h3>
-                            <span>下载微医App和问诊医生视频通话！</span>
+                         <!--   <span>下载微医App和问诊医生视频通话！</span>-->
                         </div>
                         <ul>
                             <li>
-                                <a id="freeList" onclick="showFree()">图文咨询</a>
+                                <a id="freeList" onclick="showFree()">免费咨询</a>
                                 <a id="notFreeList" onclick="showNotFree()">快速问诊</a>
                             </li>
                         </ul>
@@ -427,7 +449,7 @@
                     <div id="walletdiv">
                         <div class="right_head">
                             <h3>健康账户</h3>
-                            <span>下载微医App和问诊医生视频通话！</span>
+                         <!--   <span>下载微医App和问诊医生视频通话！</span>-->
                         </div>
                         <div id="walletmain">
                             <div id="balance">
@@ -435,14 +457,14 @@
                                 <p>账户余额<span class="userbalance" th:text="${session.user.getUcount()}">0.00</span>元</p>
                                 <div>
                                     <a href="#">充值</a>
-                                    <a href="#">提现</a>
+                                  <!--  <a href="#">提现</a>-->
                                 </div>
                             </div>
-                            <div id="card">
+                            <!--<div id="card">
                                 <img src="../images/icon-bank.png">
                                 <p>我的银行卡</p><br />
                                 <a href="#">点击添加</a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <!-- 个人信息 -->
@@ -588,12 +610,14 @@
                         <div id="setHeaddiv">
                             <p id="head-p1">添加或更改你的头像</p>
                             <p id="head-p2">从电脑中选择一项你喜欢的照片上传，仅支持JPEG、GIF或PNG图片文件，且大小不超过2M。</p>
-                            <form action="" method="POST">
+                            <form action="" method="POST" id="tupian">
+
                                 <a href="javascript:;" id="upload_head" onclick="headFileUpdate()">
                                     <span>选择图片</span>
                                     <input type="file" name="uplode_file" id="imgFile" alt="1">
-                                </a><br/>
-                                <button type="submit">上传</button>
+                                </a>
+                                <button type="button" id="upload">上传</button>
+
                             </form>
                         </div>
                     </div>
@@ -614,7 +638,7 @@
             </div>
         </div>
     </div>
-    <div id="footer" style="margin-top:40px;">
+  <!--  <div id="footer" style="margin-top:40px;">
         <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
@@ -629,10 +653,44 @@
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
     
         </div>
-    </div>
+    </div>-->
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" th:inline="none" th:src="@{lib/jquery/1.9.1/jquery.min.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{lib/layer/2.4/layer.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{h-ui/js/H-ui.min.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{h-ui.admin/js/H-ui.admin.js}"></script> <!--/_footer /作为公共模版分离出去-->
 
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" th:inline="none" th:src="@{lib/jquery.validation/1.14.0/jquery.validate.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{lib/jquery.validation/1.14.0/validate-methods.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{lib/jquery.validation/1.14.0/messages_zh.js}"></script>
+<script type="text/javascript" th:inline="none" th:src="@{lib/webuploader/0.1.5/webuploader.min.js}"></script>
     <!--修改信息的js-->
     <script>
+
+        $("#upload").click(function () {
+            var files = document.getElementById("imgFile").files;
+
+            var formdata = new FormData();
+            formdata.append("imgFile",files[0])
+            $.ajax({
+                url:"/user/touxiang",
+                type:"post",
+                data:formdata,
+                contentType:false, //- 必须false才会自动加上正确的Content-Type
+                processData: false, //- 必须false才会避开jQuery对 formdata 的默认处理,XMLHttpRequest会对 formdata 进行正确的处理
+                success:function(res){
+                    res=JSON.parse(res);
+                    alert("上传成功");
+                },
+                error:function(){
+                    alert("图片格式过大");
+                }
+            });
+        })
+
+
+
         /*点击修改账号设置*/
             $("#xiugaiuserid").click(function () {
                 $("#userid").removeAttr("readonly");

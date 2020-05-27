@@ -11,7 +11,7 @@
 <div id="header">
     <!--头部-->
     <div class="h_center">
-        <img src="../images/6.png" alt="" style="opacity:0.8">
+        <img src="../images/6.png" alt="" style="opacity:0.8" th:src="@{/images/20.jpg}" width="185px" height="55px">
         <h1 style="margin-top: 10px;margin-left: 10px">会员登录</h1>
        <!-- <img src="../images/" alt="" width="600px" height="300px">-->
     </div>
@@ -30,7 +30,7 @@
             })
         </script>
         <!--用户名登录-->
-        <div id="login_border"><!--登录框-->
+        <div id="login_border" style="height: 380px"><!--登录框-->
             <!--表单部分-->
             <div id="form">
                 <form action="#" th:action="@{/user/login}" id="form1" method="post">
@@ -68,9 +68,9 @@
             <!--用户登录结束-->
             <div id="mobellogin">
                 <img src="../images/s-user-tel.gif" alt=""><a  id="shouji">手机动态码登录</a>
-                <a href="Register.html">免费注册</a>
+                <a href="Register.html" th:href="@{/user/register}">免费注册</a>
             </div>
-            <dl class="s-01dl-dsfdl">
+           <!-- <dl class="s-01dl-dsfdl">
                 <dd>可以使用以下方式登录</dd>
                 <dt class="clearfix">
                     <a class="fl mr10" data='pvSinaLogin' href="//passport.xywy.com/oauthlogin/sina/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" clicken="userloginpage_weibo" onmousedown="clicktest(this);__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_weibo')" clicktype="loginandregist"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/s-01dl-dsfdl.jpg" alt=""/></a>
@@ -78,12 +78,12 @@
                     <a class="fl mr10" href="//passport.xywy.com/oauthlogin/weixin/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank"onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_wechat')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-wx.png" alt=""/></a>
                     <a class="fl mr10" href="//passport.xywy.com/oauthlogin/qq/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_qq')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-qq.png" alt=""/></a>
                 </dt>
-            </dl>
+            </dl>-->
         </div>
 
 
 
-        <div id="login_mob">
+        <div id="login_mob" style="height: 440px">
             <form th:action="@{/user/LoginTel}" method="post">
                 <div id="headimgone">
                 </div>
@@ -194,7 +194,7 @@
                 <img src="../images/s-user-us.gif" alt=""><a  id="yonghuming">普通方式登录</a>
                 <a href="Register.html" th:href="@{/user/register}">免费注册</a>
             </div>
-            <dl class="s-01dl-dsfdl">
+           <!-- <dl class="s-01dl-dsfdl">
                 <dd>可以使用以下方式登录</dd>
                 <dt class="clearfix">
                     <a class="fl mr10" data='pvSinaLogin' href="//passport.xywy.com/oauthlogin/sina/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" clicken="userloginpage_weibo" onmousedown="clicktest(this);__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_weibo')" clicktype="loginandregist"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/s-01dl-dsfdl.jpg" alt=""/></a>
@@ -202,11 +202,11 @@
                     <a class="fl mr10" href="//passport.xywy.com/oauthlogin/weixin/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank"onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_wechat')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-wx.png" alt=""/></a>
                     <a class="fl mr10" href="//passport.xywy.com/oauthlogin/qq/login.php?backurl=http%3A%2F%2Fwww.xywy.com" target="_blank" onmousedown="__sendClickOdm('pc_ucenter', this, 'login:login+userloginpage_qq')"><img src="https://scs.static.xywy.com/ucenter/images/LoginRegister/login-qq.png" alt=""/></a>
                 </dt>
-            </dl>
+            </dl>-->
         </div>
     </div>
 
-    <div id="footer">
+   <!-- <div id="footer">
         <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
@@ -221,7 +221,7 @@
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
         </div>
-    </div>
+    </div>-->
 
 
 </div>

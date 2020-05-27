@@ -35,10 +35,10 @@ public class HealthcareApplicationTests {
 
     @Test
     public void test01(){
-        List<Doctor> allDoctor = doctorMapper.findAllDoctor();
-       for (Doctor d:allDoctor){
-           System.out.println(d);
-       }
+        User user = new User();
+        user.setUid("143cd4aa-deb7-11e9-bb5d-08606edc9819");
+        user.setUcount(25.0);
+        iUserMapper.UpdateUserCount(user);
     }
     @Test
     public void TestO(){

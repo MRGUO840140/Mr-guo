@@ -56,11 +56,10 @@
 
 #header_logo{
     display: inline-block;
-    background-image: url("../images/logo.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     float: left;
-    width: 200px;
+    width: 400px;
     height: 80px;
     margin-top: 10px;
 }
@@ -94,6 +93,8 @@
     color: white;
 }
 #daohang{
+    width: 1080px;
+    margin-left: 370px;
     clear: both;
     border-bottom: 2px #1BA0AF solid;
 
@@ -133,6 +134,7 @@
     padding-bottom:20px;
     width: 1370px;
     height: 742px;
+    margin-left: 220px;
 }
 a{
     text-decoration: none;

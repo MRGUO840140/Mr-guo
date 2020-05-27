@@ -1,0 +1,143 @@
+body{
+	width: 100%;
+	height: 100%;
+}
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.top{
+	background-color: #F9F9F9;
+	border: 1px solid #EAEAEA;
+	margin-bottom:25px;
+
+}
+.top #middle{
+	height: 35px;
+	width: 1000px;
+	/* background-color:#488B93;*/
+	margin: 0 auto;
+}
+.top #middle ul{
+	/* border: blue 1px solid;*/
+	padding-top: 5px;
+	width: 730px;
+	display: block;
+	float: left;
+
+}
+.top #middle ul a{
+	font-size: small;
+	margin: 20px 0;
+	padding: 0 20px;
+	border-left: 1px #EAEAEA solid;
+	text-align: center;
+	text-decoration: none;
+	color: #666666;
+}
+.top #middle ul a:hover{
+	color: #00C8AA ;
+}
+/*定部左侧部分*/
+
+.top #top_right{
+	float: right;
+	margin: 8px 0px;
+}
+.top #top_right p{
+	font-size: small;
+	text-align: center;
+}
+.top #top_right a{
+	color: #00C8AA;
+	font-size: small;
+	/* border: #488B93 1px solid;*/
+	text-decoration: none;
+}
+.top #top_right a:hover{
+	text-decoration: #00C8AA underline;
+}
+/*---------------*/
+#daohang{
+	width: 1395px;
+	margin-left: 255px;
+	height: 38px;
+	margin-top: 10px;
+	background: #28B4C3;
+
+}
+#daohang_center{
+	height: 100%;
+	width: 1000px;
+	margin: 0 auto;
+}
+#daohang_center ul{
+	float: left;
+}
+#daohang_center a{
+	display: inline-block;
+	line-height: 38px;
+	text-align: center;
+	width: 150px;
+	height:100%;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+}
+#daohang_center a:hover{
+	background:#1BA0AF ;
+}
+#daohang_center form{
+	float: right;
+
+}
+
+#daohang_center input:first-child{
+	text-align: center;
+	height: 30px;
+	width: 250px;
+	position: relative;
+	top: 4px;
+
+}
+#daohang_center input:last-child{
+	text-align: center;
+	/* line-height: 38px;*/
+
+	width: 60px;
+	height: 30px;
+	background: #F0931A;
+	position:relative;
+	right: 5px;
+	top: 5px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.mytext{
+	margin: 0 auto;
+	width: 70%;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 80px;
+	background: rgba(1,1,1,0.2);
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
+.MyTitle{
+	text-align: center;
+	width: 100%;
+}
+.docName{
+	
+	text-align: center;
+	width: 100%;
+
+}
+.RegDate{
+	
+	text-align: center;
+	width: 100%;
+
+}

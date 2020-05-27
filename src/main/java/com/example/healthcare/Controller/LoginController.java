@@ -1,4 +1,6 @@
 package com.example.healthcare.Controller;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.healthcare.Service.CommitService;
 import com.example.healthcare.Service.IUserService;
 import com.example.healthcare.Service.OrdinglistService;
@@ -6,10 +8,14 @@ import com.example.healthcare.bean.Commit;
 import com.example.healthcare.bean.Ordinglist;
 import com.example.healthcare.bean.PageHelper;
 import com.example.healthcare.bean.User;
+import com.example.healthcare.config.OSSClientUtil;
 import com.example.healthcare.config.yanzhen.RestTest;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +66,8 @@ public class LoginController {
         user.setUloginname(Uloginname);
         user.setUpassword(Upassword);
         User user1=iUserService.Login(user);
+        OSSClientUtil ossClientUtil = new OSSClientUtil();
+        user1.setUphoto(ossClientUtil.getImgUrl(user1.getUphoto()));
         if(!StringUtils.isEmpty(Uloginname)&&!StringUtils.isEmpty(Upassword)&&user1!=null){
             session.setAttribute("user",user1);
             return "redirect:/main.html";
@@ -67,6 +75,24 @@ public class LoginController {
             map.put("msg","用户名或密码错误");
             return "login";
         }
+    }
+
+    @PostMapping("/api/user/login")
+    @ResponseBody
+    public Object login1(HttpSession session, User user2, Map<String,Object> map){
+        //System.err.println(user2);
+        User user1=iUserService.Login(user2);
+
+        if(ObjectUtils.isEmpty(user1)){
+            map.put("success",false);
+            return  JSON.parse(map.toString());
+        }
+
+        map.put("token","123456789");
+        map.put("success",true);
+        Gson gson = new Gson();
+        String s = gson.toJson(map);
+        return s;
     }
 
     /**

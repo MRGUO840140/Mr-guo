@@ -41,8 +41,13 @@
         update user set Upassword=#{Upassword} where Uid=#{Uid}
     </update>
     <!--账户余额冲值-->
-    <update id="UpdateUserCount">
-        update user set Ucount=#{Ucount} where Uid=#{Uid}
+    <update id="UpdateUserCount" parameterType="com.example.healthcare.bean.User">
+        update user set Ucount = #{Ucount} where Uid=#{Uid}
+    </update>
+
+    <!--updateTouxiang-->
+    <update id="updateTouxiang">
+        UPDATE user set Uphoto = #{Uphoto} WHERE Uid = #{Uid}
     </update>
 
     <!--完善信息部分更新-->
@@ -65,6 +70,7 @@
         <result property="Uidnumber" column="Uidnumber"></result>
         <result property="Umail" column="Umail"></result>
         <result property="Ucount" column="Ucount"></result>
+        <result property="Uphoto" column="Uphoto"></result>
         <collection property="list" ofType="com.example.healthcare.bean.Ordinglist">
             <id property="OrdingId" column="OrdingId"></id>
             <result property="Did" column="Did"></result>

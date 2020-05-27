@@ -57,44 +57,17 @@
     height: 65px;
     width: 1000px;
     margin: 0 auto;
-
 }
-/*组件部分开始*/
-#healthcare{
-    float: left;
-    border-right: 1px #D6D6D6 solid;
-    padding-right: 10px ;
-}
-#zhuanjia{
-    float: left;
-    font-size: 23px;
-    margin-top: 10px;
-}
-.zujian{
+#fuwu>p{
     float: right;
-    margin:15px 20px;
+    margin-right: 610px;
+    font-size: 20px;
+    margin-top: 30px;
 }
-#zujian_four a{
-    color:#666666;
-}
-#zujian_three a{
-    color:#666666;
-}
-#zujian_two a{
-    color:#666666;
-}
-#zujian_one a{
-    color:#666666;
-}
-#fuwutubiao{
-    height: 32px;
-    width: 32px;
-}
-/*组件部分结束*/
-
 /*导航栏部分开始*/
 #daohang{
-    width: 100%;
+    width: 1000px;
+    margin-left: 450px;
     height: 38px;
     margin-top: 10px;
     background: #28B4C3;
@@ -112,7 +85,7 @@
     display: inline-block;
     line-height: 38px;
     text-align: center;
-    width: 92px;
+    width: 150px;
     height:100%;
     text-decoration: none;
     color: white;
@@ -364,30 +337,24 @@
 
 
 /*预约挂号部分结束*/
-#footer_one{
+#footer{
     margin: 0 auto;
     width: 1006px;
-    height: 100%;
-    border:  #F9F9F9 1px solid;
+    height: 500px;
+    border: 1px solid black;
+    box-shadow:5px 2px 6px #999999
 }
-#footer_one ul{
-    margin-top: 30px;
-    margin-left: 260px;
+
+
+/*分页组件*/
+#foorter_one{
+    margin: 0px auto;
+    width: 1006px;
+    height: 50px;
+    border: 1px solid black;
 }
-#footer_one a:last-child{
-    border-right: none;
-}
-#footer_one a{
-    text-decoration: none;
-    border-right:1px solid #999999 ;
-    padding-right: 10px;
-    margin-left: 10px;
-    color: #666666;
-}
-#footer_one a:hover{
-    color:#00C8AA ;
-}
-#footer_one p{
-    text-align: center;
-    color: #999999;
+
+#fenye{
+    padding-bottom: 20px;
+    margin-left:900px;
 }

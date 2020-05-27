@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthcare.mapper.DiscussMapper">
+    <!--@Author Mr GuoQing-->
+
+    <!--sql模板-->
+    <sql id="default"></sql>
+
+    <select id="selectAll" resultMap="getAll">
+        SELECT *
+        from discuss
+        join doctor d on discuss.Did = d.Did
+    </select>
+
+    <select id="selectById" resultMap="getAll">
+        SELECT *
+        From discuss
+         join doctor d on discuss.Did = d.Did
+        where id = #{id}
+    </select>
+
+    <resultMap id="getAll" type="com.example.healthcare.bean.Discuss">
+        <id property="id" column="id"/>
+        <result property="Did" column="Did"/>
+        <result property="title" column="title"/>
+        <result property="text" column="text"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <association property="doctor" javaType="com.example.healthcare.bean.Doctor">
+            <result column="DName" property="DName"/>
+        </association>
+    </resultMap>
+</mapper>

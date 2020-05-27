@@ -10,37 +10,28 @@
     <div class="top">
         <!--中部-->
         <div id="middle">
-            <ul>
-                <a href="#">医美</a>
-                <a href="#">医平台</a>
-                <a href="#">云健康</a>
-                <a href="#">健康教育</a>
-                <a href="#">闻康公益</a>
-                <a href="#">药品网</a>
-                <a href="#">下载App</a>
-                <a href="#">微信公众号</a>
-            </ul>
+
             <!--顶部右侧-->
             <div id="top_right">
                 <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
                 <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
             </div>
         </div>
-        <img style="margin-left: 280px" src="../images/6.png"/>
-        <div id="daohang">
+        <img style="margin-left: 550px; width: 500px;height: 100px" th:src="@{/images/20.jpg}"  />
+        <div id="daohang" style="width: 1000px;margin-left: 550px">
             <div id="daohang_center">
                 <ul>
-                    <a href="/index" th:href="@{/main}">首页</a>
-                    <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}">预约挂号</a>
-                    <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}">图文咨询</a>
-                    <a href="#">电话医生</a>
-                    <a href="../templates/tl/yuyueguahao.html">专家频道</a>
-                    <a href="#">原创热点</a>
+                    <a href="/index" th:href="@{/main}" style="width: 200px">首页</a>
+                    <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 210px">预约挂号</a>
+                    <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 210px">快速咨询</a>
+                    <a href="#"th:href="@{/Discuss/getAll}">文章精选</a>
+                    <!--<a href="../templates/tl/yuyueguahao.html">专家频道</a>
+                    <a href="#">原创热点</a>-->
                 </ul>
-                <form action="" method="get">
+               <!-- <form action="" method="get">
                     <input type="text" placeholder="疾病、专家、医院、科室">
                     <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
-                </form>
+                </form>-->
             </div>
         </div>
     </div>
@@ -62,7 +53,7 @@
 </div>
 
 <div th:fragment="footer">
-    <div id="footer">
+   <!-- <div id="footer">
         <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
@@ -77,7 +68,7 @@
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
         </div>
-    </div>
+    </div>-->
 </div>
 
 </body>

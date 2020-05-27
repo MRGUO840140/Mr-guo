@@ -24,6 +24,8 @@ public class User {
 
     private Double Ucount;
 
+    private String Uphoto;
+
     //挂号单子
     private List<Ordinglist> list;
 

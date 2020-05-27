@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="./Comment.css" rel="stylesheet" th:href="@{/css/Comment.css}" />
+	</head>
+	<body>
+		<div class="top">
+		    <!--中部-->
+		    <div id="middle">
+		        <!--顶部右侧-->
+		        <div id="top_right">
+		            <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
+		            <p th:if="${session.user !=null}">欢迎！<a href="#" target="_blank" th:href="@{/user/center}">[[${session.user.getUloginname()}]]</a> &nbsp;<a href="#"  th:href="@{/user/exit}">退出</a></p>
+		        </div>
+		    </div>
+		
+		</div>
+		
+		<img style="margin-left: 360px;width: 500px;height: 100px" src="../images/20.jpg" th:src="@{/images/20.jpg}"/>
+		<div id="daohang" style="margin-left: 400px">
+		    <div id="daohang_center">
+		        <ul>
+					<a href="../templates/tl/pageshow.html" th:href="@{/main}" style="width: 200px">首页</a>
+					<a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 220px">预约挂号</a>
+					<a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 220px">快速咨询</a>
+					<a href="#" th:href="@{/Discuss/getAll}">文章精选</a>
+		        </ul>
+		      <!--  <form action="" method="get">
+		            <input type="text" placeholder="疾病、专家、医院、科室">
+		            <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
+		        </form>-->
+		    </div>
+		</div>
+	<!-- 	评论区 -->
+	<div class="comment">
+		
+		<!-- 文章单选 -->
+		<div class="commentIdtem" th:each="discuss : ${discusses}">
+			<div>
+				<a href="#" th:href="@{/Discuss/queryById/} + ${discuss.id}" style="color: #00C8AA"><div class="ComTitle" th:text="${discuss.title}" style="font-size: 20px">文章标题</div></a>
+			<div class="RegDate" th:text="${#dates.format(discuss.gmtCreate,'yyyy年MM月dd')}">于2020年2月21日发表</div>
+			<div class="docName" th:text="${discuss.doctor.DName}">陈医生</div>
+			<br />
+			<div class="commentBody" th:text="${discuss.cut}" style="margin-top: 10px">
+				如果没有去过福鹿街或是桃叶巷，陈平安可能这辈子，都不会意识到泥瓶巷的阴暗狭窄。不过草鞋少年非但没有生出失落的感觉，反而终于感到心安，少年笑着伸出双手，刚好掌心触碰到两遍的黄泥墙壁，记得大概三四年前，陈平安还只能双手指尖触及泥墙。
+				
+				    走到自家屋前，发现院门大开，以为遭贼的少年连忙跑入院子，结果看到一个高大少年坐在门槛上，背靠上锁的屋门，百无聊赖地打着哈欠，看到陈平安后，火烧屁股一般站起身，跑到陈平安身前，一把攥紧陈平安的胳膊，狠狠拽向屋子，压低嗓音道：“赶紧开门，有要紧事要跟你说！”
+			</div>
+			</div>
+		</div>
+
+	</div>
+	</body>
+</html>

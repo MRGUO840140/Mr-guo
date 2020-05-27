@@ -120,6 +120,7 @@ h3{
 #first_step{
     width: 1000px;
     height: 900px;
+    margin-left: 190px;
 }
 #addphoto_words{
     display: block;
@@ -170,6 +171,7 @@ h3{
 #twice_step{
     width: 1000px;
     height: 450px;
+    margin-left: 190px;
 }
 label{
     font-size: 18px;
@@ -208,6 +210,7 @@ label{
 #third_step{
     width: 1000px;
     height: 735px;
+    margin-left: 190px;
 }
 #agesel{
     width: 70px;

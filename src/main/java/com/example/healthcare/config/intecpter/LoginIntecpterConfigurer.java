@@ -22,7 +22,7 @@ public class LoginIntecpterConfigurer implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("login.html").setViewName("login");
         registry.addViewController("main.html").setViewName("pageshow");
-        registry.addViewController("register.html").setViewName("Register");
+        registry.addViewController("register.html").setViewName("register");
     }
 
     @Override

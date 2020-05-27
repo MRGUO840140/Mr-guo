@@ -19,6 +19,14 @@ public class LoginIntercepter implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("preHandle----------->");
+
+        String requestURI = request.getRequestURI();
+
+        System.out.println(requestURI+"==========");
+        if("/user/register".equals(requestURI)){
+            return true;
+        }
+
         User user =(User) request.getSession().getAttribute("user");
         if(user==null){
             request.setAttribute("msg","没有权限请先登录");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,15 +11,16 @@
         <ul>
             <a href="../templates/tl/pageshow.html">首页</a>
             <a href="../templates/tl/Ording.html">预约挂号</a>
-            <a href="../templates/tl/tuwenzixun.html">图文咨询</a>
-            <a href="#">电话医生</a>
+            <a href="../templates/tl/tuwenzixun.html">快速咨询</a>
+            <a href="#" th:href="@{/Discuss/getAll}">文章精选</a>
+          <!--  <a href="#">电话医生</a>
             <a href="../templates/tl/yuyueguahao.html">专家频道</a>
-            <a href="#">原创热点</a>
+            <a href="#">原创热点</a>-->
         </ul>
-        <form action="" method="get">
+       <!-- <form action="" method="get">
             <input type="text" placeholder="疾病、专家、医院、科室">
             <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
-        </form>
+        </form>-->
     </div>
 </div>
 </body>

@@ -20,7 +20,7 @@
     <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+       <!-- <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -29,7 +29,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
@@ -40,11 +40,13 @@
 </div>
 <!--搜索框部分-->
 <div class="search_order ">
-        <div class="search" style="background: none;border: none">
+        <img src="../images/20.png" width="200px" height="50px" style="float: left" th:src="@{/images/20.jpg}">
+      <!--  <span style="border: black 1px solid;width: 200px;height: 50px;float: left" ></span>-->
+        <div class="search" style="background: black;border: none;width: 0px">
             <div id="search_one">
-                <form action="#" >
-                    <input type="text" placeholder="可搜索医院、医生、病症、问答、药品" id="search_input"><input type="submit" value="搜&nbsp;索" id="search_button">
-                    <a href="#" id="ask_button">快速提问</a>
+                <form action="doctor/findDoctors" method="get">
+                    <input type="text" placeholder="可搜索医生、病症、问答、药品" id="search_input" name="SubjectName"><input type="submit" value="搜&nbsp;索" id="search_button">
+                  <!--  <a href="#" id="ask_button">快速提问</a>-->
                 </form>
             </div>
         </div>
@@ -58,24 +60,21 @@
         <!--选择首页栏框-->
         <div class="nav_quick_lan">
             <ul>
-                <li class="one">首页</li>
-                <li class="one">疾病自查<i class="two"></i>
+                <!--<li class="one">首页</li>-->
+                <!--<li class="one">疾病自查<i class="two"></i>
                 <div class="daohang">
                     <a href="">按科室自查</a>
                     <a href="">按部位自查</a>
                     <a href="">按字母自查</a>
                 </div>
-                </li>
+                </li>-->
                 <li class="one">在线医疗<i class="two"></i>
                     <div class="daohang">
                         <a href="consultation.html">快速问诊(<i>限免</i>)</a>
-                        <a href="">有问必答</a>
-                        <a href="">电话医生</a>
                         <a th:href="@{/user/Ording}">预约挂号</a>
-                        <a href="">报告解读</a>
                     </div>
                 </li>
-                <li class="one">找专家<i class="two"></i>
+              <!--  <li class="one">找专家<i class="two"></i>
                     <div class="daohang">
                         <a href="">按疾病找</a>
                         <a href="">按医院找</a>
@@ -107,7 +106,7 @@
                         <a href="">整形项目</a>
                         <a href="">中医百科</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
         <div></div>
@@ -141,7 +140,7 @@
                         <!--内科中的内容-->
 
 
-                        <div class="youwenbida dianhua">
+                       <!-- <div class="youwenbida dianhua">
                             <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=1'}">普通内科</a>&nbsp;&nbsp;|
@@ -157,7 +156,7 @@
                                 <a th:href="@{'doctor/findDoctors?subjectId=1'}">老年病科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=1'}">胃肠病科</a>&nbsp;&nbsp;
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </li>
 
@@ -180,7 +179,7 @@
                         </ul>
                         </div>
 
-                        <div class="youwenbida dianhua">
+                        <!--<div class="youwenbida dianhua">
                             <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=2'}">神经外科</a>&nbsp;&nbsp;|
@@ -196,7 +195,7 @@
                                 <a th:href="@{'doctor/findDoctors?subjectId=2'}">普外科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=2'}">综合外科</a>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </li>
                 <li><i class="sear fck"></i>妇产科<i class="jiantou jk_two"></i>
@@ -213,7 +212,7 @@
                         </div>
                         <!--内科中的内容-->
                         <div class="youwenbida dianhua">
-                            <ul>
+                           <!-- <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=3'}">产科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇科</a>&nbsp;&nbsp;|
@@ -222,7 +221,7 @@
                                 <a th:href="@{'doctor/findDoctors?subjectId=3'}">妇产科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=3'}">遗传咨询科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=3'}">计划生育科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -249,10 +248,10 @@
 
 
                         <div class="youwenbida dianhua">
-                            <ul>
+                           <!-- <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=4'}">皮肤科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -271,10 +270,10 @@
                         </div>
                         <!--内科中的内容-->
                         <div class="youwenbida dianhua">
-                            <ul>
+                            <!--<ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=5'}">性病科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div></li>
                 <li><i class="sear ek"></i>儿科<i class="jiantou jk_one"></i>
@@ -292,7 +291,7 @@
 
 
                         <div class="youwenbida dianhua">
-                            <ul>
+                          <!--  <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=6'}">新生儿科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿消化科</a>&nbsp;&nbsp;|
@@ -306,7 +305,7 @@
                                 <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿耳鼻喉</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿外科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=6'}">小儿骨科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -325,12 +324,12 @@
 
 
                         <div class="youwenbida dianhua">
-                            <ul>
+                           <!-- <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=7'}">耳鼻喉科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=7'}">头颈外科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=7'}">眼科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -355,14 +354,14 @@
                         </div>
 
                         <div class="youwenbida dianhua">
-                            <ul>
+                           <!-- <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=8'}">精神科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=8'}">药物依赖科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=8'}">心里咨询科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=8'}">双相障碍科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=8'}">司法鉴定科</a>&nbsp;&nbsp;
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -383,7 +382,7 @@
                         </div>
 
                         <div class="youwenbida dianhua">
-                            <ul>
+                          <!--  <ul>
                                 <p>电话医生</p>
                                 <a th:href="@{'doctor/findDoctors?subjectId=9'}">营养科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=9'}">检验科</a>&nbsp;&nbsp;|
@@ -392,7 +391,7 @@
                                 <a th:href="@{'doctor/findDoctors?subjectId=9'}">急诊科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=9'}">男科</a>&nbsp;&nbsp;|
                                 <a th:href="@{'doctor/findDoctors?subjectId=9'}">其他科室</a>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </li>
@@ -470,19 +469,19 @@
     </div>
 </div>
 <!--问医生找专家模块-->
-<div id="clearfix">
-    <!--问医生标题1-->
+<!--<div id="clearfix">
+    &lt;!&ndash;问医生标题1&ndash;&gt;
     <div id="title">
         <a href="chat1.html" th:href="@{/user/chat1}">问医生</a>
         <a href="#">更多></a>
     </div>
-    <!--标题边的板块医生入口-->
+    &lt;!&ndash;标题边的板块医生入口&ndash;&gt;
     <div id="entry">
-        <!--图标部分-->
+        &lt;!&ndash;图标部分&ndash;&gt;
         <div class="entry_one">
             <p>医生入口</p>
         </div>
-        <!--列表部分-->
+        &lt;!&ndash;列表部分&ndash;&gt;
         <div class="entry_two">
             <ul>
                 <li><i id="l"></i><a href="">医生登录</a></li>
@@ -497,7 +496,7 @@
             </ul>
         </div>
     </div>
-    <!--第一部分内容-->
+    &lt;!&ndash;第一部分内容&ndash;&gt;
     <div class="part">
         <p class="t">有问必答</p>
         <i class="ti"></i>
@@ -540,14 +539,14 @@
             </ul>
         </div>
     </div>
-    <!--第一部分结束-->
-    <!--找专家标题2-->
+    &lt;!&ndash;第一部分结束&ndash;&gt;
+    &lt;!&ndash;找专家标题2&ndash;&gt;
     <div id="title_one">
         <a href="#">找专家</a><span>挂号·图文咨询</span>
         <a href="#">更多></a>
     </div>
-    <!--找专家标题结束-->
-    <!--第二部分开始-->
+    &lt;!&ndash;找专家标题结束&ndash;&gt;
+    &lt;!&ndash;第二部分开始&ndash;&gt;
     <div class="part">
         <p class="t">按疾病找</p>
         <i class="ti"></i>
@@ -588,8 +587,8 @@
             </ul>
         </div>
     </div>
-    <!--第二部分结束-->
-</div>
+    &lt;!&ndash;第二部分结束&ndash;&gt;
+</div>-->
 
 
 <!--查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   开始-->
@@ -913,7 +912,7 @@
     <div id="chajibing_right">
         <div id="chajibing_right_head">
             <p>疾病自诊</p>
-            <a href="">更多</a>
+          <!--  <a href="">更多</a>-->
         </div>
 
         <div id="chajibing_right_foot">
@@ -935,7 +934,7 @@
 </div>
 <!--查疾病 高发病 职业病季节流行病慢性病皮肤与性病疾病专题   结束-->
 <!--尾部开始-->
-<div id="footer">
+<!--<div id="footer">
         <div id="footer_one">
             <ul>
                 <a href="">关于我们</a>
@@ -949,7 +948,7 @@
             <p>北京市公安局海淀分局备案编号：0101101081513经营许可证编号：京ICP证080257号京ICP备10047209号-1</p>
             <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
         </div>
-</div>
+</div>-->
 <!--尾部结束-->
 </body>
 </html>

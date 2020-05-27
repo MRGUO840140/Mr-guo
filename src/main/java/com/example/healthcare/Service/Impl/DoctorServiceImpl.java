@@ -34,8 +34,8 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Doctor> selectByPages(Integer SubjectId,Integer TitleId,Integer HospitalId,Integer pn, Integer pageSize) {
-        return doctorMapper.selectByPages(SubjectId,TitleId,HospitalId,(pn-1)*4,pageSize);
+    public List<Doctor> selectByPages(Integer SubjectId,Integer TitleId,Integer HospitalId,String SubjectName,Integer pn, Integer pageSize) {
+        return doctorMapper.selectByPages(SubjectId,TitleId,HospitalId,SubjectName,(pn-1)*4,pageSize);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class FindDoctorController {
     private PriceService priceService;
 
     @GetMapping("/findDoctors")
-    public String findDoctors(Integer subjectId, Integer TitleId, Integer HospitalId, HttpServletRequest req){
+    public String findDoctors(Integer subjectId, Integer TitleId, Integer HospitalId,String SubjectName, HttpServletRequest req){
         //System.out.println(subjectId);
         HttpSession session=req.getSession();
         /*List<Doctor> doctors=doctorService.findDoctorById(subjectId);
@@ -38,7 +38,7 @@ public class FindDoctorController {
         pageHelper.setCurrentPage(pn);
         int pageSize=4;
         pageHelper.setPageSize(pageSize);
-        List<Doctor> doctors=doctorService.selectByPages(subjectId,TitleId,HospitalId,pn,pageSize);
+        List<Doctor> doctors=doctorService.selectByPages(subjectId,TitleId,HospitalId,SubjectName,pn,pageSize);
         pageHelper.setListItems(doctors);
         int totalPages=doctorService.selectTotalPages(subjectId,TitleId,HospitalId);
         pageHelper.setTotalPages(totalPages);

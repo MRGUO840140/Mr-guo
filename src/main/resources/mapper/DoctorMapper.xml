@@ -119,6 +119,9 @@
         <if test="SubjectId!=null">
             and doctor.SubjectId=#{SubjectId}
         </if>
+        <if test="SubjectName != null">
+            and subject.Subject = #{SubjectName}
+        </if>
         <if test="TitleId!=null">
             and TitleId=#{TitleId}
         </if>
@@ -130,7 +133,7 @@
     </select>
 
     <select id="selectTotalPages" resultType="int">
-        select count(1) from Doctor where 1=1
+        select count(1) from doctor where 1=1
             <if test="SubjectId!=null">
             and doctor.SubjectId=#{SubjectId}
             </if>

@@ -2,6 +2,7 @@ package com.example.healthcare.Controller;
 
 import com.example.healthcare.Service.*;
 import com.example.healthcare.bean.*;
+import com.example.healthcare.config.OSSClientUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,9 @@ public class HospitalGuaHaoController {
 
     @GetMapping("/user/hos")
     public String getHos(String hospitalName, String subjectName, Model model, @RequestParam(value = "pn",defaultValue = "1") Integer pn){
+        OSSClientUtil ossClientUtil = new OSSClientUtil();
         Hospital hospital = hospitalService.getHosByName(hospitalName, subjectName);
+        hospital.setHospitalPhoto(ossClientUtil.getImgUrl(hospital.getHospitalPhoto()));
         Integer hospitalId = hospital.getHospitalId();
         Subject info = subjectService.getInfo(subjectName);
         Integer subjectId = info.getSubjectId();
@@ -58,8 +61,6 @@ public class HospitalGuaHaoController {
     @GetMapping("/user/fen")
     @ResponseBody
     public Object getPage( @RequestParam(value = "pn",defaultValue = "1") Integer pn,String hospitalName, String subjectName){
-        System.out.println("---->"+hospitalName);
-        System.out.println("---->"+subjectName);
         Hospital hospital = hospitalService.getHosByName(hospitalName, subjectName);
         Integer hospitalId = hospital.getHospitalId();
         Subject info = subjectService.getInfo(subjectName);

@@ -3,7 +3,8 @@
     margin: 0px;
 }
 #daohang{
-    width: 100%;
+    width: 1000px;
+    margin-left: 450px;
     height: 38px;
     margin-top: 10px;
     background: #28B4C3;
@@ -16,12 +17,13 @@
 }
 #daohang_center ul{
     float: left;
+
 }
 #daohang_center a{
     display: inline-block;
     line-height: 38px;
     text-align: center;
-    width: 92px;
+    width: 200px;
     height:100%;
     text-decoration: none;
     color: white;

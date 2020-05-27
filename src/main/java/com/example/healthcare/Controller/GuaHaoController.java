@@ -4,13 +4,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.healthcare.Service.*;
 import com.example.healthcare.bean.*;
 import com.example.healthcare.config.OSSClientUtil;
+import com.example.healthcare.mapper.IUserMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.http.protocol.HttpContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +49,9 @@ public class GuaHaoController {
 
     @Autowired
     private CommitService commitService;
+
+    @Autowired
+    private IUserMapper iUserMapper;
     /**
      * 点击预约挂号进入选择地区页面
      * @return
@@ -156,6 +162,11 @@ public class GuaHaoController {
      */
     @GetMapping("/user/Guahao/{Did}")
     public String Guahao(@PathVariable("Did") String Did,Model model){
+
+        System.out.println(Did+"=============");
+
+
+
         Doctor doc = doctorService.getDoc(Did);                 //拿到医生的对象
         List<Time> time = doc.getTime();                         //医生的时间表
         List<Time> FilterTime=new ArrayList<>();
@@ -176,6 +187,9 @@ public class GuaHaoController {
         }else{
             model.addAttribute("time","暂无排班");
         }
+
+        sameDoc.stream().forEach(sameDo->System.err.println(sameDo));
+
         model.addAttribute("priceByGuhao",priceByGuhao);
         model.addAttribute("sameDoc",sameDoc);
         return "yuyueguahao";
@@ -226,8 +240,6 @@ public class GuaHaoController {
      */
     @PostMapping("/user/Ording")
     public String Ording(RedirectAttributes redirectAttributes, HttpServletRequest req, String DocId, String UserId, Integer TimeId, Integer PriceId, Integer time, String disease, Model model){
-        System.out.println(time);  //初诊 复诊
-        System.out.println(disease); //疾病描述
         Time time1 = timeService.getTime(TimeId);
         Integer account = time1.getAccount();//得到余数
         if(account>0){
@@ -258,7 +270,6 @@ public class GuaHaoController {
             List<Commit> jisuCommits=commitService.selectJisu(user.getUid());
             session.setAttribute("jisuCommits",jisuCommits);
             return "PersonalCenter";
-
         }else {
            redirectAttributes.addFlashAttribute("msg","用户已满");
             return "redirect:/OrdingInfo.html";
@@ -268,17 +279,37 @@ public class GuaHaoController {
 
         @GetMapping("/user/cancel")
         @ResponseBody
-        public Object cancel( Integer ordingId){
+        public Object cancel( Integer ordingId,HttpSession session){
             Map<String,Object> map=new HashMap<>();
             System.out.println("订单的id为："+ordingId);
             Ordinglist ording = ordinglistService.getOrding(ordingId);
             Integer timeId = ording.getTime().getTimeId();
-            System.out.println("时间表的id为："+timeId);
+            Double price = ording.getPrice().getPrice();
+            if(ording.getIsPay() == 1) {
+                Double price1 = price / 2;
+                User user = new User();
+                User user1 = (User) session.getAttribute("user");
+                System.err.println(user1);
+                user.setUid(user1.getUid());
+                user.setUcount(price1 + user1.getUcount());
+                iUserService.UpdateUserCount(user);
+                System.out.println("时间表的id为：" + timeId);
+            }
             ordinglistService.DelOrding(ordingId);
             timeService.AddCount(timeId);
             map.put("msg","取消预约成功");
            // JSONObject result = JSONObject.parseObject(JSON.toJSONString(map.put("msg","取消预约成功")));
             return map;
+        }
+
+        @PostMapping("/user/touxiang")
+        @ResponseBody
+        public Object touxiang(HttpServletRequest req, HttpSession session,@RequestParam("imgFile") MultipartFile imgFile, HttpContext context) throws Exception {
+            User user = (User) session.getAttribute("user");
+            OSSClientUtil ossClientUtil = new OSSClientUtil();
+            String s = ossClientUtil.uploadImg2Oss(imgFile);
+            iUserMapper.updateTouxiang(ossClientUtil.filedir+s,user.getUid());
+            return true;
         }
         /*单线完成*/
 //    @Autowired
@@ -311,4 +342,5 @@ public class GuaHaoController {
     public String chat2(){
         return "chat1";
     }
+
 }

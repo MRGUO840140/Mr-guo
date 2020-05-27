@@ -69,6 +69,11 @@ public interface IUserMapper {
     void UpdateUserCount(User user);
 
     /**
+     * 上传用户的头像
+     */
+    void  updateTouxiang(@Param("Uphoto")String Uphoto,@Param("Uid")String Uid);
+
+    /**
      * 这里对用户信息挂号时进行完善
      * @param Utelephone
      * @param Uname

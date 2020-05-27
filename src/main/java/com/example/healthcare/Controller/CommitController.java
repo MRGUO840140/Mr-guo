@@ -5,12 +5,16 @@ import com.example.healthcare.Service.OrdinglistService;
 import com.example.healthcare.bean.Commit;
 import com.example.healthcare.bean.Ordinglist;
 import com.example.healthcare.bean.User;
+import org.hibernate.validator.cfg.defs.DigitsDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +31,6 @@ public class CommitController {
     @ResponseBody
     public String addCommit(@RequestBody Commit commit, HttpSession session){
         User user = (User)session.getAttribute("user");
-        System.out.println(commit);
         commit.setUid(user.getUid());
         commitService.addCommit1(commit);
         return "PersonalCenter";
@@ -41,7 +44,16 @@ public class CommitController {
         String Title=request.getParameter("title");
         String Memo=request.getParameter("content");
         String telephone=request.getParameter("phone");
-        Commit commit=new Commit(user.getUid(),Did,Title,Memo,telephone);
+        String Picture=request.getParameter("Picture");
+        //String parameter = request.getParameter();
+        System.out.println("===="+Picture);
+
+        Commit commit=new Commit();
+        commit.setUid(user.getUid());
+        commit.setDoctorId(Did);
+        commit.setTitle(Title);
+        commit.setMemo(Memo);
+        commit.setTelephone(telephone);
         commitService.addCommit2(commit);
         int pn=1;
         if(request.getParameter("pn")!=null){
@@ -75,5 +87,19 @@ public class CommitController {
         map.put("msg","取消预约成功");
         // JSONObject result = JSONObject.parseObject(JSON.toJSONString(map.put("msg","取消预约成功")));
         return map;
+    }
+
+    /**
+     * 图文问诊的图片
+     */
+    @PostMapping("/user/uploadPhoto")
+    @ResponseBody
+    public Object uploadPhoto(MultipartFile file){
+        try{
+
+            return null;
+        }catch (Throwable t){
+            return t;
+        }
     }
 }

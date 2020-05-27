@@ -15,10 +15,17 @@
     d.Did, DName, Dtelephone, Profile, TitleId, Dseeing, Dgrade, Dphoto, diseaseId, Dintroduc,
     s.SubjectId, Subject,t.Title
     from hospital
-    join doctor d on hospital.HospitalId = d.HospitalId
-    join subject s on d.SubjectId = s.SubjectId
-    join title t on d.TitleId = t.DTid
-    where HospitalName=#{HospitalName} and s.Subject=#{Subject}
+   left join doctor d on hospital.HospitalId = d.HospitalId
+    left join subject s on d.SubjectId = s.SubjectId
+    left join title t on d.TitleId = t.DTid
+    <where>
+        <if test="HospitalName != null">
+        and   HospitalName=#{HospitalName}
+        </if>
+        <if test="Subject != null">
+          and  s.Subject=#{Subject}
+        </if>
+    </where>
     </select>
     <resultMap id="getDocs" type="com.example.healthcare.bean.Hospital">
         <id property="HospitalId" column="HospitalId"></id>

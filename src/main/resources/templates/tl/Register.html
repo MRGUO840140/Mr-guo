@@ -48,7 +48,7 @@
 <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+       <!-- <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -57,7 +57,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p><a th:href="@{/user/main}" target="_blank">首页</a>|  |<a href="#">帮助</a></p>
@@ -66,10 +66,10 @@
 
 </div>
 <!--------------------->
-    <div class="header">
+    <div class="header" style="height: 100px">
         <div class="center">
-            <div class="header-logo"><img src="../images/6.png" /></div>
-            <div class="header-title"> <h1 class="register" style="margin: 0 10px;">会员注册</h1></div>
+            <div class="header-logo"><img  th:src="@{/images/20.jpg}" width="200px" height="50px" /></div>
+            <div class="header-title" style="margin-top: 30px"> <h1 class="register" style="margin: 0px 20px;">会员注册</h1></div>
             <ins></ins>
         </div>
     </div>
@@ -81,7 +81,7 @@
             <form th:action="@{/user/pwd}" method="post">
                 <p id="user_size" >用户注册</p>
                 <span id="tishi" style="margin-left:130px ;color: red" th:text="${msgfail}"></span>
-                <p style="font-size: 16px;color: #666666">
+                <p style="font-size: 16px;color: #50a07b">
                     &nbsp;用户名：<span class="user_phone"><input type="text" placeholder="请输入用户名" name="Uloginname" style="height: 33px" id="Uloginname"></span>
                 </p>
                 <p id="phone_size">
@@ -96,7 +96,7 @@
                     确认密码：<span class="user_phone"><input type="password" name="jhm" id="jhm" onblur="check()" placeholder="请再确认密码"></span>
                     <span id="jhm_span"></span>
                 </p>
-                <p style="margin-left: 80px"><input type="checkbox" checked="checked"> 同意寻医问药<a href="#">注册协议</a></p>
+                <p style="margin-left: 80px"><input type="checkbox" checked="checked"> 同意healthcare<a href="#">注册协议</a></p>
                 <p id="sub"><input type="submit" name="button" value="立即注册" id="zhuce"></p>
             </form>
         </div>
@@ -104,7 +104,7 @@
 
 
 <!-------------->
-<div id="footer">
+<!--<div id="footer">
     <div id="footer_one">
         <ul>
             <a href="">关于我们</a>
@@ -119,7 +119,7 @@
         <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
     </div>
-</div>
+</div>-->
 
 
     <script>

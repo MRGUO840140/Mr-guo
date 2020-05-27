@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
 <div class="top">
     <!--中部-->
     <div id="middle">
-        <ul>
+       <!-- <ul>
             <a href="#">医美</a>
             <a href="#">医平台</a>
             <a href="#">云健康</a>
@@ -29,7 +29,7 @@
             <a href="#">药品网</a>
             <a href="#">下载App</a>
             <a href="#">微信公众号</a>
-        </ul>
+        </ul>-->
         <!--顶部右侧-->
         <div id="top_right">
             <p th:if="${session.user==null}">请<a href="login.html" target="_blank" >登录</a> 或<a href="Register.html" th:href="@{/user/register}">免费注册</a></p>
@@ -39,21 +39,22 @@
 
 </div>
 
-<img style="margin-left: 280px" src="../images/6.png"/>
-<div id="daohang">
+<img style="margin-left: 540px" src="../images/6.png" th:src="@{/images/20.jpg}" width="500px" height="100px" />
+<div id="daohang" style="margin-left: 550px">
     <div id="daohang_center">
         <ul>
-            <a href="../templates/tl/pageshow.html" th:href="@{/main}">首页</a>
-            <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}">预约挂号</a>
-            <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}">图文咨询</a>
-            <a href="#">电话医生</a>
+            <a href="../templates/tl/pageshow.html" th:href="@{/main}" style="width: 200px">首页</a>
+            <a href="../templates/tl/Ording.html" th:href="@{/user/Ording}" style="width: 220px">预约挂号</a>
+            <a href="../templates/tl/tuwenzixun.html" th:href="@{/user/jisu}" style="width: 220px">快速咨询</a>
+            <a href="#" th:href="@{/Discuss/getAll}" style="width: 200px">文章精选</a>
+          <!--  <a href="#">电话医生</a>
             <a href="../templates/tl/yuyueguahao.html">专家频道</a>
-            <a href="#">原创热点</a>
+            <a href="#">原创热点</a>-->
         </ul>
-        <form action="" method="get">
+      <!--  <form action="" method="get">
             <input type="text" placeholder="疾病、专家、医院、科室">
             <input type="submit" value="搜&nbsp;&nbsp;索" id="sousuo">
-        </form>
+        </form>-->
     </div>
 </div>
 <!--头部-->
@@ -70,7 +71,7 @@
         <span id="cont_size" th:text="${disease.getDiseaseName()}">糖尿病</span>
         <strong th:text="${subject.getSubject()}" id="subjectName">内分泌科</strong>
         <div id="cont_right">
-            <a href="#">进入疾病专区></a>
+          <!--  <a href="#">进入疾病专区></a>-->
         </div>
     </div>
     <div id="middle_explain">
@@ -82,7 +83,7 @@
             <i><span th:text="${hospital.getPositionCity()}">苏州</span></i>
         </div>
         <div class="title_right">
-            <a href="#" style="color: #28B4C3">更多</a>
+            <a href="#" style="color: #28B4C3"></a>
         </div>
     </div>
     <div id="doctor_items">
@@ -104,7 +105,7 @@
                 </div>
                 <div id="doctor_service">
                     <a th:href="@{/user/Guahao/} + ${doctor.Did}"><i id="a1"></i>挂号</a>
-                    <a href="tuwenzixun.html" th:href="@{/doctor/tuwen(Did=${doctor.Did})}"><i id="a2"></i>图文</a>
+                    <a href="tuwenzixun.html" th:href="@{/doctor/tuwen(Did=${doctor.Did})}"><i id="a2"></i>快速</a>
                     <a href="#" th:href="@{/alipay/chatpay(Did=${doctor.did})}"><i id="a3"></i>聊天</a>
                 </div>
             </li>
@@ -119,9 +120,9 @@
             相关医院
             <i><span th:text="${hospital.getPositionCity()}" id="address">苏州</span></i>
         </div>
-        <div class="title_right">
+      <!--  <div class="title_right">
             <a href="#" style="color: #28B4C3">更多</a>
-        </div>
+        </div>-->
     </div>
     <div id="hospital_items">
         <div id="content">
@@ -232,7 +233,7 @@
     })
 
 </script>
-<div id="footer">
+<!--<div id="footer">
     <div id="footer_one">
         <ul>
             <a href="">关于我们</a>
@@ -247,6 +248,6 @@
         <p>京卫计网审【2015】第0237号互联网药品信息服务资格证书编号：(京)-非经营性-2018-0306Copyright 2002-2019 All rights reserved</p>
 
     </div>
-</div>
+</div>-->
 </body>
 </html>

@@ -81,7 +81,7 @@
             </div>
             <div class="main_left4">
                 <a class="left4_a1" href="yuyueguahao.html" th:href="@{/user/chat}">聊天</a>
-                <a class="left4_a2" href="tuwenzixun.html" th:href="@{/doctor/tuwen(Did=${doctor.Did})}">图文咨询</a>
+                <a class="left4_a2" href="tuwenzixun.html" th:href="@{/doctor/tuwen(Did=${doctor.Did})}">快速咨询</a>
             </div>
             <span class="clear"></span>
         </div>
@@ -111,15 +111,18 @@
                 //点击分页按钮回调函数，返回当前页码
                 /*$("#pNum").text(page);*/
                 var sb=[[${session.subjectId}]];
-                if (sb==null) {
+                var hos=[[${session.HospitalId}]];
+                if (sb==null && hos != null) {
                     location.href = "/doctor/findDoctors?pn=" + page + "&HospitalId=" + [[${session.HospitalId}]];
-                } else{
+                } else if(sb!= null && hos == null){
                     location.href = "/doctor/findDoctors?pn=" + page + "&subjectId=" + [[${session.subjectId}]];
+                }else {
+                    location.href = "/doctor/findDoctors?pn=" + page + "&SubjectName=内科";
                 }
             }
         });
     });
 </script>
-<div style="margin-top: 20px" th:replace="commons/bar.html::footer"></div>
+<!--<div style="margin-top: 20px" th:replace="commons/bar.html::footer"></div>-->
 </body>
 </html>

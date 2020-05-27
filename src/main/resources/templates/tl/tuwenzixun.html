@@ -24,8 +24,8 @@
 <!--页眉部分-->
 <div id="head">
     <div class="head_center">
-        <img src="../images/6.png" alt="">
-        <p>付费咨询</p>
+       <!-- <img src="../images/6.png" alt="" >-->
+        <p>免费咨询</p>
         <img src="../images/pay_head.gif" alt="">
     </div>
 </div>
@@ -73,11 +73,11 @@
         </div>
 
 
-    <div class="upload">
+   <!-- <div class="upload">
         <p class="patient_info_title">
         <span class="xing">*</span><span>上传图片</span> <b>(选填)</b><br>
         <div id="upload_head">
-            <input type="file" accept="image/*" id="imgfile" onchange="changepic(this)"/>
+            <input type="file" accept="image/*" id="imgfile" onchange="changepic(this)" name="Picture"/>
         </div>
         <div class="tishi">
             <span >1.可上传患处、病历、检查单等图片(皮肤和整形问题请务必上传患处)；</span><br>
@@ -85,7 +85,7 @@
             <span >3.最多上传3张，单张照片小于2M。</span>
         </div>
         </p>
-    </div>
+    </div>-->
 
             <!-- 上传图片 start-->
 
@@ -130,10 +130,30 @@
     var imgfile = document.getElementById('imgfile');
     var i=0;
     function changepic(obj) {
+
+       /* var files = document.getElementById("imgFile").files;
+
+        var formdata = new FormData();
+        formdata.append("imgFile",files[0])
+        $.ajax({
+            url:"/user/uploadPhoto",
+            type:"post",
+            data:formdata,
+            contentType:false, //- 必须false才会自动加上正确的Content-Type
+            processData: false, //- 必须false才会避开jQuery对 formdata 的默认处理,XMLHttpRequest会对 formdata 进行正确的处理
+            success:function(res){
+                res=JSON.parse(res);
+                alert("上传成功");
+            },
+            error:function(){
+                alert("图片格式过大");
+            }
+        });*/
         //首先插入一个图片标签，src属性为空，宽高设置为100px，暂时设为不可见
         upload_head.innerHTML+="<img src=\"\" id=\"show"+i+"\" width=\"65\" height=\"65\" style=\"opacity: 0;\">";
         //调用getObjectURL函数，返回上传的图片的地址
         var newsrc=getObjectURL(obj.files[0]);
+        console.log(newsrc);
         document.getElementById('show'+i).src=newsrc;//将图片的路径设置为返回上传的图片的地址
         document.getElementById("show"+i).style.opacity=1;//将图片设置为可见
         document.getElementById("show"+i).style.float="left";
@@ -152,7 +172,7 @@
     }
 
    /*文件上传*/
-    $/*('input[class=projectfile]').each(function() {
+    /*('input[class=projectfile]').each(function() {
         var imageurl = $(this).attr("value");
 
         if (imageurl) {
